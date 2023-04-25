@@ -1,12 +1,22 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppComponent } from "./app/app.component";
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { provideRouter } from "@angular/router";
+import { baseUrlInterceptor } from "./app/interceptors/base-url.interceptor";
+import { provideGoogleId } from "./app/auth/auth-login/google-login/google-login.config";
+import { provideFacebookId } from "./app/auth/auth-login/facebook-login/fb-login.config";
+import { tokenInterceptor } from "./app/interceptors/token.interceptor";
+import { APP_ROUTES } from "./routes";
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
-}
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+    providers: [
+        provideHttpClient(
+            withInterceptors([baseUrlInterceptor, tokenInterceptor])
+        ),
+        provideRouter(APP_ROUTES),
+        provideGoogleId(
+            "746820501392-nc4pet9ffnm8gq8hg005re9e6ho65nua.apps.googleusercontent.com"
+        ),
+        provideFacebookId("735121904815672", "v15.0"),
+    ],
+});

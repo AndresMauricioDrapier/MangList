@@ -1,0 +1,94 @@
+<form action="#" id="newRegister" class="mt-4" (ngSubmit)="addUser()" novalidate [formGroup]="userForm">
+  <legend>Create an account</legend>
+
+  <div class="mb-3">
+    <label for="nombre">Name:</label>
+    <input type="text" class="form-control" formControlName="name" name="nameUser" [ngClass]="validClasses(nameControl)"
+      placeholder="Enter name" />
+
+    <div class="invalid-feedback" *ngIf="nameControl.errors?.['required']">
+      Name is required
+    </div>
+
+    <div class="invalid-feedback" *ngIf="nameControl.errors?.['pattern']">
+      Name must be contains letters and spaces
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="correo">Email:</label>
+    <input type="text" class="form-control" formControlName="email" name="emailUser"
+      [ngClass]="validClasses(emailControl)" placeholder="Enter email" />
+
+    <div class="invalid-feedback" *ngIf="emailControl.errors?.['required']">
+      Email is required
+    </div>
+
+    <div class="invalid-feedback" *ngIf="emailControl.errors?.['email']">
+      Must be in email format i.e.: usuario@usuario.com
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="correo">Repeat Email:</label>
+    <input type="text" [ngClass]="validClasses(email2Control)" class="form-control" formControlName="email2"
+      name="emailUser2" placeholder="Enter name" />
+
+    <div class="invalid-feedback" *ngIf="email2Control.errors">
+      The emails aren't equals
+    </div>
+    <div class="invalid-feedback" *ngIf="email2Control.errors?.['email']">
+      Must be in email format i.e.: usuario@usuario.com
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="Password" name="password"
+      formControlName="password" [ngClass]="validClasses(passwordControl)" required />
+
+    <div class="invalid-feedback" *ngIf="passwordControl.errors?.['pattern']">
+      Password must have at least 4 characters
+    </div>
+    <div class="invalid-feedback" *ngIf="passwordControl.errors?.['required']">
+      Password is required
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="mb-3 col">
+      <label for="lat">Latitude:</label>
+      <input type="text" class="form-control" id="lat" name="lat" placeholder="Geolocating..." readonly
+        [value]="newUser.lat" />
+    </div>
+
+    <div class="mb-3 col">
+      <label for="lng">Longitude:</label>
+      <input type="text" class="form-control" id="lng" name="lng" placeholder="Geolocating..." readonly
+        [value]="newUser.lng" />
+    </div>
+
+  </div>
+
+  <div class="mb-3">
+    <label for="image">Avatar image</label>
+    <input type="file" class="form-control" id="avatar" name="avatar" formControlName="avatar" required (change)="changeImage($event)"
+      formControlName="avatar" />
+    <div class="invalid-feedback" *ngIf="imageControl.errors?.['required']">
+      Avatar is required
+    </div>
+  </div>
+
+  <img [src]="newUser.avatar" alt="" class="img-thumbnail mb-3 mb-3"
+    *ngIf="!(newUser.avatar ==='')?'d-none':''">
+
+  <p class="text-danger" id="errorInfo"></p>
+  <button [routerLink]="['/auth/login']" routerLinkActive="router-link-active" class="btn btn-secondary">Have an
+    account?</button>
+  <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Create Account</button>
+</form>
+<hr>
+<arcgis-map [coords]="[newUser.lng, newUser.lat]">
+  <arcgis-marker [coords]="[newUser.lng, newUser.lat]" color="red"></arcgis-marker>
+  <arcgis-search position="top-right" (result)="searchResult($event)"></arcgis-search>
+</arcgis-map>
