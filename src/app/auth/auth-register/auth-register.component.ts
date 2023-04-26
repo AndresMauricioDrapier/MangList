@@ -13,47 +13,43 @@ import {
 } from "@angular/forms";
 import { Auth } from "../interfaces/auth";
 import { isTheSame } from "src/app/shared/validators/isTheSame";
-import { ArcgisMapComponent } from "src/app/shared/maps/arcgis-map/arcgis-map.component";
-import { ArcgisMarkerDirective } from "src/app/shared/maps/arcgis-marker/arcgis-marker.directive";
-import { ArcgisSearchDirective } from "src/app/shared/maps/arcgis-search/arcgis-search.directive";
-import { SearchResult } from "src/app/shared/maps/interfaces/search-result";
 import { AuthService } from "../services/auth.service";
 import Swal from "sweetalert2";
+import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 
 @Component({
-    selector: "fs-auth-register",
+    selector: "ml-auth-register",
     standalone: true,
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ArcgisMapComponent,
-        ArcgisMarkerDirective,
-        ArcgisSearchDirective,
         RouterModule,
+        ImageCropperModule,
     ],
     templateUrl: "./auth-register.component.html",
-    styleUrls: ["./auth-register.component.css"],
+    styleUrls: ["./auth-register.component.scss"],
 })
 export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
     userForm!: FormGroup;
     nameControl!: FormControl<string>;
     emailControl!: FormControl<string>;
-    email2Control!: FormControl<string>;
     passwordControl!: FormControl<string>;
+    password2Control!: FormControl<string>;
     imageControl!: FormControl<string>;
     exit = false;
+
+    imageChangedEvent: any = "";
+    croppedImage: any = "";
 
     newUser: Auth = {
         name: "",
         email: "",
         avatar: "",
-        lat: 0,
-        lng: 0,
     };
 
     constructor(
-        private readonly http: AuthService,
+        private readonly authService: AuthService,
         private readonly router: Router,
         private readonly fb: NonNullableFormBuilder
     ) {}
@@ -66,26 +62,24 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
             Validators.required,
             Validators.email,
         ]);
-        this.email2Control = this.fb.control("", [
-            Validators.email,
-            isTheSame(this.emailControl),
-        ]);
+
         this.passwordControl = this.fb.control("", [
             Validators.required,
-            Validators.pattern("^.{4,}$"),
+            Validators.pattern(
+                "^(?=.*[!@#$%&/.()=+?\\[\\]~\\-^])[a-zA-Z!@#$%&./()=+?\\[\\]~\\-^]{8,}$"
+            ),
+        ]);
+        this.password2Control = this.fb.control("", [
+            Validators.required,
+            isTheSame(this.passwordControl),
         ]);
         this.imageControl = this.fb.control("", [Validators.required]);
         this.userForm = this.fb.group({
             name: this.nameControl,
             email: this.emailControl,
-            email2: this.email2Control,
             password: this.passwordControl,
+            password2: this.password2Control,
             avatar: this.imageControl,
-        });
-
-        navigator.geolocation.getCurrentPosition((pos) => {
-            this.newUser.lat = pos.coords.latitude;
-            this.newUser.lng = pos.coords.longitude;
         });
     }
 
@@ -112,33 +106,21 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
             });
         }
     }
-
-    changeImage(event: Event): void {
-        const fileInput = event.target as HTMLInputElement;
-        if (!fileInput.files || fileInput.files.length === 0) {
-            this.newUser.avatar = "";
-            return;
-        }
-        const reader = new FileReader();
-        reader.readAsDataURL(fileInput.files[0]);
-        reader.addEventListener("loadend", () => {
-            this.newUser.avatar = reader.result as string;
-        });
-    }
     addUser(): void {
         this.newUser.name = this.nameControl.value;
         this.newUser.email = this.emailControl.value;
         this.newUser.password = this.passwordControl.value;
+        this.newUser.role = "admin";
 
-        this.http.register(this.newUser).subscribe(() => {
-            this.exit = true;
-            this.router.navigate(["/auth/login"]);
+        this.authService.register(this.newUser).subscribe({
+            next: () => {
+                this.exit = true;
+                this.router.navigate(["/auth/login"]);
+            },
+            error: (error) => {
+                console.log(error);
+            },
         });
-    }
-
-    searchResult(result: SearchResult): void {
-        this.newUser.lat = result.latitude;
-        this.newUser.lng = result.longitude;
     }
     validClasses(
         ngModel: FormControl,
@@ -149,5 +131,15 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
             [validClass]: ngModel.touched && ngModel.valid,
             [errorClass]: ngModel.touched && ngModel.invalid,
         };
+    }
+
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+    }
+    saveImage() {
+        this.newUser.avatar = this.croppedImage;
     }
 }

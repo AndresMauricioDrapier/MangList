@@ -6,10 +6,10 @@ export const baseUrlInterceptor: HttpInterceptorFn = (req, next) => {
 
     if (isDevMode()) {
         // App in development mode
-        serverUrl = "http://arturober.com:5010"; // Development server url
+        serverUrl = "http://manglist.site:3000"; // Development server url
     } else {
         // App in production mode
-        serverUrl = "http://arturober.com:5010"; // Production server url
+        serverUrl = "http://manglist.site:3000"; // Production server url
     }
     const reqClone = req.clone({
         url: `${serverUrl}/${req.url}`,

@@ -4,11 +4,11 @@ import { Router, RouterModule } from "@angular/router";
 import { AuthService } from "src/app/auth/services/auth.service";
 
 @Component({
-    selector: "fs-menu",
+    selector: "ml-menu",
     standalone: true,
     imports: [CommonModule, RouterModule],
     templateUrl: "./menu.component.html",
-    styleUrls: ["./menu.component.css"],
+    styleUrls: ["./menu.component.scss"],
 })
 export class MenuComponent implements OnInit {
     logged?: boolean;

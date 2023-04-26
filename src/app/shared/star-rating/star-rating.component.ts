@@ -13,7 +13,7 @@ import { CommonModule } from "@angular/common";
     standalone: true,
     imports: [CommonModule],
     templateUrl: "./star-rating.component.html",
-    styleUrls: ["./star-rating.component.css"],
+    styleUrls: ["./star-rating.component.scss"],
 })
 export class StarRatingComponent implements OnInit, OnChanges {
     @Input() rating!: number;

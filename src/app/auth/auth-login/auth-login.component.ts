@@ -17,7 +17,7 @@ import { AuthLogin } from "../interfaces/auth";
 import Swal from "sweetalert2";
 
 @Component({
-    selector: "fs-auth-login",
+    selector: "ml-auth-login",
     standalone: true,
     imports: [
         CommonModule,
@@ -28,7 +28,7 @@ import Swal from "sweetalert2";
         ReactiveFormsModule,
     ],
     templateUrl: "./auth-login.component.html",
-    styleUrls: ["./auth-login.component.css"],
+    styleUrls: ["./auth-login.component.scss"],
 })
 export class AuthLoginComponent implements OnInit {
     userForm!: FormGroup;
@@ -92,13 +92,6 @@ export class AuthLoginComponent implements OnInit {
         });
     }
 
-    loggedFacebook(resp: fb.StatusResponse): void {
-        this.userInfo.token = resp.authResponse.accessToken;
-        this.userInfo.userId = resp.authResponse.userID;
-        this.http.loginFaceebok(this.userInfo).subscribe({
-            next: () => this.router.navigate(["/restaurants"]),
-        });
-    }
 
     loggin(): void {
         this.userInfo.email = this.userForm.controls["email"].value;

@@ -7,16 +7,16 @@ export const APP_ROUTES: Routes = [
         path: "auth",
         loadChildren: () =>
             import("./app/auth/auth.routes").then((p) => p.APP_ROUTES),
-        canActivate: [logoutActivateGuard],
+        //canActivate: [logoutActivateGuard],
     },
     // {
-    //     path: "restaurants",
+    //     path: "MangList",
     //     loadChildren: () =>
     //         import("./restaurants/Restaurant.routes").then((p) => p.APP_ROUTES),
     //     canActivate: [loginActivateGuard],
     // },
     // {
-    //     path: "user",
+    //     path: "User",
     //     loadChildren: () =>
     //         import("./users/user.routes").then((p) => p.APP_ROUTES),
     //     canActivate: [loginActivateGuard],

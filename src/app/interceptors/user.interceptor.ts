@@ -1,11 +1,11 @@
 import { HttpInterceptorFn } from "@angular/common/http";
 
-export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-    const token = localStorage.getItem("token");
-    if (token) {
+export const UserInterceptor: HttpInterceptorFn = (req, next) => {
+    const user_id = localStorage.getItem("user_id");
+    if (user_id) {
         // Clone the request to add the new header.
         const authReq = req.clone({
-            headers: req.headers.set("auth-token",token),
+            headers: req.headers.set("user-id",user_id),
         });
 
         // Pass on the cloned request instead of the original request.

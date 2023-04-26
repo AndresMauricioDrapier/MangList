@@ -7,11 +7,12 @@ import { provideGoogleId } from "./app/auth/auth-login/google-login/google-login
 import { provideFacebookId } from "./app/auth/auth-login/facebook-login/fb-login.config";
 import { tokenInterceptor } from "./app/interceptors/token.interceptor";
 import { APP_ROUTES } from "./routes";
+import { UserInterceptor } from "./app/interceptors/user.interceptor";
 
 bootstrapApplication(AppComponent, {
     providers: [
         provideHttpClient(
-            withInterceptors([baseUrlInterceptor, tokenInterceptor])
+            withInterceptors([baseUrlInterceptor, tokenInterceptor, UserInterceptor])
         ),
         provideRouter(APP_ROUTES),
         provideGoogleId(

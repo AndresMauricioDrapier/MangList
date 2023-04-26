@@ -1,13 +1,11 @@
 export interface Auth {
     id?: number;
-    name: string;
+    name?: string;
     email: string;
     password?: string;
-    avatar: string;
-    lat: number;
-    lng: number;
-    me?: boolean;
+    avatar?: string;
     token?:string;
+    role?:string;
 }
 
 export interface AuthLogin {

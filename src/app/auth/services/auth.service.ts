@@ -37,16 +37,7 @@ export class AuthService {
 
         return login;
     }
-    loginFaceebok(userLogin: AuthLogin): Observable<void> {
-        const login = this.http.post<void>("/auth/facebook", userLogin);
 
-        login.subscribe((token) => {
-            this.loginChange$.next(true);
-            this.putToken((token as unknown as TokenResponse).accessToken);
-        });
-
-        return login;
-    }
 
     register(userInfo: Auth): Observable<void> {
         return this.http.post<void>("auth/register", userInfo);
