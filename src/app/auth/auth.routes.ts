@@ -8,7 +8,7 @@ export const AUTH_ROUTES: Routes = [
             import("./auth-login/auth-login.component").then(
                 (m) => m.AuthLoginComponent
             ),
-        canDeactivate: [leavePageGuard],
+        // canDeactivate: [leavePageGuard],
     },
     {
         path: "register",
@@ -16,6 +16,6 @@ export const AUTH_ROUTES: Routes = [
             import("./auth-register/auth-register.component").then(
                 (m) => m.AuthRegisterComponent
             ),
-        canDeactivate: [leavePageGuard],
+        // canDeactivate: [leavePageGuard],
     },
 ];
