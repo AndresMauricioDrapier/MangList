@@ -29,7 +29,6 @@ export class ManglistPageComponent implements OnInit {
         this.manglistService
             .getComics()
             .subscribe((comic) => {
-
               this.comics = comic;
               console.log(this.comics);
             });
