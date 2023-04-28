@@ -6,7 +6,7 @@ export const baseUrlInterceptor: HttpInterceptorFn = (req, next) => {
 
     if (isDevMode()) {
         // App in development mode
-        //? vps-d409d854.vps.ovh.net | manglist.site
+        //? vps-d409d854.vps.ovh.net | manglist.site | localhost:3000
         serverUrl = "http://vps-d409d854.vps.ovh.net:3000"; // Development server url
     } else {
         // App in production mode
