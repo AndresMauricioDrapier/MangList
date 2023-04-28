@@ -121,6 +121,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
                 console.log(error);
             },
         });
+
     }
     validClasses(
         ngModel: FormControl,
@@ -133,7 +134,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         };
     }
 
-    fileChangeEvent(event: any): void {
+    fileChangeEvent(event: unknown): void {
         this.imageChangedEvent = event;
     }
     imageCropped(event: ImageCroppedEvent) {

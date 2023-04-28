@@ -42,7 +42,7 @@
                   </div>
 
                   <div class="text-center pt-1 mb-4 pb-1 pulse">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" style="
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" style="
                             background-color: #a309cd;
                             font-weight: bold;
                             border-radius: 30px;
@@ -53,7 +53,7 @@
                             -moz-box-shadow: 0px 0px 15px 4px
                               rgba(163, 9, 205, 1);
                             box-shadow: 0px 0px 15px 4px rgba(163, 9, 205, 1);
-                          ">
+                          " [disabled]="userForm.invalid">
                       Iniciar sesión
                     </button>
                   </div>
@@ -107,7 +107,8 @@
                         </div>
                       </div>
                     </div>
-                    <a [routerLink]="['/auth/register']" [routerLinkActive]="['active']" class="btn btn-outline-danger" style="border-radius: 20px">
+                    <a [routerLink]="['/auth/register']" [routerLinkActive]="['active']" class="btn btn-outline-danger"
+                      style="border-radius: 20px">
                       Crear cuenta
                     </a>
                   </div>

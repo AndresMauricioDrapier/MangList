@@ -9,5 +9,6 @@ export interface AuthResponses {
 }
 
 export interface TokenResponse {
-  accessToken: string;
+  token: string;
+  id: string;
 }

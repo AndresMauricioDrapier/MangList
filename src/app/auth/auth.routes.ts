@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 import { leavePageGuard } from "../guards/leavePageGuard.guard";
 
-export const APP_ROUTES: Routes = [
+export const AUTH_ROUTES: Routes = [
     {
         path: "login",
         loadComponent: () =>

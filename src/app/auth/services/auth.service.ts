@@ -20,9 +20,10 @@ export class AuthService {
     login(userLogin: AuthLogin): Observable<void> {
         const login = this.http.post<void>("auth/login", userLogin);
 
-        login.subscribe((token) => {
+        login.subscribe((data) => {
             this.loginChange$.next(true);
-            this.putToken((token as unknown as TokenResponse).accessToken);
+            // this.putToken((data as unknown as TokenResponse).token);
+            // this.putUserID((data as unknown as TokenResponse).id);
         });
 
         return login;
@@ -30,14 +31,14 @@ export class AuthService {
     loginGoogle(userLogin: AuthLogin): Observable<void> {
         const login = this.http.post<void>("auth/google", userLogin);
 
-        login.subscribe((token) => {
+        login.subscribe((data) => {
             this.loginChange$.next(true);
-            this.putToken((token as unknown as TokenResponse).accessToken);
+            // this.putToken((data as unknown as TokenResponse).token);
+            // this.putUserID((data as unknown as TokenResponse).id);
         });
 
         return login;
     }
-
 
     register(userInfo: Auth): Observable<void> {
         return this.http.post<void>("auth/register", userInfo);
@@ -46,9 +47,12 @@ export class AuthService {
     validateToken(): Observable<TokenResponse> {
         return this.http.get<TokenResponse>("auth/validate");
     }
-    putToken(token?: string): void {
-        if (token) localStorage.setItem("token", token);
-    }
+    // putToken(token?: string): void {
+    //     if (token) localStorage.setItem("token", token);
+    // }
+    // putUserID(user_id: string): void {
+    //     if (user_id) localStorage.setItem("user_id", user_id);
+    // }
     isLogged(): Observable<boolean> {
         if (!this.logged && !localStorage.getItem("token")) {
             this.logged = false;
