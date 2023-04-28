@@ -28,8 +28,8 @@ export class ManglistPageComponent implements OnInit {
     ngOnInit(): void {
         this.manglistService
             .getComics()
-            .subscribe((comic) => {
-              this.comics = comic;
+            .subscribe((comics) => {
+              this.comics = comics
               console.log(this.comics);
             });
     }

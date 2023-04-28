@@ -111,7 +111,6 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         this.newUser.email = this.emailControl.value;
         this.newUser.password = this.passwordControl.value;
         this.newUser.role = "admin";
-
         // this.newUser.avatar = this.newUser.avatar.toimg
 
         this.authService.register(this.newUser).subscribe({

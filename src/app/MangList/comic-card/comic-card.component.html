@@ -1,5 +1,5 @@
-<a [routerLink]="['',comic.id]" *ngIf="comic.main_picture!.medium">
-  <div class="manga" style="background-image: url({{comic.main_picture!.medium}});">
+<a [routerLink]="['',comic.id]" *ngIf="comic.main_picture?.medium">
+  <div class="manga" style="background-image: url({{comic.main_picture?.medium}});">
     <!-- Etiqueta nuevo -->
     <div class="nuevo">Nuevo</div>
     <!-- /Etiqueta nuevo -->
