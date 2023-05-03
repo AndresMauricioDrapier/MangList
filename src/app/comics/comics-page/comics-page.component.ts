@@ -1,9 +1,7 @@
 import {
-    AfterViewInit,
     Component,
     OnInit,
-    ViewChild,
-    inject,
+    OnChanges
 } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ComicyRanking } from "../interfaces/comics";
@@ -25,29 +23,34 @@ import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
         MenuComponent,
         ComicsFilterPipe,
     ],
+    providers: [
+      { provide: MenuComponent, useValue: {} },
+    ],
     templateUrl: "./comics-page.component.html",
     styleUrls: ["./comics-page.component.scss"],
 })
-export class ComicsPageComponent implements OnInit {
+export class ComicsPageComponent implements OnInit,OnChanges {
     comics: ComicyRanking[] = [];
     user!: Auth;
     active = true;
     userCreated = false;
     filterSearch = "";
-    @ViewChild(MenuComponent)
-    set menuComponent(menu: MenuComponent) {
-        this.filterSearch = menu.filterSearch;
-    }
 
     constructor(
         private readonly comicsService: ComicsService,
-        private readonly route: ActivatedRoute // private readonly httpUser: UserService
+        private readonly route: ActivatedRoute, // private readonly httpUser: UserService
+        private readonly menuComponent:MenuComponent
     ) {}
 
+    ngOnChanges():void{
+      this.filterSearch = this.menuComponent.filterSearch;
+      console.log(this.filterSearch);
+    }
     ngOnInit(): void {
         this.comicsService.getComics().subscribe((comics) => {
             this.comics = comics;
             console.log(this.comics);
         });
     }
+
 }

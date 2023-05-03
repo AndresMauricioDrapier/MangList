@@ -13,7 +13,8 @@ import { AuthService } from "src/app/auth/services/auth.service";
 })
 export class MenuComponent implements OnInit {
     logged?: boolean;
-    filterSearch="";
+    public filterSearch="";
+
     constructor(
         private readonly http: AuthService,
         private readonly router: Router

@@ -30,6 +30,7 @@ export class ComicDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.data.subscribe((data) => {
+          console.log(data);
             this.comic = data["comic"];
             console.log(this.comic);
         });
