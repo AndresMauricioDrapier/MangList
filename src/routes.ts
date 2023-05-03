@@ -12,7 +12,7 @@ export const APP_ROUTES: Routes = [
     {
         path: "",
         loadChildren: () =>
-            import("./app/MangList/manglist.routes").then((p) => p.MANGLIST_ROUTES),
+            import("./app/comics/comics.routes").then((p) => p.MANGLIST_ROUTES),
     },
     // {
     //     path: "User",

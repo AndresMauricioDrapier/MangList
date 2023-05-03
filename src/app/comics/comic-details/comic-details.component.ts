@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import {
-  FormsModule,
     NonNullableFormBuilder,
     ReactiveFormsModule,
 } from "@angular/forms";
@@ -16,10 +15,9 @@ import { Comic } from '../interfaces/comics';
         CommonModule,
         RouterModule,
         ReactiveFormsModule,
-        FormsModule
     ],
     templateUrl: "./comic-details.component.html",
-    styleUrls: ["./comic-details.component.css"],
+    styleUrls: ["./comic-details.component.scss"],
 })
 export class ComicDetailsComponent implements OnInit {
     comic!: Comic;

@@ -6,8 +6,8 @@ export const MANGLIST_ROUTES: Routes = [
     {
         path: "",
         loadComponent: () =>
-            import("./manglist-page/manglist-page.component").then(
-                (m) => m.ManglistPageComponent
+            import("./comics-page/comics-page.component").then(
+                (m) => m.ComicsPageComponent
             ),
         // canDeactivate: [leavePageGuard],
     },
