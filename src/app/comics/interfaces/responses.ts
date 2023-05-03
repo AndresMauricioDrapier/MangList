@@ -1,14 +1,14 @@
 import { Comic, ComicyRanking } from "./comics";
 import { Commentary } from "./comment";
 
-
 export interface ComicsResponse {
-  ok: boolean;
-  result: ComicyRanking[];
+    ok: boolean;
+    result: ComicyRanking[];
 }
 
 export interface ComicResponse {
-    comic: Comic;
+    ok: boolean;
+    result: Comic;
 }
 export interface CommentsResponse {
     comments: Commentary[];

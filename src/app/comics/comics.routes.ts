@@ -12,17 +12,17 @@ export const MANGLIST_ROUTES: Routes = [
         // canDeactivate: [leavePageGuard],
     },
     {
-      path: ":id",
-      loadComponent: () =>
-          import("./comic-details/comic-details.component").then(
-              (m) => m.ComicDetailsComponent
-          ),
-          canActivate: [comicIdGuard],
-          resolve: {
+        path: "comics/:id",
+        loadComponent: () =>
+            import("./comic-details/comic-details.component").then(
+                (m) => m.ComicDetailsComponent
+            ),
+        resolve: {
             comic: comicResolve,
         },
-      // canDeactivate: [leavePageGuard],
-  },
+        // canActivate: [comicIdGuard],
+        // canDeactivate: [leavePageGuard],
+    },
     // {
     //     path: "register",
     //     loadComponent: () =>
