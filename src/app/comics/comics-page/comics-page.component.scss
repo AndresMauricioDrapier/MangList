@@ -30,3 +30,25 @@
     align-content: stretch;
   }
 }
+
+@media screen and (min-width: 1400px) {
+  #mainIndex {
+    .manga {
+      width: 10em !important;
+      height: 14em !important;
+    }
+
+    .nuevo {
+      margin-left: 8em !important;
+    }
+
+    .precioNombre {
+      margin-top: 11em !important;
+
+      .precio {
+        margin-right: 1em !important;
+        margin-left: 0.8em !important;
+      }
+    }
+  }
+}

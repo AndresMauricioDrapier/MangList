@@ -10,6 +10,20 @@ export const APP_ROUTES: Routes = [
         //canActivate: [logoutActivateGuard],
     },
     {
+        path: "about",
+        loadChildren: () =>
+            import("./app/about-us/about-us.routes").then(
+                (p) => p.ABOUT_ROUTES
+            ),
+    },
+    {
+        path: "contact",
+        loadChildren: () =>
+            import("./app/contact/contact.routes").then(
+                (p) => p.CONTACT_ROUTES
+            ),
+    },
+    {
         path: "",
         loadChildren: () =>
             import("./app/comics/comics.routes").then((p) => p.MANGLIST_ROUTES),
