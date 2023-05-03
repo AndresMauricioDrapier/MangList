@@ -1,0 +1,26 @@
+html {
+  font-size: 100%;
+}
+
+p {
+  font-size: 1em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 0.75em;
+  }
+}
+
+body {
+  background-color: #060d17 !important;
+  color: white;
+}

@@ -12,7 +12,7 @@ import { ComicCardComponent } from "../comic-card/comic-card.component";
     standalone: true,
     imports: [CommonModule, FormsModule, ComicCardComponent],
     templateUrl: "./manglist-page.component.html",
-    styleUrls: ["./manglist-page.component.css"],
+    styleUrls: ["./manglist-page.component.scss"],
 })
 export class ManglistPageComponent implements OnInit {
     comics: ComicyRanking[] = [];
