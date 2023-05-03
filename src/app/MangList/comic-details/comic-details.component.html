@@ -1,14 +1,14 @@
 <!-- Contendor principal -->
-<main class="mainDescripcion">
+<main class="mainDescripcion" *ngIf="comic">
   <!-- Contenedor izquierda -->
   <div class="descripcionIzquierda">
     <!-- Imagen -->
-    <div class="descripcionImagen" id="descripcionImagenBersek">
-      <div class="descripcionPuntuacion">10</div>
+    <div class="descripcionImagen" style="background-image: url({{comic.main_picture.medium}});">
+      <div class="descripcionPuntuacion">{{comic.mean}}</div>
     </div>
     <!-- /Imagen -->
     <!-- Nombre -->
-    <h1 class="descripcionNombre">BERSERK</h1>
+    <h1 class="descripcionNombre">{{comic.title}}</h1>
     <!-- /Nombre -->
   </div>
   <!-- /Contenedor izquierda -->
@@ -18,15 +18,7 @@
     <div>
       <h2>Descripción:</h2>
       <p>
-        Un antihéroe oscuro y mal encarado, con un cuerpo hercúleo cincelado
-        durante su desempeño como mercenario, sin un ápice de empatía por
-        sus enemigos ni por sus semejantes. Tuerto y repleto de cicatrices y
-        armado con una espada gigantesca que ningún otro hombre puede
-        empuñar con tanta solvencia y un brazo protésico que esconde un
-        cañón en su interior. Todo ello enmarcado en un mundo fantástico
-        donde humanos, elfos, monstruos, demonios y demás criaturas del
-        averno se daban la mano alrededor de un relato épico que se iba
-        cimentando piedra a piedra.
+        {{comic.synopsis}}
       </p>
     </div>
     <!-- /Descripcion -->
@@ -35,17 +27,18 @@
       <table class="descripcionTabla">
         <tr>
           <td class="tituloCategoria">Categoría:</td>
-          <td class="contenidoTabla">
-            Fantasía, Terror, Intriga, Acción, Sobrenatural, Sheinen
+          <td class="contenidoTabla" *ngFor="let generos of comic.genres">
+            {{generos.name}}
           </td>
         </tr>
         <tr>
           <td class="descripcionSeparacion">Capitulos:</td>
-          <td class="contenidoTabla descripcionSeparacion">371</td>
+          <!-- TODO ANDRES -->
+          <td class="contenidoTabla descripcionSeparacion">NO PONE LOS CAPITULOS QUE HAY</td>
         </tr>
         <tr>
-          <td class="descripcionSeparacion">Año:</td>
-          <td class="contenidoTabla descripcionSeparacion">1990</td>
+          <td class="descripcionSeparacion">Año de serialización:</td>
+          <td class="contenidoTabla descripcionSeparacion">{{comic.start_date}}</td>
         </tr>
       </table>
     </div>

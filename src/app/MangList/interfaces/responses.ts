@@ -6,10 +6,11 @@ export interface ComicsResponse {
   ok: boolean;
   result: ComicyRanking[];
 }
-
-export interface ComicResponse {
-    comic: Comic;
+export interface ComicResponse{
+  ok: boolean;
+  result:Comic;
 }
+
 export interface CommentsResponse {
     comments: Commentary[];
 }
@@ -17,3 +18,5 @@ export interface CommentsResponse {
 export interface CommentResponse {
     comment: Commentary;
 }
+
+

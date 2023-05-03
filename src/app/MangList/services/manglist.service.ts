@@ -33,39 +33,38 @@ export class ManglistService {
         return this.http
             .get<ComicResponse>(`${this.COMIC_URL}/${id}`)
             .pipe(map((r) => {
-              console.log(r);
-              return r.comic;
+              return r.result;
             }));
     }
-    getComments(id: number): Observable<CommentsResponse> {
-        return this.http.get<CommentsResponse>(
-            `${this.COMIC_URL}/${id}/comments`
-        );
-    }
-    addComment(id: number, comment: Commentary): Observable<Commentary> {
-        return this.http
-            .post<Commentary>(`${this.COMIC_URL}/${id}/comments`, comment)
-            .pipe(
-                map((rest) => {
-                    console.log(rest);
+    // getComments(id: number): Observable<CommentsResponse> {
+    //     return this.http.get<CommentsResponse>(
+    //         `${this.COMIC_URL}/${id}/comments`
+    //     );
+    // }
+    // addComment(id: number, comment: Commentary): Observable<Commentary> {
+    //     return this.http
+    //         .post<Commentary>(`${this.COMIC_URL}/${id}/comments`, comment)
+    //         .pipe(
+    //             map((rest) => {
+    //                 console.log(rest);
 
-                    return rest;
-                })
-            );
-    }
-    addComic(rest: Comic, id?: number): Observable<Comic> {
-        if (id) {
-            return this.http
-                .put<ComicResponse>(`${this.COMIC_URL}/${id}`, rest)
-                .pipe(map((rest) => rest.comic));
-        } else {
-            return this.http
-                .post<ComicResponse>(`${this.COMIC_URL}`, rest)
-                .pipe(map((rest) => rest.comic));
-        }
-    }
+    //                 return rest;
+    //             })
+    //         );
+    // }
+    // addComic(rest: Comic, id?: number): Observable<Comic> {
+    //     if (id) {
+    //         return this.http
+    //             .put<ComicResponse>(`${this.COMIC_URL}/${id}`, rest)
+    //             .pipe(map((rest) => rest.comic));
+    //     } else {
+    //         return this.http
+    //             .post<ComicResponse>(`${this.COMIC_URL}`, rest)
+    //             .pipe(map((rest) => rest.comic));
+    //     }
+    // }
 
-    deleteRestaurant(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.COMIC_URL}/${id}`);
-    }
+    // deleteRestaurant(id: number): Observable<void> {
+    //     return this.http.delete<void>(`${this.COMIC_URL}/${id}`);
+    // }
 }

@@ -1,130 +1,65 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a href="../index.html"
-            ><img
-                src="../../../assets/logo_MangList.png"
-                alt="MangList"
-                class="img"
-                style="width: 60px"
-                data-mdb-toggle="animation"
-                data-mdb-animation-reset="true"
-                data-mdb-animation="pulse"
-                data-mdb-animation-start="onHover"
-        /></a>
-        <a
-            class="navbar-brand"
-            [routerLink]="['/']"
-            [routerLinkActive]="['active']"
-            >MangList</a
-        >
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse pt-2" id="navbarScroll">
-            <ul
-                class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-                style="--bs-scroll-height: 100px"
-            >
-                <li class="nav-item">
-                    <a
-                        class="nav-link active m-1"
-                        aria-current="page"
-                        [routerLink]="['/']"
-                        [routerLinkActive]="['active']"
-                        >Inicio</a
-                    >
-                </li>
-                <li class="nav-item dropdown">
-                    <a
-                        class="nav-link dropdown-toggle active m-1"
-                        href="#"
-                        id="navbarScrollingDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    >
-                        Categorias
-                    </a>
-                    <ul
-                        class="dropdown-menu"
-                        aria-labelledby="navbarScrollingDropdown"
-                        style="background-color: #060d17"
-                    >
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Fantasia</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Terror</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Intriga</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Acción</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Sobrenatural</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Colegios y Universidad</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Shonen</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Sheinen</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="categorias.html"
-                                >Aventura</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active m-1" href="contacto.html"
-                        >Contacto</a
-                    >
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active m-1" href="sobreNosotros.html"
-                        >Sobre nosotros</a
-                    >
-                </li>
-            </ul>
-            <form class="d-flex" style="width: 35%">
-                <input
-                    class="form-control me-3 busquedaInput"
-                    type="search"
-                    placeholder="Busqueda de Manga o Manhwa"
-                    aria-label="Search"
-                    style="background-color: #23282e !important; color: white"
-                />
-            </form>
+  <div class="container-fluid">
+    <a href="../index.html"><img src="../img/logo_Mangastore.png" alt="MangList" class="img" style="width: 60px"
+        data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="pulse"
+        data-mdb-animation-start="onHover"></a>
+    <a class="navbar-brand" [routerLink]="['/']" [routerLinkActive]="['active']">MangList</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse pt-2" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+        <li class="nav-item">
+          <a class="nav-link active m-1" aria-current="page" [routerLink]="['/']"
+            [routerLinkActive]="['active']">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active m-1" href="#" id="navbarScrollingDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #060d17">
+            <li>
+              <a class="dropdown-item" href="categorias.html">Fantasia</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Terror</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Intriga</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Acción</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Sobrenatural</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Colegios y Universidad</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Shonen</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Sheinen</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="categorias.html">Aventura</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active m-1" href="contacto.html">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active m-1" href="sobreNosotros.html">Sobre nosotros</a>
+        </li>
+      </ul>
+      <form class="d-flex" style="width: 35%">
+        <input class="form-control me-3 busquedaInput" type="search" placeholder="Busqueda de Manga o Manhwa"
+          aria-label="Search" style="background-color: #23282e !important; color: white">
+      </form>
 
             <a
                 href="carritoBoot.html"
