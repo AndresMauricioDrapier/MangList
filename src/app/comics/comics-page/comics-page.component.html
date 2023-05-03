@@ -24,7 +24,7 @@
   </form> -->
 
     <div id="contenido">
-      <div *ngFor="let comic of comics">
+      <div *ngFor="let comic of comics | comicsFilter:filterSearch">
         <ml-comic-card [comic]="comic.node"></ml-comic-card>
       </div>
     </div>

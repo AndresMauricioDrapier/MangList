@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a href="../index.html"><img src="assets/logo_MangList.png" alt="MangList" class="img" style="width: 60px"
+    <a ><img src="assets/logo_MangList.png" alt="MangList" class="img" style="width: 60px"
         data-mdb-toggle="animation" data-mdb-animation-reset="true" data-mdb-animation="pulse"
         data-mdb-animation-start="onHover"></a>
     <a class="navbar-brand" [routerLink]="['/']" [routerLinkActive]="['active']">MangList</a>
@@ -58,7 +58,7 @@
       </ul>
       <form class="d-flex" style="width: 35%">
         <input class="form-control me-3 busquedaInput" type="search" placeholder="Busqueda de Manga o Manhwa"
-          aria-label="Search" style="background-color: #23282e !important; color: white">
+          aria-label="Search" style="background-color: #23282e !important; color: white" [(ngModel)]="filterSearch" [ngModelOptions]="{standalone:true}" >
       </form>
 
             <a
