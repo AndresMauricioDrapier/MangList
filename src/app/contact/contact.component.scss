@@ -1,0 +1,195 @@
+#mainContacto {
+  font-family: "Source Sans Pro", sans-serif;
+  background-image: url("../../assets/utiles/panel_Berserk.png");
+  background-image: no-repeat;
+  background-image: fixed;
+  background-image: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 30em;
+  height: 43em;
+  border-radius: 30px;
+  margin: auto;
+  margin-bottom: 3em;
+  margin-top: 3em;
+  -webkit-box-shadow: 0 0 30px #cccccc;
+  -moz-box-shadow: 0 0 30px #cccccc;
+  box-shadow: 0 0 30px #cccccc;
+  border: 5px ridge #cccccc;
+
+  #formularioContacto {
+    text-align: center;
+
+    h1 {
+      color: white;
+      padding: 0.5em;
+      font-weight: bold;
+      font-size: 3em;
+      font-family: "Aboreto", cursive;
+      margin: 0.5em;
+      -webkit-text-shadow: 0px 0px 10px #666666;
+      -moz-text-shadow: 0px 0px 10px #666666;
+      text-shadow: 0px 0px 10px #666666;
+    }
+
+    input, textarea {
+      background-color: #060d17;
+      border-radius: 10px;
+      width: 30em;
+      height: 2.5em;
+      margin-bottom: 1em;
+      color: white;
+      -webkit-box-shadow: 0 0 50px #666666;
+      -moz-box-shadow: 0 0 50px #666666;
+      box-shadow: 0 0 50px #666666;
+      border: 2px inset #bfbfbf;
+    }
+
+    input::placeholder {
+      color: white;
+      opacity: 0.3;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    textarea {
+      &::placeholder {
+        color: white;
+        opacity: 0.3;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+
+      height: 20em;
+    }
+
+    #enviar {
+      text-align: center;
+      color: white;
+      height: 3em;
+      font-weight: bold;
+      -webkit-box-shadow: 0 0 50px #666666;
+      -moz-box-shadow: 0 0 50px #666666;
+      box-shadow: 0 0 50px #666666;
+
+      &:hover {
+        -webkit-animation-name: pulse;
+        animation-name: pulse;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+    }
+  }
+
+  #circulo1 {
+    background: #a309cd;
+    width: 100px;
+    height: 100px;
+    left: 10em;
+    top: 35em;
+  }
+
+  #circulo3 {
+    background: #23282e;
+    width: 50px;
+    height: 50px;
+    left: 10em;
+    top: 33em;
+  }
+
+  #circulo4 {
+    background: #23282e;
+    width: 50px;
+    height: 50px;
+    left: 14em;
+    top: 40em;
+  }
+
+  #circulo2 {
+    background: #060d17;
+    width: 100px;
+    height: 100px;
+    left: 21em;
+    top: 6em;
+  }
+
+  #circulo8 {
+    background: #a309cd;
+    width: 50px;
+    height: 50px;
+    left: 20em;
+    top: 7em;
+  }
+
+  #circulo9 {
+    background: #23282e;
+    width: 25px;
+    height: 25px;
+    left: 19.5em;
+    top: 9em;
+  }
+
+  #circulo5 {
+    background: #a309cd;
+    width: 100px;
+    height: 100px;
+    left: 65em;
+    top: 25em;
+  }
+
+  #circulo6 {
+    background: #23282e;
+    width: 50px;
+    height: 50px;
+    left: 66em;
+    top: 23em;
+  }
+
+  #circulo7 {
+    background: #23282e;
+    width: 50px;
+    height: 50px;
+    left: 64em;
+    top: 29em;
+  }
+
+  .bola {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 3;
+
+    &:active {
+      -webkit-animation-name: rubberBand;
+      animation-name: rubberBand;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  #mainContacto .bola {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #mainContacto {
+    width: 80%;
+    padding-top: 1.5em;
+
+    h1 {
+      font-size: 1.5em;
+    }
+
+    input, textarea {
+      width: 18em !important;
+    }
+  }
+}

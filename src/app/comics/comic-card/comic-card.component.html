@@ -1,13 +1,10 @@
 <a [routerLink]="['',comic.id]" *ngIf="comic.main_picture?.medium">
-  <div class="manga" style="background-image: url({{comic.main_picture?.medium}});">
+  <div class="manga" style="background-image: url({{comic.main_picture.medium}});">
     <!-- Etiqueta nuevo -->
     <div class="nuevo">Nuevo</div>
     <!-- /Etiqueta nuevo -->
     <!-- Precio y nombre -->
-    <div class="precioNombre">
-      <div class="precio">7.50€</div>
-      <div class="nombre">{{comic.title}}</div>
-    </div>
+    <div [ngStyle]="{'padding-top':comic.title.length < 25 ? '9%' : '3%'}" class="nombre">{{comic.title}}</div>
     <!-- /Precio y nombre -->
   </div>
 </a>
