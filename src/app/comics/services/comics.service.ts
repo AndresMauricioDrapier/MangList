@@ -33,8 +33,7 @@ export class ComicsService {
         return this.http
             .get<ComicResponse>(`${this.COMIC_URL}/${id}`)
             .pipe(map((r) => {
-              console.log(r);
-              return r.comic;
+              return r.result;
             }));
     }
     getComments(id: number): Observable<CommentsResponse> {
@@ -57,11 +56,11 @@ export class ComicsService {
         if (id) {
             return this.http
                 .put<ComicResponse>(`${this.COMIC_URL}/${id}`, rest)
-                .pipe(map((rest) => rest.comic));
+                .pipe(map((rest) => rest.result));
         } else {
             return this.http
                 .post<ComicResponse>(`${this.COMIC_URL}`, rest)
-                .pipe(map((rest) => rest.comic));
+                .pipe(map((rest) => rest.result));
         }
     }
 
