@@ -5,7 +5,7 @@ import { Commentary } from "../interfaces/comment";
 import {
     CommentsResponse,
     ComicResponse,
-    ComicsResponse
+    ComicsResponse,
 } from "../interfaces/responses";
 import { Comic, ComicyRanking } from "../interfaces/comics";
 
@@ -18,8 +18,8 @@ export class ComicsService {
 
     getComics(): Observable<ComicyRanking[]> {
         return this.http.get<ComicsResponse>(this.COMIC_URL).pipe(
-            map((r) =>{
-              return  r.result;
+            map((r) => {
+                return r.result;
             }),
             catchError((resp: HttpErrorResponse) =>
                 throwError(
@@ -29,12 +29,27 @@ export class ComicsService {
             )
         );
     }
-    getIdComic(id: number): Observable<Comic> {
+    getComicsString(params: string): Observable<ComicyRanking[]> {
         return this.http
-            .get<ComicResponse>(`${this.COMIC_URL}/${id}`)
-            .pipe(map((r) => {
-              return r.result;
-            }));
+            .get<ComicsResponse>(this.COMIC_URL + "?search=" + params)
+            .pipe(
+                map((r) => {
+                    return r.result;
+                }),
+                catchError((resp: HttpErrorResponse) =>
+                    throwError(
+                        () =>
+                            `Error getting products. Status: ${resp.status}. Message: ${resp.message}`
+                    )
+                )
+            );
+    }
+    getIdComic(id: number): Observable<Comic> {
+        return this.http.get<ComicResponse>(`${this.COMIC_URL}/${id}`).pipe(
+            map((r) => {
+                return r.result;
+            })
+        );
     }
     getComments(id: number): Observable<CommentsResponse> {
         return this.http.get<CommentsResponse>(

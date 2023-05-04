@@ -22,12 +22,12 @@
     <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search"
       [(ngModel)]="filterSearch" class="form-control" id="filter" placeholder="Filter...">
   </form> -->
-
-    <div id="contenido">
-      <div *ngFor="let comic of comics | comicsFilter:filterSearch">
-        <ml-comic-card [comic]="comic.node"></ml-comic-card>
-      </div>
+  <!--TODO ANDRES-->
+  <div id="contenido">
+    <div *ngFor="let comic of comics | comicsFilter:filterSearch">
+      <ml-comic-card [comic]="comic.node"></ml-comic-card>
     </div>
+  </div>
 
   <!-- /Contenido -->
 </main>

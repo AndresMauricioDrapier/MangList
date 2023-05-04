@@ -1,8 +1,4 @@
-import {
-    Component,
-    OnInit,
-    OnChanges
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ComicyRanking } from "../interfaces/comics";
 import { ActivatedRoute } from "@angular/router";
@@ -23,13 +19,11 @@ import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
         MenuComponent,
         ComicsFilterPipe,
     ],
-    providers: [
-      { provide: MenuComponent, useValue: {} },
-    ],
+    providers: [{ provide: MenuComponent, useValue: {} }],
     templateUrl: "./comics-page.component.html",
     styleUrls: ["./comics-page.component.scss"],
 })
-export class ComicsPageComponent implements OnInit,OnChanges {
+export class ComicsPageComponent implements OnInit {
     comics: ComicyRanking[] = [];
     user!: Auth;
     active = true;
@@ -38,19 +32,25 @@ export class ComicsPageComponent implements OnInit,OnChanges {
 
     constructor(
         private readonly comicsService: ComicsService,
-        private readonly route: ActivatedRoute, // private readonly httpUser: UserService
-        private readonly menuComponent:MenuComponent
+        private readonly route: ActivatedRoute // private readonly httpUser: UserService
     ) {}
 
-    ngOnChanges():void{
-      this.filterSearch = this.menuComponent.filterSearch;
-      console.log(this.filterSearch);
-    }
     ngOnInit(): void {
-        this.comicsService.getComics().subscribe((comics) => {
-            this.comics = comics;
-            console.log(this.comics);
+        //TODO ANDRES
+        this.route.queryParams.subscribe((params) => {
+            if (params["search"]) {
+                this.comicsService
+                    .getComicsString(params["search"])
+                    .subscribe((comics) => {
+                        this.comics = comics;
+                        console.log(this.comics);
+                    });
+            } else {
+                this.comicsService.getComics().subscribe((comics) => {
+                    this.comics = comics;
+                    console.log(this.comics);
+                });
+            }
         });
     }
-
 }

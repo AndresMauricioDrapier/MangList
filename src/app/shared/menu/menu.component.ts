@@ -7,13 +7,13 @@ import { AuthService } from "src/app/auth/services/auth.service";
 @Component({
     selector: "ml-menu",
     standalone: true,
-    imports: [CommonModule, RouterModule,FormsModule],
+    imports: [CommonModule, RouterModule, FormsModule],
     templateUrl: "./menu.component.html",
     styleUrls: ["./menu.component.scss"],
 })
 export class MenuComponent implements OnInit {
     logged?: boolean;
-    public filterSearch="";
+    filterSearch = "";
 
     constructor(
         private readonly http: AuthService,
@@ -29,5 +29,10 @@ export class MenuComponent implements OnInit {
     logout(): void {
         this.http.logout();
         this.router.navigate(["auth/login"]);
+    }
+    busqueda() {
+        this.router.navigate([""], {
+            queryParams: { search: this.filterSearch },
+        });
     }
 }

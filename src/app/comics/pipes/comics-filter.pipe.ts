@@ -6,15 +6,14 @@ import { ComicyRanking } from "../interfaces/comics";
     standalone: true,
 })
 export class ComicsFilterPipe implements PipeTransform {
-    transform(comics: ComicyRanking[], search: string, tipo?: string): ComicyRanking[] {
+    //TODO ANDRES
+    transform(comics: ComicyRanking[], tipo: string): ComicyRanking[] {
         return comics.filter((comic) => {
             if (tipo) {
-                comic.node.genres?.forEach((genero) => {
-                    return (tipo == genero.name && comic.node.title.toLowerCase().includes(search));
+                comic.node?.genres?.forEach((genero) => {
+                    return tipo == genero.name;
                 });
                 return;
-            }else{
-              return comic.node.title.toLowerCase().includes(search);
             }
         });
     }

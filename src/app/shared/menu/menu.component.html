@@ -56,7 +56,7 @@
           <a class="nav-link active m-1" [routerLink]="['/about']">Sobre nosotros</a>
         </li>
       </ul>
-      <form class="d-flex" style="width: 35%">
+      <form class="d-flex" style="width: 35%" (submit)="busqueda()">
         <input class="form-control me-3 busquedaInput" type="search" placeholder="Busqueda de Manga o Manhwa"
           aria-label="Search" style="background-color: #23282e !important; color: white" [(ngModel)]="filterSearch" [ngModelOptions]="{standalone:true}" >
       </form>
