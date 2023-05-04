@@ -206,6 +206,18 @@
   }
 }
 
+#name{
+  &:focus{
+    background-color: #F3A2FF !important;
+  }
+}
+
+#email{
+  &:focus{
+    background-color: #F3A2FF !important;
+  }
+}
+
 .cube-1 {
   .front, .back {
     background: #D250E6;
@@ -1496,6 +1508,7 @@
 .field {
   &:focus {
     outline: 0;
+    background-color: #F3A2FF !important;
   }
 
   font-weight: 600;
@@ -1542,7 +1555,7 @@
 }
 
 .cube-12 label {
-  color: #fff;
+  color: #F3A2FF;
 }
 
 .cube-15 input {
@@ -1550,7 +1563,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px;
-  color: #fff;
+  color: #F3A2FF;
 }
 
 .textarea {
@@ -1660,3 +1673,41 @@
     height: 300px;
   }
 }
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	50% {
+		-webkit-transform: scale3d(1.05, 1.05, 1.05);
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+@keyframes pulse {
+	0% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	50% {
+		-webkit-transform: scale3d(1.05, 1.05, 1.05);
+		transform: scale3d(1.05, 1.05, 1.05);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+}
+.pulse:hover {
+	-webkit-animation-name: pulse;
+	animation-name: pulse;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
