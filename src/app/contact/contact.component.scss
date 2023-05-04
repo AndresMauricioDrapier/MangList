@@ -193,27 +193,40 @@
 //     }
 //   }
 // }
+#contact-stack-form{
+  margin-left: 30%;
+
+  @media (max-width: 994px) {
+    margin-left: 10%;
+  }
+
+  label{
+    color: black;
+    font-weight: bold;
+  }
+}
+
 .cube-1 {
   .front, .back {
-    background: #c9472b;
+    background: #D250E6;
   }
   .left, .right {
-    background: #a13921;
+    background: #BA44C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 }
 
 .cube-2 {
   .left, .right {
-    background: #c9472b;
+    background: #D250E6;
   }
   .front, .back {
-    background: #a13921;
+    background: #BA44C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   margin-left: 100px;
 }
@@ -223,31 +236,31 @@
   height: 50px;
 
   .front, .back {
-    background: #c9472b;
+    background: #D250E6;
   }
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 }
 
 .cube-4 .front, .cube-30 .front, .cube-31 .front {
-  background: #c9472b;
+  background: #D250E6;
 }
 
 .cube-7 {
   height: 50px;
 
   .front, .back {
-    background: #a13921;
+    background: #BA44C2;
   }
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -281,13 +294,13 @@
 
 .cube-8 {
   .front, .back {
-    background: #a13921;
+    background: #BA44C2;
   }
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px) rotateY(180deg);
@@ -320,13 +333,13 @@
 
 .cube-10 {
   .front, .bottom {
-    background: #a13921;
+    background: #BA44C2;
   }
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   margin-left: 100px;
@@ -363,10 +376,10 @@
 
 .cube-11 {
   .back, .left, .right {
-    background: #a13921;
+    background: #BA44C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px);
@@ -393,17 +406,17 @@
   }
 
   .front {
-    background: #661f10;
+    background: #7A2D80;
     transform: translateZ(-100px);
   }
 }
 
 .cube-12 {
   .left, .back {
-    background: #a13921;
+    background: #BA44C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   height: 50px;
@@ -439,10 +452,10 @@
 
 .cube-16 {
   .left, .right, .front {
-    background: #a13921;
+    background: #BA44C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px);
@@ -477,10 +490,10 @@
   height: 50px;
 
   .left, .right {
-    background: #a13921;
+    background: #BA44C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -513,15 +526,15 @@
 }
 
 .cube-20 .front, .cube-26 .front, .cube-28 .front, .cube-29 .right, .cube-31 .right {
-  background: #a13921;
+  background: #BA44C2;
 }
 
 .cube-13 {
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px) rotateY(180deg);
@@ -556,11 +569,11 @@
   margin-left: 100px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
 
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -597,10 +610,10 @@
   height: 50px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -634,10 +647,10 @@
 
 .cube-17 {
   .left, .right, .back {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: rotateY(180deg) translateZ(100px);
@@ -664,21 +677,21 @@
   }
 
   .front {
-    background: #a13921;
+    background: #BA44C2;
     transform: translateZ(0);
   }
 }
 
 .cube-16 .back, .cube-18 .back {
-  background: #7a2716;
+  background: #B144C2;
 }
 
 .cube-19 {
   .front, .back, .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px) rotateY(180deg);
@@ -714,10 +727,10 @@
   height: 50px !important;
 
   .back, .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -751,13 +764,13 @@
 
 .cube-21 {
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .back, .front {
-    background: #661f10;
+    background: #7A2D80;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .front, .back, .left, .right {
@@ -795,10 +808,10 @@
 
 .cube-23 {
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px) rotateY(180deg);
@@ -833,10 +846,10 @@
   margin-left: 100px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -873,10 +886,10 @@
   height: 50px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -912,10 +925,10 @@
   height: 50px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -949,10 +962,10 @@
 
 .cube-27 {
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px) rotateY(180deg);
@@ -988,10 +1001,10 @@
   height: 50px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1025,10 +1038,10 @@
 
 .cube-30 {
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: rotateY(180deg) translateZ(100px);
@@ -1063,7 +1076,7 @@
   margin-left: 50px;
 
   .left, .right {
-    background: #7a2716;
+    background: #B144C2;
   }
 
   .back {
@@ -1099,10 +1112,10 @@
   height: 50px;
 
   .left, .right, .back {
-    background: #661f10;
+    background: #7A2D80;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1137,12 +1150,12 @@
 }
 
 .cube-22 .back, .cube-23 .back, .cube-24 .back, .cube-25 .back, .cube-26 .back, .cube-27 .back, .cube-28 .back, .cube-29 .back, .cube-30 .back, .cube-31 .back, .cube-32 .back, .cube-33 .back, .cube-32 .front {
-  background: #661f10;
+  background: #7A2D80;
 }
 
 .cube-4 {
   .left, .right {
-    background: #60180e;
+    background: #66196B;
   }
   .back {
     transform: rotateY(180deg) translateZ(100px);
@@ -1182,10 +1195,10 @@
   width: 180px;
 
   .left, .right, .front {
-    background: #60180e;
+    background: #66196B;
   }
   .back, .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1221,10 +1234,10 @@
   height: 50px;
 
   .front, .back, .left, .right {
-    background: #60180e;
+    background: #66196B;
   }
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1257,7 +1270,7 @@
 }
 
 .cube-12 .right, .cube-22 .right, .cube-33 .right {
-  background: #60180e;
+  background: #66196B;
 }
 
 .cube-22 {
@@ -1268,7 +1281,7 @@
   }
 
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1281,7 +1294,7 @@
   }
 
   .left {
-    background: #7a2716;
+    background: #B144C2;
     transform: rotateY(270deg) translateX(0);
     transform-origin: left center;
   }
@@ -1303,7 +1316,7 @@
 
 .cube-29 {
   .top, .bottom, .front {
-    background: #330d05;
+    background: #491B4D;
   }
   .back {
     transform: translateZ(-200px);
@@ -1315,7 +1328,7 @@
   }
 
   .left {
-    background: #7a2716;
+    background: #B144C2;
     transform: rotateY(270deg) translateX(-200px);
     transform-origin: left center;
   }
@@ -1339,7 +1352,7 @@
   height: 50px;
 
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1352,7 +1365,7 @@
   }
 
   .left {
-    background: #7a2716;
+    background: #B144C2;
     transform: rotateY(270deg) translateX(0);
     transform-origin: left center;
   }
@@ -1377,7 +1390,7 @@
   margin-left: 50px;
 
   .top, .bottom {
-    background: #330d05;
+    background: #491B4D;
   }
 
   .back {
@@ -1390,7 +1403,7 @@
   }
 
   .left {
-    background: #7a2716;
+    background: #B144C2;
     transform: rotateY(270deg) translateX(0) translateZ(50px);
     transform-origin: left center;
   }
@@ -1411,25 +1424,20 @@
 }
 
 .cube-5 .front, .cube-12 .front, .cube-14 .front, .cube-18 .front, .cube-22 .front, .cube-24 .front, .cube-27 .front {
-  background: #f5a741;
+  background: #F3A2FF;
 }
 
 .cube-13 .front, .cube-15 .front, .cube-23 .front, .cube-25 .front {
-  background: #ea9d3d;
+  background: #F387FF;
 }
 
 .button {
-  background: #ffeb3b;
+  background: #E600FF;
   font-size: 30px;
   text-transform: uppercase;
-  font-weight: inherit;
+  font-weight: bold;
   cursor: pointer;
-  color: #ff3d00;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  color: #fff;
 }
 
 .form {
@@ -1534,7 +1542,7 @@ body {
 }
 
 .cube-12 label {
-  color: #ff3d00;
+  color: #fff;
 }
 
 .cube-15 input {
@@ -1542,7 +1550,7 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 10px;
-  color: #ec7939;
+  color: #fff;
 }
 
 .textarea {
