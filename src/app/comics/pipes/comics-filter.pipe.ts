@@ -1,20 +1,28 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform, inject } from "@angular/core";
 import { ComicyRanking } from "../interfaces/comics";
+import { ComicsService } from "../services/comics.service";
 
 @Pipe({
     name: "comicsFilter",
     standalone: true,
 })
 export class ComicsFilterPipe implements PipeTransform {
-    //TODO ANDRES
+    //TODO ANDRESc
+    c = inject(ComicsService);
     transform(comics: ComicyRanking[], tipo: string): ComicyRanking[] {
-        return comics.filter((comic) => {
-            if (tipo) {
-                comic.node?.genres?.forEach((genero) => {
-                    return tipo == genero.name;
+        if (tipo != "Filtrar") {
+            const array= comics.filter((comic) => {
+                 this.c.getIdComic(comic.node.id).subscribe((co) => {
+                  let generoIgual = false;
+                    co.genres?.filter((genre) => {
+                      generoIgual = tipo == genre.name?true:generoIgual;
+                    });
                 });
-                return;
-            }
-        });
+            });
+            console.log(array);
+            return array;
+        } else {
+            return comics;
+        }
     }
 }

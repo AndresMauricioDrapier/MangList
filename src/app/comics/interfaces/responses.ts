@@ -17,3 +17,7 @@ export interface CommentsResponse {
 export interface CommentResponse {
     comment: Commentary;
 }
+export interface searchComic {
+  paging: {next:string};
+  data: [{node:Comic}];
+}

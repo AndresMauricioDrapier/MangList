@@ -49,5 +49,5 @@ export interface Ranking {
 
 export interface ComicyRanking {
     node: Comic;
-    ranking: Ranking;
+    ranking?: Ranking;
 }

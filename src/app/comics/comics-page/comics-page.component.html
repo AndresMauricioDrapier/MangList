@@ -2,29 +2,22 @@
 <main id="mainIndex">
   <!-- Filtro -->
   <div id="filtro">
-    <form>
-      <select name="filtro">
-        <option value="value1" selected>Filtrar</option>
-        <option value="value1">Fantasía</option>
-        <option value="value2">Terror</option>
-        <option value="value3">Intriga</option>
-        <option value="value3">Acción</option>
-        <option value="value3">Sobrenatural</option>
-        <option value="value3">Colegios y Universidad</option>
-        <option value="value3">Shonen</option>
-        <option value="value3">Sheinen</option>
-        <option value="value3">Aventura</option>
+    <form [formGroup]="tipoGenero">
+      <select id="genero" [(ngModel)]="default" formControlName="genero" [compareWith]="selectFirst">
+        <ng-container *ngFor="let g of generos;let indice=index">
+          <option [ngValue]="g">{{ g.name }}</option>
+        </ng-container>
+
       </select>
     </form>
   </div>
-
   <!-- <form class="container-fluid col">
     <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search"
       [(ngModel)]="filterSearch" class="form-control" id="filter" placeholder="Filter...">
   </form> -->
   <!--TODO ANDRES-->
   <div id="contenido">
-    <div *ngFor="let comic of comics | comicsFilter:filterSearch">
+    <div *ngFor="let comic of comics |comicsFilter:tipoGenero.value.genero.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>
     </div>
   </div>
