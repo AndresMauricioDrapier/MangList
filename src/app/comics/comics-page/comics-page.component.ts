@@ -35,10 +35,9 @@ export class ComicsPageComponent implements OnInit {
     user!: Auth;
     active = true;
     userCreated = false;
-    filterSearch = "sinFiltro";
+
 
     generos = [
-        { name: "Filtrar", value: "Filtrar" },
         { name: "Fantasía", value: "Fantasy" },
         { name: "Terror", value: "Horror" },
         { name: "Misterio", value: "Mystery" },
@@ -47,11 +46,9 @@ export class ComicsPageComponent implements OnInit {
         { name: "Artes Marciales", value: "Martial Arts" },
         { name: "Colegios y Universidad", value: "School" },
         { name: "Sheinen", value: "Seinen" },
-        { name: "Aventura", value: "Adventura" },
+        { name: "Aventura", value: "Adventure" },
         { name: "Comedia", value: "Comedy" },
     ];
-    default = { name: "Filtrar", value: "Filtrar" };
-
     tipoGenero: FormGroup;
 
     constructor(
@@ -61,8 +58,9 @@ export class ComicsPageComponent implements OnInit {
         this.tipoGenero = new FormGroup({
             genero: new FormControl(null),
         });
-        // para obtenerlo necesitarias un get por ejemplo
-        this.tipoGenero.get("genero");
+        // setValue es para agregarle un valor
+        this.tipoGenero.controls['genero'].setValue("Filtrar",
+          {onlySelf: true});
     }
 
     ngOnInit(): void {
@@ -73,7 +71,6 @@ export class ComicsPageComponent implements OnInit {
                     .getComicsString(params["search"])
                     .subscribe((comics) => {
                         this.comics = (comics as unknown as searchComic).data;
-                        console.log(this.comics);
                     });
             } else {
                 this.comicsService.getComics().subscribe((comics) => {
@@ -82,13 +79,5 @@ export class ComicsPageComponent implements OnInit {
                 });
             }
         });
-        console.log(this.tipoGenero);
-    }
-
-    selectFirst(genero1:{ name: string, value:string },genero2:{ name: string, value:string }){
-      if (genero1==null ||genero2==null) {
-        return false;
-      }
-      return genero1.name===genero2.name;
     }
 }

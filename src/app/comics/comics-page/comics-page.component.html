@@ -3,21 +3,18 @@
   <!-- Filtro -->
   <div id="filtro">
     <form [formGroup]="tipoGenero">
-      <select id="genero" [(ngModel)]="default" formControlName="genero" [compareWith]="selectFirst">
-        <ng-container *ngFor="let g of generos;let indice=index">
+      <select id="genero" formControlName="genero" >
+        <option name="Filtrar" selected>Filtrar</option>
+        <ng-container *ngFor="let g of generos">
           <option [ngValue]="g">{{ g.name }}</option>
         </ng-container>
 
       </select>
     </form>
   </div>
-  <!-- <form class="container-fluid col">
-    <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search"
-      [(ngModel)]="filterSearch" class="form-control" id="filter" placeholder="Filter...">
-  </form> -->
   <!--TODO ANDRES-->
   <div id="contenido">
-    <div *ngFor="let comic of comics |comicsFilter:tipoGenero.value.genero.value">
+    <div *ngFor="let comic of comics | comicsFilter:tipoGenero.value.genero.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>
     </div>
   </div>
