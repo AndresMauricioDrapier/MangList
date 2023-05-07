@@ -47,12 +47,12 @@ export class CommentsComponent implements OnInit {
     commentControl!: FormControl<string>;
 
     ngOnInit(): void {
-        this.userServices.getUser(0, true).subscribe(
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            (u) =>
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                (this.userComment = this.userHaveComment(this.comments, u.id!))
-        );
+        // this.userServices.getUser(0, true).subscribe(
+        //     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        //     (u) =>
+        //         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        //         (this.userComment = this.userHaveComment(this.comments, u.id!))
+        // );
 
         this.commentControl = this.fb.control("", [Validators.required]);
 
