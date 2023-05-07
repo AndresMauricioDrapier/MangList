@@ -92,6 +92,11 @@ body {
   animation-fill-mode: both;
 }
 
+.iconoUsuario {
+  margin-right: 2em;
+  margin-left: 2em;
+}
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale3d(1, 1, 1);

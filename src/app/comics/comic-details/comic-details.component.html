@@ -6,21 +6,20 @@
       <div class="descripcionPuntuacion">{{comic.mean}}</div>
     </div>
     <!-- /Imagen -->
-    <!-- Nombre -->
-    <h1 class="descripcionNombre">{{comic.title}}</h1>
-    <!-- /Nombre -->
   </div>
   <!-- /Contenedor izquierda -->
   <!-- Contenedor derecha -->
   <div class="descripcionDerecha">
-    <!-- Descripcion -->
     <div>
-      <h2>Descripción:</h2>
+      <!-- Nombre -->
+      <h1 class="descripcionNombre">{{comic.title}}</h1>
+      <!-- /Nombre -->
+      <!-- Descripcion -->
       <p>
         {{comic.synopsis}}
       </p>
+      <!-- /Descripcion -->
     </div>
-    <!-- /Descripcion -->
     <!-- Datos -->
     <div>
       <table class="descripcionTabla">
@@ -43,9 +42,13 @@
     <!-- /Datos -->
     <!-- Botones -->
     <div class="descripcionBotones">
-      <a href=" carritoBoot.html" class="descripcionBotonCesta">Subscribete</a>
+      <a href=" carritoBoot.html" class="descripcionBotonCesta">Leer capitulos</a>
     </div>
     <!-- /Botones -->
   </div>
   <!-- /Contenedor derecha -->
 </main>
+
+<!-- Comentarios -->
+<ml-comments></ml-comments>
+<!-- /Comentarios -->

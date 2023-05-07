@@ -20,8 +20,8 @@
       -webkit-box-shadow: 0px 0px 28px 10px #23282e;
       -moz-box-shadow: 0px 0px 28px 10px #23282e;
       box-shadow: 0px 0px 28px 10px #23282e;
-      width: 17em;
-      height: 25em;
+      width: 21em;
+      height: 31.5em;
       margin-left: 2em;
       display: flex;
       flex-direction: column;
@@ -81,19 +81,6 @@
       margin-top: 3em;
       margin-left: 21em;
       text-align: right;
-
-      .descripcionBotonPrecio {
-        background-color: #a309cd;
-        border-radius: 40px;
-        opacity: 0.8;
-        text-align: center;
-        width: 3em;
-        height: 1.4em;
-        font-size: medium;
-        box-shadow: 0 0 10px #a309cd;
-        padding: 0.7em;
-        margin-right: 1em;
-      }
 
       .descripcionBotonCesta {
         background-color: #a309cd;
