@@ -2,14 +2,42 @@ import { Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Comic } from '../interfaces/comics';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import {OnInit } from "@angular/core";
 
 @Component({
   selector: 'ml-comic-card',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,FormsModule],
   templateUrl: './comic-card.component.html',
   styleUrls: ['./comic-card.component.scss']
 })
-export class ComicCardComponent {
+export class ComicCardComponent implements OnInit {
   @Input() comic!:Comic ;
+
+  ngOnInit(): void {
+    this.esNuevo();
+  }
+  esNuevo():boolean{
+    const fechaActualMes = this.menor10Añadir0((new Date().getMonth() + 1).toString());
+    const fechaActualMes1 = this.menor10Añadir0((new Date().getMonth()).toString());
+    const fechaActualMes2 = this.menor10Añadir0(new Date().getMonth() ===0 ? "12" : (new Date().getMonth()-1).toString());
+
+    const fechaActualAño = new Date().getFullYear();
+    const fechaActualAño2 = fechaActualMes2 ==="12"?new Date().getFullYear() -1:new Date().getFullYear();
+
+    if(this.comic.start_date?.includes(fechaActualAño+"-"+fechaActualMes+"-") ||
+    this.comic.start_date?.includes(fechaActualAño+"-"+fechaActualMes1+"-") ||
+    this.comic.start_date?.includes(fechaActualAño2+"-"+fechaActualMes2+"-") ){
+      return true;
+    }
+    else{
+      return false;
+    }
+
+
+  }
+  menor10Añadir0(fecha:string):string{
+    return fecha.length ===1 ? "0"+fecha: fecha;
+  }
 }
