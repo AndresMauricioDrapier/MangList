@@ -4,6 +4,11 @@ import { logoutActivateGuard } from "./app/guards/logoutActivateGuard.guard";
 
 export const APP_ROUTES: Routes = [
     {
+        path: "",
+        loadChildren: () =>
+            import("./app/comics/comics.routes").then((p) => p.MANGLIST_ROUTES),
+    },
+    {
         path: "auth",
         loadChildren: () =>
             import("./app/auth/auth.routes").then((p) => p.AUTH_ROUTES),
@@ -24,17 +29,11 @@ export const APP_ROUTES: Routes = [
             ),
     },
     {
-      path: "users",
-      loadChildren: () =>
-          import("./app/users/users.routes").then(
-              (p) => p.USER_ROUTES
-          ),
-  },
-    {
-        path: "",
+        path: "users",
         loadChildren: () =>
-            import("./app/comics/comics.routes").then((p) => p.MANGLIST_ROUTES),
+            import("./app/users/users.routes").then((p) => p.USER_ROUTES),
     },
+
     // {
     //     path: "User",
     //     loadChildren: () =>
