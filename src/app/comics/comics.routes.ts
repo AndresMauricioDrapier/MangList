@@ -11,23 +11,24 @@ export const MANGLIST_ROUTES: Routes = [
         // canDeactivate: [leavePageGuard],
     },
     {
-      path: "categorias",
-      loadComponent: () =>
-          import("./comic-categories/comic-categories.component").then(
-              (m) => m.ComicCategoriesComponent
-          ),
-      resolve: {
-          comic: comicResolve,
-      },
-      // canActivate: [comicIdGuard],
-      // canDeactivate: [leavePageGuard],
-  },
+        path: "categorias",
+        loadComponent: () =>
+            import("./comic-categories/comic-categories.component").then(
+                (m) => m.ComicCategoriesComponent
+            ),
+        // resolve: {
+        //     comic: comicResolve,
+        // },
+    },
     {
         path: "comics/:id",
         loadComponent: () =>
             import("./comic-details/comic-details.component").then(
                 (m) => m.ComicDetailsComponent
-            )
+            ),
+        resolve: {
+            comic: comicResolve,
+        },
     },
 
     // {
