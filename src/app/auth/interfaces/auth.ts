@@ -11,10 +11,8 @@ export interface Auth {
 export interface AuthLogin {
     email: string;
     password: string;
-    lat?: number;
-    lng?: number;
     token?:string;
-    image?:string;
+    avatar?:string;
     userId?:string;
 }
 

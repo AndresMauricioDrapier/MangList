@@ -59,7 +59,7 @@ export class ComicsPageComponent implements OnInit {
             genero: new FormControl(null),
         });
         // setValue es para agregarle un valor
-        this.tipoGenero.controls['genero'].setValue("Filtrar",
+        this.tipoGenero.controls['generos'].setValue("Todos",
           {onlySelf: true});
     }
 

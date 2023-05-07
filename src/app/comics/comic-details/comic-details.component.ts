@@ -3,11 +3,17 @@ import { CommonModule } from "@angular/common";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
 import { Comic } from "../interfaces/comics";
+import { CommentsComponent } from "../comments/comments.component";
 
 @Component({
     selector: "ml-comic-details",
     standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule],
+    imports: [
+        CommonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        CommentsComponent,
+    ],
     templateUrl: "./comic-details.component.html",
     styleUrls: ["./comic-details.component.scss"],
 })

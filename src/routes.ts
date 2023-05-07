@@ -24,6 +24,13 @@ export const APP_ROUTES: Routes = [
             ),
     },
     {
+      path: "users",
+      loadChildren: () =>
+          import("./app/users/users.routes").then(
+              (p) => p.USER_ROUTES
+          ),
+  },
+    {
         path: "",
         loadChildren: () =>
             import("./app/comics/comics.routes").then((p) => p.MANGLIST_ROUTES),
