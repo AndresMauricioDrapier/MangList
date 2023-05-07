@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { comicIdGuard } from "./guards/comicIdGuard.guard";
 import { comicResolve } from "./resolvers/comic.resolver";
 
 export const MANGLIST_ROUTES: Routes = [
@@ -12,17 +11,25 @@ export const MANGLIST_ROUTES: Routes = [
         // canDeactivate: [leavePageGuard],
     },
     {
+      path: "categorias",
+      loadComponent: () =>
+          import("./comic-categories/comic-categories.component").then(
+              (m) => m.ComicCategoriesComponent
+          ),
+      resolve: {
+          comic: comicResolve,
+      },
+      // canActivate: [comicIdGuard],
+      // canDeactivate: [leavePageGuard],
+  },
+    {
         path: "comics/:id",
         loadComponent: () =>
             import("./comic-details/comic-details.component").then(
                 (m) => m.ComicDetailsComponent
-            ),
-        resolve: {
-            comic: comicResolve,
-        },
-        // canActivate: [comicIdGuard],
-        // canDeactivate: [leavePageGuard],
+            )
     },
+
     // {
     //     path: "register",
     //     loadComponent: () =>
