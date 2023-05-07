@@ -21,8 +21,8 @@
 
         <select id="startDate" formControlName="startDate" class="categoriaSelect">
           <option name="startDate" selected>Año:</option>
-          <ng-container *ngFor="let g of genres">
-            <option [ngValue]="g">{{ g.name }}</option>
+          <ng-container *ngFor="let g of startDate">
+            <option [ngValue]="g">{{ g }}</option>
           </ng-container>
         </select>
 
@@ -32,7 +32,7 @@
       <label>
         <select id="status" formControlName="status" class="categoriaSelect">
           <option name="status" selected>Estado:</option>
-          <ng-container *ngFor="let g of genres">
+          <ng-container *ngFor="let g of status">
             <option [ngValue]="g">{{ g.name }}</option>
           </ng-container>
         </select>
@@ -41,7 +41,7 @@
       <label>
         <select id="order" formControlName="order" class="categoriaSelect">
           <option name="order" selected>Orden:</option>
-          <ng-container *ngFor="let g of genres">
+          <ng-container *ngFor="let g of order">
             <option [ngValue]="g">{{ g.name }}</option>
           </ng-container>
         </select>
