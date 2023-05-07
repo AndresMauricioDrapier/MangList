@@ -2,91 +2,55 @@
 <main>
   <!-- Div Filtro -->
   <div class="categoriaFiltro">
-    <form>
-      <!-- Filtro Categoria -->
-      <form [formGroup]="filterAll">
 
-        <label>
+    <!-- Filtro Categoria -->
+    <form [formGroup]="filterAll">
 
-          <select id="genres" formControlName="genres" class="categoriaSelect">
-            <option name="genres" selected>Genero:</option>
-            <ng-container *ngFor="let g of genres">
-              <option [ngValue]="g">{{ g.name }}</option>
-            </ng-container>
-          </select>
+      <label>
 
-        </label>
+        <select id="genres" formControlName="genres" class="categoriaSelect">
+          <option name="genres" selected>Genero:</option>
+          <ng-container *ngFor="let g of genres">
+            <option [ngValue]="g">{{ g.name }}</option>
+          </ng-container>
+        </select>
 
-        <label>
+      </label>
 
-          <select id="startDate" formControlName="startDate" class="categoriaSelect">
-            <option name="startDate" selected>Año:</option>
-            <ng-container *ngFor="let g of genres">
-              <option [ngValue]="g">{{ g.name }}</option>
-            </ng-container>
-          </select>
+      <label>
 
-        </label>
+        <select id="startDate" formControlName="startDate" class="categoriaSelect">
+          <option name="startDate" selected>Año:</option>
+          <ng-container *ngFor="let g of genres">
+            <option [ngValue]="g">{{ g.name }}</option>
+          </ng-container>
+        </select>
+
+      </label>
 
 
-        <label>
-          <select id="status" formControlName="status" class="categoriaSelect">
-            <option name="status" selected>Estado:</option>
-            <ng-container *ngFor="let g of genres">
-              <option [ngValue]="g">{{ g.name }}</option>
-            </ng-container>
-          </select>
-        </label>
+      <label>
+        <select id="status" formControlName="status" class="categoriaSelect">
+          <option name="status" selected>Estado:</option>
+          <ng-container *ngFor="let g of genres">
+            <option [ngValue]="g">{{ g.name }}</option>
+          </ng-container>
+        </select>
+      </label>
 
-        <label>
-          <select id="order" formControlName="order" class="categoriaSelect">
-            <option name="order" selected>Orden:</option>
-            <ng-container *ngFor="let g of genres">
-              <option [ngValue]="g">{{ g.name }}</option>
-            </ng-container>
-          </select>
-        </label>
+      <label>
+        <select id="order" formControlName="order" class="categoriaSelect">
+          <option name="order" selected>Orden:</option>
+          <ng-container *ngFor="let g of genres">
+            <option [ngValue]="g">{{ g.name }}</option>
+          </ng-container>
+        </select>
+      </label>
 
-        <button type="submit" class="categoriaBoton" name="botonFiltrar">
-          FILTRAR
-        </button>
-
-      </form>
-
-      <!-- /Filtro Categoria -->
-      <!-- Filtro Año -->
-      <select name="year" class="categoriaSelect">
-        <option value="categoria" selected>Año:</option>
-        <option value="value1">1999-2002</option>
-        <option value="value2">2003-2006</option>
-        <option value="value3">2007-2010</option>
-        <option value="value3">2011-2014</option>
-        <option value="value3">2015-2018</option>
-        <option value="value3">2019-2022</option>
-      </select>
-      <!-- /Filtro Año -->
-      <!-- Filtro Estado -->
-      <select name="estado" class="categoriaSelect">
-        <option value="categoria" selected>Estado:</option>
-        <option value="value1">En continuación</option>
-        <option value="value2">Finalizado</option>
-        <option value="value3">Próximamente</option>
-      </select>
-      <!-- /Filtro Estado -->
-      <!-- Filtro Orden -->
-      <select name="orden" class="categoriaSelect">
-        <option value="categoria" selected>Orden:</option>
-        <option value="value1">Puntuación</option>
-        <option value="value2">Alfabéticamente</option>
-        <option value="value3">Año</option>
-        <option value="value3">Estado</option>
-      </select>
-      <!-- /Filtro Orden -->
-      <!-- Boton filtrar -->
       <button type="submit" class="categoriaBoton" name="botonFiltrar">
         FILTRAR
       </button>
-      <!-- /Boton filtrar -->
+
     </form>
   </div>
   <!-- /Div Filtro -->

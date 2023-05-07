@@ -14,7 +14,6 @@ import { ComicCardComponent } from "../comic-card/comic-card.component";
 import { MenuComponent } from "src/app/shared/menu/menu.component";
 import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
 import { searchComic } from "../interfaces/responses";
-import { Genres } from "../interfaces/categories";
 
 @Component({
     selector: "ml-comics-page",
@@ -36,8 +35,21 @@ export class ComicsPageComponent implements OnInit {
     user!: Auth;
     active = true;
     userCreated = false;
+
+
+    generos = [
+        { name: "Fantasía", value: "Fantasy" },
+        { name: "Terror", value: "Horror" },
+        { name: "Misterio", value: "Mystery" },
+        { name: "Acción", value: "Action" },
+        { name: "Sobrenatural", value: "Supernatural" },
+        { name: "Artes Marciales", value: "Martial Arts" },
+        { name: "Colegios y Universidad", value: "School" },
+        { name: "Sheinen", value: "Seinen" },
+        { name: "Aventura", value: "Adventure" },
+        { name: "Comedia", value: "Comedy" },
+    ];
     tipoGenero: FormGroup;
-    genres = Genres;
 
     constructor(
         private readonly comicsService: ComicsService,
@@ -47,7 +59,7 @@ export class ComicsPageComponent implements OnInit {
             genero: new FormControl(null),
         });
         // setValue es para agregarle un valor
-        this.tipoGenero.controls['genres'].setValue("Filtrar",
+        this.tipoGenero.controls['genero'].setValue("Filtrar",
           {onlySelf: true});
     }
 
