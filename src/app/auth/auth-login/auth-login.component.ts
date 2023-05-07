@@ -88,7 +88,7 @@ export class AuthLoginComponent implements OnInit {
         this.userInfo.password = this.userForm.controls["password"].value;
         this.http.login(this.userInfo).subscribe({
             next: () => {
-                this.router.navigate(["/auth/register"]);
+                this.router.navigate(["/"]);
             },
             error: (error) => {
                 Swal.fire({
