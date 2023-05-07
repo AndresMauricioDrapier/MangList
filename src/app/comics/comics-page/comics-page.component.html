@@ -2,10 +2,10 @@
 <main id="mainIndex">
   <!-- Filtro -->
   <div id="filtro">
-    <form [formGroup]="tipoGenero">
-      <select id="genero" formControlName="genero" >
-        <option name="Todos" selected>Todos</option>
-        <ng-container *ngFor="let g of generos">
+    <form [formGroup]="filterGenres">
+      <select id="genres" formControlName="genres">
+        <option name="" selected>Todos</option>
+        <ng-container *ngFor="let g of genres">
           <option [ngValue]="g">{{ g.name }}</option>
         </ng-container>
 
@@ -14,7 +14,7 @@
   </div>
   <!--TODO ANDRES-->
   <div id="contenido">
-    <div *ngFor="let comic of comics | comicsFilter:tipoGenero.value.genero.value">
+    <div *ngFor="let comic of comics | comicsFilter:filterGenres.value.genres.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>
     </div>
   </div>

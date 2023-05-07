@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { ComicsService } from "../services/comics.service";
 import {
+  FormBuilder,
     FormControl,
     FormGroup,
     FormsModule,
@@ -14,6 +15,7 @@ import { ComicCardComponent } from "../comic-card/comic-card.component";
 import { MenuComponent } from "src/app/shared/menu/menu.component";
 import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
 import { searchComic } from "../interfaces/responses";
+import { Genres } from "../interfaces/categories";
 
 @Component({
     selector: "ml-comics-page",
@@ -37,30 +39,20 @@ export class ComicsPageComponent implements OnInit {
     userCreated = false;
 
 
-    generos = [
-        { name: "Fantasía", value: "Fantasy" },
-        { name: "Terror", value: "Horror" },
-        { name: "Misterio", value: "Mystery" },
-        { name: "Acción", value: "Action" },
-        { name: "Sobrenatural", value: "Supernatural" },
-        { name: "Artes Marciales", value: "Martial Arts" },
-        { name: "Colegios y Universidad", value: "School" },
-        { name: "Sheinen", value: "Seinen" },
-        { name: "Aventura", value: "Adventure" },
-        { name: "Comedia", value: "Comedy" },
-    ];
-    tipoGenero: FormGroup;
+    genres = Genres;
+    filterGenres: FormGroup;
 
     constructor(
         private readonly comicsService: ComicsService,
-        private readonly route: ActivatedRoute // private readonly httpUser: UserService
+        private readonly route: ActivatedRoute,
+        private readonly fb: FormBuilder // private readonly httpUser: UserService
     ) {
-        this.tipoGenero = new FormGroup({
-            genero: new FormControl(null),
-        });
-        // setValue es para agregarle un valor
-        this.tipoGenero.controls['generos'].setValue("Todos",
-          {onlySelf: true});
+      this.filterGenres = this.fb.group({
+        genres: this.genres,
+    });
+    this.filterGenres.controls["genres"].setValue("Todos", {
+        onlySelf: true,
+    });
     }
 
     ngOnInit(): void {
