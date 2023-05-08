@@ -22,7 +22,7 @@
         <select id="startDate" formControlName="startDate" class="categoriaSelect">
           <option name="startDate" selected>Año:</option>
           <ng-container *ngFor="let g of startDate">
-            <option [ngValue]="g">{{ g }}</option>
+            <option [ngValue]="g">{{ g.name }}</option>
           </ng-container>
         </select>
 
