@@ -12,7 +12,7 @@ export const APP_ROUTES: Routes = [
         path: "auth",
         loadChildren: () =>
             import("./app/auth/auth.routes").then((p) => p.AUTH_ROUTES),
-        //canActivate: [logoutActivateGuard],
+        canActivate: [logoutActivateGuard],
     },
     {
         path: "about",
@@ -32,6 +32,7 @@ export const APP_ROUTES: Routes = [
         path: "users",
         loadChildren: () =>
             import("./app/users/users.routes").then((p) => p.USER_ROUTES),
+        canActivate: [loginActivateGuard],
     },
 
     // {

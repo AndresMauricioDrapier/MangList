@@ -1,15 +1,16 @@
-<div class="overflow-hidden">
+<div class="overflow-hidden" *ngIf="user">
   <div class="px-4 pt-0 pb-4 cover" id="cabeceraUsuario">
     <div class="media align-items-end profile-head">
-      <div class="profile mr-3 contenedorImagen" *ngIf="user.avatar"><img
-          src="{{ user.avatar }}"
-          alt="Nombre usuario" width="130" class="rounded mb-2 imagen">
+      <div class="profile mr-3 contenedorImagen" *ngIf="user.avatar"><img src="{{ user.avatar }}" alt="Nombre usuario"
+          width="130" class="rounded mb-2 imagen">
       </div>
       <div class="mb-5 text-white">
-        <h2 class="mt-0 mb-0 nombreUsuario">Nombre usuario</h2>
-        <a href="#" class="boton">Editar perfil</a>
-        <a href="#" class="boton">Editar avatar</a>
-        <a href="#" class="boton">Editar contraseña</a>
+        <h2 class="mt-0 mb-0 nombreUsuario">{{user.name}}</h2>
+        <div *ngIf="isMe">
+          <a href="#" class="boton">Editar perfil</a>
+          <a href="#" class="boton">Editar avatar</a>
+          <a href="#" class="boton">Editar contraseña</a>
+        </div>
       </div>
     </div>
   </div>
@@ -21,5 +22,6 @@
       <div *ngFor="let comic of comics">
         <!-- <ml-comic-card [comic]="comic.node"></ml-comic-card> -->
       </div>
+    </div>
   </div>
 </div>

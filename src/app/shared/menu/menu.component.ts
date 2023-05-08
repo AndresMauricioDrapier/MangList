@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { AuthService } from "src/app/auth/services/auth.service";
+import Swal from "sweetalert2";
 
 @Component({
     selector: "ml-menu",
@@ -12,24 +13,37 @@ import { AuthService } from "src/app/auth/services/auth.service";
     styleUrls: ["./menu.component.scss"],
 })
 export class MenuComponent implements OnInit {
-    logged?: boolean;
+    loggedIn!: boolean;
     filterSearch = "";
 
+    userId: string = localStorage.getItem("user-id") || "";
+
     constructor(
-        private readonly http: AuthService,
+        private readonly authService: AuthService,
         private readonly router: Router
     ) {}
 
     ngOnInit(): void {
-        this.http.loginChange$.subscribe((bol) => {
-            this.logged = bol;
-        });
+      this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
     }
 
     logout(): void {
-        this.http.logout();
-        this.router.navigate(["auth/login"]);
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¡Si cierra la sesión, ya no podrá leer ningún comic!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, cerrar sesión!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.authService.logout();
+          Swal.fire('¡Ya no está conectado!');
+        }
+      });
     }
+
     busqueda() {
         this.router.navigate([""], {
             queryParams: { search: this.filterSearch },

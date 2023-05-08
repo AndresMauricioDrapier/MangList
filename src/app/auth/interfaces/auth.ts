@@ -1,11 +1,12 @@
 export interface Auth {
-    id?: number;
+    _id?: number;
     name?: string;
     email: string;
     password?: string;
     avatar?: string;
     token?:string;
     role?:string;
+    favorites?:number[];
 }
 
 export interface AuthLogin {

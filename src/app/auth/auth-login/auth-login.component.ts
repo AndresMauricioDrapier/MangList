@@ -89,6 +89,11 @@ export class AuthLoginComponent implements OnInit {
         this.http.login(this.userInfo).subscribe({
             next: () => {
                 this.router.navigate(["/"]);
+                Swal.fire({
+                  icon: "success",
+                  title: "Inicio sesión",
+                  text: "Iniciado sesión correctamente",
+              });
             },
             error: (error) => {
                 Swal.fire({
@@ -99,6 +104,7 @@ export class AuthLoginComponent implements OnInit {
             },
         });
     }
+
     goRegister(): void {
         this.router.navigate(["auth/register"]);
     }

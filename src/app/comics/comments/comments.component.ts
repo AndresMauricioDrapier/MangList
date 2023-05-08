@@ -51,7 +51,7 @@ export class CommentsComponent implements OnInit {
         //     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         //     (u) =>
         //         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        //         (this.userComment = this.userHaveComment(this.comments, u.id!))
+        //         (this.userComment = this.userHaveComment(this.comments, u._id!))
         // );
 
         this.commentControl = this.fb.control("", [Validators.required]);
@@ -66,7 +66,7 @@ export class CommentsComponent implements OnInit {
     }
 
     userHaveComment(comments: Commentary[], id: number): boolean {
-        return comments.some((c) => c.user?.id == id);
+        return comments.some((c) => c.user?._id == id);
     }
 
     setRating(newRating: number): void {

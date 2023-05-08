@@ -11,28 +11,18 @@ export class UsersService {
     private readonly USERS_URL = "users";
     constructor(private readonly http: HttpClient) {}
 
-    getUser(id: number, me?: boolean): Observable<Auth> {
-        if (me) {
-            return this.http.get<AuthResponse>(`${this.USERS_URL}/me`).pipe(
-                map((r) => r.user),
-                catchError((resp: HttpErrorResponse) =>
-                    throwError(
-                        () =>
-                            `Error getting your user. Status: ${resp.status}. Message: ${resp.message}`
-                    )
+    getUser(id: string): Observable<Auth> {
+        return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
+            map((r) => {
+                return r.result;
+            }),
+            catchError((resp: HttpErrorResponse) =>
+                throwError(
+                    () =>
+                        `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
                 )
-            );
-        } else {
-            return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
-                map((r) => r.user),
-                catchError((resp: HttpErrorResponse) =>
-                    throwError(
-                        () =>
-                            `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
-                    )
-                )
-            );
-        }
+            )
+        );
     }
 
     saveProfile(name: string, email: string): Observable<void> {
@@ -49,5 +39,12 @@ export class UsersService {
         return this.http.put<void>(this.USERS_URL + "/me/password", {
             password,
         });
+    }
+
+    addFavorites(idComic: number, idUser: number): Observable<void> {
+        return this.http.put<void>(
+            this.USERS_URL + "/" + idUser + "/favorites",
+            { idComic }
+        );
     }
 }

@@ -42,7 +42,9 @@
     <!-- /Datos -->
     <!-- Botones -->
     <div class="descripcionBotones">
-      <a href=" carritoBoot.html" class="descripcionBotonCesta">Leer capitulos</a>
+      <a class="descripcionBotonCesta" *ngIf="!containsFavorite()">Añadir a favoritos</a>
+      <a class="descripcionBotonCesta" *ngIf="containsFavorite()">Quitar de favoritos</a>
+      <a class="descripcionBotonCesta">Leer capitulos</a>
     </div>
     <!-- /Botones -->
   </div>

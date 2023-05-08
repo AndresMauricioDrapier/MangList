@@ -7,10 +7,10 @@ import { Auth } from "src/app/auth/interfaces/auth";
 
 export const userResolve: ResolveFn<Auth> = (route) => {
     return inject(UsersService)
-        .getUser(+route.params["id"])
+        .getUser(route.params["id"])
         .pipe(
             catchError(() => {
-                inject(Router).navigate(["/manglist"]);
+                inject(Router).navigate(["/"]);
                 return EMPTY;
             })
         );

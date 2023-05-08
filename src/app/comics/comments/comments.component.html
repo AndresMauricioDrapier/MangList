@@ -3,7 +3,7 @@
     <li class="list-group-item active"><h2 id="tituloComentarios">Comentarios:</h2></li>
     <li *ngFor="let comment of comments" class="list-group-item d-flex flex-row">
       <div>
-        <a [routerLink]="['/users', comment.user?.id]">
+        <a [routerLink]="['/users', comment.user?._id]">
           <img
             class="rounded-circle me-3"
             style="width: 40px"

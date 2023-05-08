@@ -17,25 +17,25 @@ export class AuthService {
         private readonly router: Router
     ) {}
 
-    login(userLogin: AuthLogin): Observable<void> {
-        const login = this.http.post<void>("auth/login", userLogin);
+    login(userLogin: AuthLogin): Observable<TokenResponse> {
+        const login = this.http.post<TokenResponse>("auth/login", userLogin);
 
-        login.subscribe((data: any) => {
+        login.subscribe((data: TokenResponse) => {
             this.loginChange$.next(true);
-            this.putToken((data.data as unknown as TokenResponse).token);
-            this.putUserID((data.data as unknown as TokenResponse).id);
+            this.putToken((data as unknown as TokenResponse).data.token);
+            this.putUserID((data as unknown as TokenResponse).data.id);
         });
 
         return login;
     }
 
-    loginGoogle(userLogin: AuthLogin): Observable<void> {
-        const login = this.http.post<void>("auth/google", userLogin);
+    loginGoogle(userLogin: AuthLogin): Observable<TokenResponse> {
+        const login = this.http.post<TokenResponse>("auth/google", userLogin);
 
-        login.subscribe((data) => {
+        login.subscribe((data: TokenResponse) => {
             this.loginChange$.next(true);
-            // this.putToken((data as unknown as TokenResponse).token);
-            // this.putUserID((data as unknown as TokenResponse).id);
+            // this.putToken((data as unknown as TokenResponse).data.token);
+            // this.putUserID((data as unknown as TokenResponse).data.id);
         });
 
         return login;
@@ -58,11 +58,11 @@ export class AuthService {
     }
 
     isLogged(): Observable<boolean> {
-        if (!this.logged && !localStorage.getItem("token")) {
+        if (!this.logged && !localStorage.getItem("auth-token")) {
             this.logged = false;
             this.loginChange$.next(false);
             return of(false);
-        } else if (this.logged && localStorage.getItem("token")) {
+        } else if (this.logged && localStorage.getItem("auth-token")) {
             this.logged = true;
             this.loginChange$.next(true);
             return of(true);
@@ -72,7 +72,8 @@ export class AuthService {
                 this.loginChange$.next(true);
                 return of(true);
             } else {
-                localStorage.removeItem("token");
+                localStorage.removeItem("auth-token");
+                localStorage.removeItem("user-id");
                 return of(false);
             }
         }
@@ -82,7 +83,8 @@ export class AuthService {
         this.loginChange$.next(false);
         this.logged = false;
 
-        localStorage.removeItem("token");
+        localStorage.removeItem("auth-token");
+        localStorage.removeItem("user-id");
         this.router.navigate(["/"]);
     }
 }

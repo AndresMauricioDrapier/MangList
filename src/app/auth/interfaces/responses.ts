@@ -1,7 +1,7 @@
 import { Auth } from "./auth";
 
 export interface AuthResponse {
-  user: Auth;
+  result: Auth;
 }
 
 export interface AuthResponses {
@@ -9,6 +9,9 @@ export interface AuthResponses {
 }
 
 export interface TokenResponse {
-  token: string;
-  id: string;
+  data: {
+    token: string;
+    id: string;
+  },
+  error: string;
 }
