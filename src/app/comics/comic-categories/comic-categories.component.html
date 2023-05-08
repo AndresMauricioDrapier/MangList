@@ -55,10 +55,11 @@
   </div>
   <!-- /Div Filtro -->
 
-  <!-- <div id="contenido">
-    <div *ngFor="let comic of comics | comicsFilter:tipoGenero.value.genero.value">
+  <div id="contenido">
+    <div *ngFor="let comic of comics | comicsFilterCategory: filterAll.value.genres.value:filterAll.value.status.value:filterAll.value.startDate.value:filterAll.value.order.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>
     </div>
-  </div> -->
+  </div>
+
 </main>
 <!-- /Contendor principal -->

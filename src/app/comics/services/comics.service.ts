@@ -6,6 +6,8 @@ import {
     CommentsResponse,
     ComicResponse,
     ComicsResponse,
+    searchComic,
+    categoriesComicResponse,
 } from "../interfaces/responses";
 import { Comic, ComicyRanking } from "../interfaces/comics";
 
@@ -44,6 +46,21 @@ export class ComicsService {
                 )
             );
     }
+    getComicsCategorias(params: string): Observable<ComicyRanking[]> {
+      return this.http
+          .get<categoriesComicResponse>(this.COMIC_URL + "?categorias=" + params)
+          .pipe(
+              map((r) => {
+                  return r.result.data;
+              }),
+              catchError((resp: HttpErrorResponse) =>
+                  throwError(
+                      () =>
+                          `Error getting products. Status: ${resp.status}. Message: ${resp.message}`
+                  )
+              )
+          );
+  }
     getIdComic(id: number): Observable<Comic> {
         return this.http.get<ComicResponse>(`${this.COMIC_URL}/${id}`).pipe(
             map((r) => {

@@ -24,6 +24,14 @@
     }
   }
 }
+#contenido {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+}
 @media screen and (max-width: 660px) {
   .categoriaFiltro {
     display: flex;
