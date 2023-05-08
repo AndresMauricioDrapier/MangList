@@ -1,15 +1,18 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
     FormBuilder,
     FormGroup,
     FormsModule,
     ReactiveFormsModule,
+    Validators,
 } from "@angular/forms";
 import { ComicsService } from "../services/comics.service";
 import { ActivatedRoute } from "@angular/router";
 import { ComicCardComponent } from "../comic-card/comic-card.component";
 import { Genres,Order,StartDate,Status } from "../interfaces/categories";
+import { ComicyRanking } from "../interfaces/comics";
+import { ComicsFilterCategoryPipe } from "../pipes/comics-filter-category.pipe";
 
 @Component({
     selector: "ml-comic-categories",
@@ -19,11 +22,12 @@ import { Genres,Order,StartDate,Status } from "../interfaces/categories";
         FormsModule,
         ComicCardComponent,
         ReactiveFormsModule,
+        ComicsFilterCategoryPipe
     ],
     templateUrl: "./comic-categories.component.html",
     styleUrls: ["./comic-categories.component.scss"],
 })
-export class ComicCategoriesComponent {
+export class ComicCategoriesComponent implements OnInit {
     filterAll: FormGroup;
 
     genres = Genres;
@@ -31,17 +35,17 @@ export class ComicCategoriesComponent {
     status = Status;
     order = Order;
 
-
+    comics: ComicyRanking[] = [];
     constructor(
         private readonly comicsService: ComicsService,
         private readonly route: ActivatedRoute,
         private readonly fb: FormBuilder // private readonly httpUser: UserService
     ) {
         this.filterAll = this.fb.group({
-            genres: this.genres,
-            startDate: this.startDate,
-            status: this.status,
-            order: this.order,
+            genres: [this.genres,Validators.required],
+            startDate: [this.startDate,Validators.required],
+            status: [this.status,Validators.required],
+            order: [this.order,Validators.required],
         });
         this.filterAll.controls["genres"].setValue("Genero:", {
             onlySelf: true,
@@ -56,4 +60,24 @@ export class ComicCategoriesComponent {
             onlySelf: true,
         });
     }
+
+    ngOnInit(): void {
+      // this.route.queryParams.subscribe((params) => {
+      //     if (params["search"]) {
+      //         this.comicsService
+      //             .getComicsString(params["search"])
+      //             .subscribe((comics) => {
+      //                 this.comics = (comics as unknown as searchComic).data;
+      //             });
+      //     } else {
+      //         this.comicsService.getComics().subscribe((comics) => {
+      //             this.comics = comics;
+      //             console.log(this.comics);
+      //         });
+      //     }
+      // });
+      this.comicsService.getComicsCategorias("hola").subscribe((comics) => {
+        this.comics = comics;
+    });
+  }
 }

@@ -21,3 +21,8 @@ export interface searchComic {
   paging: {next:string};
   data: [{node:Comic}];
 }
+
+export interface categoriesComicResponse{
+  ok:boolean,
+  result:searchComic
+}

@@ -56,7 +56,6 @@ export class ComicsPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //TODO ANDRES
         this.route.queryParams.subscribe((params) => {
             if (params["search"]) {
                 this.comicsService

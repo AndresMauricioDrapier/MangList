@@ -12,7 +12,7 @@
       </select>
     </form>
   </div>
-  <!--TODO ANDRES-->
+
   <div id="contenido">
     <div *ngFor="let comic of comics | comicsFilter:filterGenres.value.genres.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>
