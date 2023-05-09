@@ -68,22 +68,6 @@ export class ComicsService {
             })
         );
     }
-    getComments(id: number): Observable<CommentsResponse> {
-        return this.http.get<CommentsResponse>(
-            `${this.COMIC_URL}/${id}/comments`
-        );
-    }
-    addComment(id: number, comment: Commentary): Observable<Commentary> {
-        return this.http
-            .post<Commentary>(`${this.COMIC_URL}/${id}/comments`, comment)
-            .pipe(
-                map((rest) => {
-                    console.log(rest);
-
-                    return rest;
-                })
-            );
-    }
     addComic(rest: Comic, id?: number): Observable<Comic> {
         if (id) {
             return this.http

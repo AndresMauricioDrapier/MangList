@@ -11,7 +11,7 @@ export interface ComicResponse {
     result: Comic;
 }
 export interface CommentsResponse {
-    comments: Commentary[];
+    result: Commentary[];
 }
 
 export interface CommentResponse {

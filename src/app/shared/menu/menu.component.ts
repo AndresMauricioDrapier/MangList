@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,OnChanges,SimpleChanges,Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -12,9 +12,10 @@ import Swal from "sweetalert2";
     templateUrl: "./menu.component.html",
     styleUrls: ["./menu.component.scss"],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit,OnChanges {
     loggedIn!: boolean;
     filterSearch = "";
+    @Input() comicId!: boolean;
 
     userId: string = localStorage.getItem("user-id") || "";
 
@@ -24,7 +25,14 @@ export class MenuComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+      this.authService.isLogged();
       this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
+    }
+    ngOnChanges(changes: SimpleChanges): void {
+      if (changes) {
+        // Realizar acciones basadas en el nuevo valor de myValue
+        console.log('El nuevo valor de myValue es:', changes);
+      }
     }
 
     logout(): void {

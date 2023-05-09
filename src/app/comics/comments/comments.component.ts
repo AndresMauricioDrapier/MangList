@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+    Component,
+    OnInit,
+    Input,
+    OnChanges,
+    SimpleChanges,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Commentary } from "../interfaces/comment";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
@@ -12,6 +18,7 @@ import {
 } from "@angular/forms";
 import { StarRatingComponent } from "./star-rating/star-rating.component";
 import { Auth } from "src/app/auth/interfaces/auth";
+import { CommentsService } from "../services/comments.service";
 
 @Component({
     selector: "ml-comments",
@@ -25,22 +32,16 @@ import { Auth } from "src/app/auth/interfaces/auth";
     templateUrl: "./comments.component.html",
     styleUrls: ["./comments.component.scss"],
 })
-export class CommentsComponent implements OnInit {
-    constructor(
-        private readonly router: Router,
-        private readonly route: ActivatedRoute,
-        private readonly userServices: UsersService,
-        private fb: NonNullableFormBuilder
-    ) {}
-
-    @Input() comicId!: string;
+export class CommentsComponent implements OnInit, OnChanges {
+    @Input() comicId!: number;
+    @Input() userId!: number;
 
     comments!: Commentary[];
     userComment = false;
-    user!: Auth;
 
     newComment: Commentary = {
         user: {
+            _id: 0,
             name: "",
             email: "",
             avatar: "",
@@ -48,20 +49,46 @@ export class CommentsComponent implements OnInit {
         comicId: "",
         stars: 0,
         text: "",
-        date: "",
+        date: (new Date).toLocaleString(),
     };
 
     formComment!: FormGroup;
     commentControl!: FormControl<string>;
 
-    ngOnInit(): void {
-        // this.userServices.getUser(0, true).subscribe(
-        //     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        //     (u) =>
-        //         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        //         (this.userComment = this.userHaveComment(this.comments, u._id!))
-        // );
+    constructor(
+        private readonly userServices: UsersService,
+        private readonly commentsServices: CommentsService,
+        private fb: NonNullableFormBuilder
+    ) {}
+    ngOnChanges(changes: SimpleChanges): void {
+        if(changes["comicId"]){
+          this.newComment.comicId = changes["comicId"].currentValue;
 
+          this.commentsServices.getComments(changes["comicId"].currentValue).subscribe({
+            next:(resp) =>{
+              this.comments = resp.result;
+              console.log(this.comments);
+            },
+            error:(e)=>{
+              console.log(e);
+            }
+          })
+        }
+        if (changes["userId"].currentValue) {
+            this.userServices
+                .getUser(changes["userId"].currentValue)
+                .subscribe({
+                    next: (user) => {
+                        this.newComment.user = user;
+                    },
+                    error: (e) => {
+                        console.log(e);
+                    },
+                });
+        }
+
+    }
+    ngOnInit(): void {
         this.commentControl = this.fb.control("", [Validators.required]);
 
         this.formComment = this.fb.group({
@@ -71,6 +98,16 @@ export class CommentsComponent implements OnInit {
 
     addComment() {
         this.newComment.text = this.commentControl.value;
+        this.commentsServices.addComment(this.newComment).subscribe({
+          next:(resp) =>{
+            console.log(resp);
+          },
+          error:(e)=>{
+            console.log(e);
+          }
+        });
+
+        window.location.reload();
     }
 
     userHaveComment(comments: Commentary[], id: number): boolean {

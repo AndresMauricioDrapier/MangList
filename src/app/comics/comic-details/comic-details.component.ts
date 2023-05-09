@@ -38,6 +38,7 @@ export class ComicDetailsComponent implements OnInit {
         this.UsersService.getUser(localStorage.getItem("user-id")!).subscribe(
             (user) => {
                 this.user = user;
+                console.log(user._id);
             }
         );
     }
