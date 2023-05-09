@@ -30,7 +30,16 @@ export const MANGLIST_ROUTES: Routes = [
             comic: comicResolve,
         },
     },
-
+    {
+      path: "comics/:id/reading",
+      loadComponent: () =>
+          import("./comics-reading-page/comics-reading-page.component").then(
+              (m) => m.ComicsReadingPageComponent
+          ),
+      resolve: {
+          comic: comicResolve,
+      },
+  },
     // {
     //     path: "register",
     //     loadComponent: () =>

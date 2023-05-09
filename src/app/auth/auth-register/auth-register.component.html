@@ -1,5 +1,6 @@
 <!-- Contendor principal -->
-<form class="h-100 bg-dark" method="POST" role="form" (ngSubmit)="addUser()" [formGroup]="userForm" enctype="multipart/form-data">
+<form class="h-100 bg-dark" method="POST" role="form" (ngSubmit)="addUser()" [formGroup]="userForm"
+  enctype="multipart/form-data">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -49,7 +50,6 @@
                   <div class="invalid-feedback" *ngIf="emailControl.errors?.['email']">
                     El email tiene que tener el siguiente formato: usuario@mail.com
                   </div>
-
                 </div>
 
                 <div class="mb-3">
@@ -116,7 +116,7 @@
                             rgba(163, 9, 205, 1);
                           -moz-box-shadow: 0px 0px 15px 4px rgba(163, 9, 205, 1);
                           box-shadow: 0px 0px 15px 4px rgba(163, 9, 205, 1);
-                        " >
+                        ">
                     Envíar
                   </button>
                 </div>

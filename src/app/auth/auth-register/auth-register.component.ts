@@ -126,6 +126,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         });
 
     }
+
     validClasses(
         ngModel: FormControl,
         validClass = "is-valid",

@@ -11,6 +11,7 @@ import {
     Validators,
 } from "@angular/forms";
 import { StarRatingComponent } from "./star-rating/star-rating.component";
+import { Auth } from "src/app/auth/interfaces/auth";
 
 @Component({
     selector: "ml-comments",
@@ -36,8 +37,15 @@ export class CommentsComponent implements OnInit {
 
     comments!: Commentary[];
     userComment = false;
+    user!: Auth;
 
     newComment: Commentary = {
+        user: {
+            name: "",
+            email: "",
+            avatar: "",
+        },
+        comicId: "",
         stars: 0,
         text: "",
         date: "",
@@ -66,7 +74,8 @@ export class CommentsComponent implements OnInit {
     }
 
     userHaveComment(comments: Commentary[], id: number): boolean {
-        return comments.some((c) => c.user?._id == id);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return comments.some((c) => c.user._id! == id);
     }
 
     setRating(newRating: number): void {

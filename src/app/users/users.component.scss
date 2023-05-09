@@ -39,4 +39,17 @@
 
 .modal-content{
   background-color: #23282E;
+
+  .modal-header{
+    background-color: #060D17;
+    border: 2px solid #23282E;
+  }
+
+  .modal-footer{
+    border: 0;
+  }
+}
+
+.modal{
+  height: 40em;
 }

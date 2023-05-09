@@ -11,6 +11,8 @@ export class UsersService {
     private readonly USERS_URL = "users";
     constructor(private readonly http: HttpClient) {}
 
+    userId = localStorage.getItem("user-id") || "";
+
     getUser(id: string): Observable<Auth> {
         return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
             map((r) => {
@@ -26,19 +28,29 @@ export class UsersService {
     }
 
     saveProfile(name: string, email: string): Observable<void> {
-        return this.http.put<void>(this.USERS_URL + "/me", { name, email });
+        return this.http.put<void>(this.USERS_URL +"/"+this.userId + "/user", {
+            name,
+            email,
+        });
     }
 
     saveAvatar(avatar: string): Observable<string> {
-        return this.http.put<string>(this.USERS_URL + "/me/avatar", {
-            avatar,
-        });
+        return this.http.put<string>(
+            this.USERS_URL + "/" + this.userId + "/avatar",
+            {
+                avatar,
+            }
+        );
     }
 
-    savePassword(password: string): Observable<void> {
-        return this.http.put<void>(this.USERS_URL + "/me/password", {
-            password,
-        });
+    savePassword(firstPassword: string, secondPassword: string): Observable<void> {
+        return this.http.put<void>(
+            this.USERS_URL + "/" + this.userId + "/password",
+            {
+              firstPassword,
+              secondPassword
+            }
+        );
     }
 
     addFavorites(idComic: number, idUser: number): Observable<void> {
