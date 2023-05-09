@@ -13,3 +13,110 @@
   background-color: white;
   border: 1px solid #060d17;
 }
+/* 1 PUNTO FLUID LAYOUT  */
+html {
+  font-size: 100%;
+}
+p {
+  font-size: 1em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h1 {
+  font-size: 2em;
+}
+@media (max-width: 767px) {
+  html {
+    font-size: 0.75em;
+  }
+}
+body {
+  background-color: #060d17 !important;
+  color: white;
+}
+.navbar-brand {
+  color: #a309cd !important;
+  font-weight: bold;
+  font-size: 2.2em;
+}
+.bg-dark {
+  background-color: #060d17 !important;
+}
+.dropdown-item {
+  color: white;
+}
+.dropdown-item:hover {
+  color: #060d17;
+}
+.form-control {
+  background-color: #23282e;
+  border-radius: 20px;
+  border: 0;
+  width: 20em;
+  height: 2em;
+}
+.form-control-2{
+  background-color: #060d17 !important;
+}
+.card {
+  background-color: #23282e;
+  border: 1px solid white;
+
+  -webkit-box-shadow: 0px 0px 25px 4px rgba(6, 13, 23, 1);
+  -moz-box-shadow: 0px 0px 25px 4px rgba(6, 13, 23, 1);
+  box-shadow: 0px 0px 25px 4px rgba(6, 13, 23, 1);
+}
+.card img {
+  -webkit-box-shadow: 0px 0px 25px 4px rgba(6, 13, 23, 1);
+  -moz-box-shadow: 0px 0px 25px 4px rgba(6, 13, 23, 1);
+  box-shadow: 0px 0px 25px 4px rgba(6, 13, 23, 1);
+}
+.colorWhite {
+  color: white !important;
+}
+.imgFormasPago {
+  width: 100%;
+}
+.form-control {
+  width: 100% !important;
+}
+.form-label{
+  font-size: 0.9em;
+}
+.pulse :hover{
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
