@@ -42,6 +42,7 @@ export class ComicDetailsComponent implements OnInit {
         );
     }
 
+    //TODO Néstor: Implementar el método addToFavorites y containsFavorite correctamente
     addToFavorites(idComic: number): void {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.UsersService.addFavorites(idComic, this.user._id!).subscribe();
