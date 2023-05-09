@@ -59,4 +59,8 @@ export class UsersService {
             { idComic }
         );
     }
+
+    isLogged(): boolean {
+        return localStorage.getItem("auth-token") ? true : false;
+    }
 }

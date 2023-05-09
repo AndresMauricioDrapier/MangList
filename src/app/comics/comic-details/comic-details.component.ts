@@ -55,4 +55,16 @@ export class ComicDetailsComponent implements OnInit {
         );
         return boolean;
     }
+
+    goToReadingPage(): void {
+        if (this.UsersService.isLogged()) {
+            if (this.user.role !== "user" && this.user.role !== "api") {
+                this.router.navigate(["/comics", this.comic.id, "reading"]);
+            } else {
+                this.router.navigate(["/subscriptions/type"]);
+            }
+        } else {
+            this.router.navigate(["/auth/login"]);
+        }
+    }
 }

@@ -44,7 +44,7 @@
     <div class="descripcionBotones">
       <a class="descripcionBotonCesta" *ngIf="!containsFavorite()">Añadir a favoritos</a>
       <a class="descripcionBotonCesta" *ngIf="containsFavorite()">Quitar de favoritos</a>
-      <a class="descripcionBotonCesta" [routerLink]="['/comics',comic.id,'reading']">Leer capitulos</a>
+      <a class="descripcionBotonCesta" (click)="goToReadingPage()">Leer capitulos</a>
     </div>
     <!-- /Botones -->
   </div>
