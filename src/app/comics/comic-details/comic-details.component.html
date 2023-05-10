@@ -52,5 +52,5 @@
 </main>
 
 <!-- Comentarios -->
-<ml-comments [comicId]="comic.id" [userId]="user._id!"></ml-comments>
+<ml-comments *ngIf="comic" [comicId]="comic.id" [userId]="user._id!"></ml-comments>
 <!-- /Comentarios -->

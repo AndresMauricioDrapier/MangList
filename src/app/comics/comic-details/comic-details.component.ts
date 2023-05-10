@@ -35,12 +35,14 @@ export class ComicDetailsComponent implements OnInit {
             this.comic = data["comic"];
         });
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.UsersService.getUser(localStorage.getItem("user-id")!).subscribe(
-            (user) => {
+        if (this.comic) {
+            this.UsersService.getUser(
+                localStorage.getItem("user-id")!
+            ).subscribe((user) => {
                 this.user = user;
                 console.log(user._id);
-            }
-        );
+            });
+        }
     }
 
     //TODO Néstor: Implementar el método addToFavorites y containsFavorite correctamente

@@ -6,7 +6,7 @@ export const APP_ROUTES: Routes = [
     {
         path: "",
         loadChildren: () =>
-            import("./app/comics/comics.routes").then((p) => p.MANGLIST_ROUTES),
+            import("./app/comics/comics.routes").then((p) => p.COMICS_ROUTES),
     },
     {
         path: "auth",

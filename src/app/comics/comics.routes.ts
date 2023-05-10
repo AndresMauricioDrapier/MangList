@@ -1,7 +1,9 @@
 import { Routes } from "@angular/router";
 import { comicResolve } from "./resolvers/comic.resolver";
+import { loginActivateGuard } from "../guards/loginActivateGuard.guard";
+import { roleActivateGuard } from "../guards/roleActivateGuard.guard";
 
-export const MANGLIST_ROUTES: Routes = [
+export const COMICS_ROUTES: Routes = [
     {
         path: "",
         loadComponent: () =>
@@ -31,15 +33,16 @@ export const MANGLIST_ROUTES: Routes = [
         },
     },
     {
-      path: "comics/:id/reading",
-      loadComponent: () =>
-          import("./comics-reading-page/comics-reading-page.component").then(
-              (m) => m.ComicsReadingPageComponent
-          ),
-      resolve: {
-          comic: comicResolve,
-      },
-  },
+        path: "comics/:id/reading",
+        loadComponent: () =>
+            import("./comics-reading-page/comics-reading-page.component").then(
+                (m) => m.ComicsReadingPageComponent
+            ),
+        canActivate: [loginActivateGuard, roleActivateGuard],
+        resolve: {
+            comic: comicResolve,
+        },
+    },
     // {
     //     path: "register",
     //     loadComponent: () =>

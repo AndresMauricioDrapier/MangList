@@ -13,28 +13,7 @@
   background-color: white;
   border: 1px solid #060d17;
 }
-/* 1 PUNTO FLUID LAYOUT  */
-html {
-  font-size: 100%;
-}
-p {
-  font-size: 1em;
-}
-h2 {
-  font-size: 1.5em;
-}
-h1 {
-  font-size: 2em;
-}
-@media (max-width: 767px) {
-  html {
-    font-size: 0.75em;
-  }
-}
-body {
-  background-color: #060d17 !important;
-  color: white;
-}
+
 .navbar-brand {
   color: #a309cd !important;
   font-weight: bold;
@@ -53,8 +32,13 @@ body {
   background-color: #23282e;
   border-radius: 20px;
   border: 0;
-  width: 20em;
   height: 2em;
+  width: 100% !important;
+  color: white;
+
+  &:focus {
+    color: white;
+  }
 }
 .form-control-2{
   background-color: #060d17 !important;
@@ -78,9 +62,7 @@ body {
 .imgFormasPago {
   width: 100%;
 }
-.form-control {
-  width: 100% !important;
-}
+
 .form-label{
   font-size: 0.9em;
 }

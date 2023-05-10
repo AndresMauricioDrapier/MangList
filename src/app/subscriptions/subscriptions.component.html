@@ -28,7 +28,7 @@
               </ul>
             </div>
             <div class="generic_price_btn clearfix">
-              <a [routerLink]="['/subscriptions/cart']">Subscribirse</a>
+              <a (click)="goToCart(1)">Subscribirse</a>
             </div>
           </div>
         </div>
@@ -59,10 +59,11 @@
               </ul>
             </div>
             <div class="generic_price_btn clearfix">
-              <a [routerLink]="['/subscriptions/cart']">Subscribirse</a>
+              <a (click)="goToCart(2)">Subscribirse</a>
             </div>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="generic_content clearfix">
             <div class="generic_head_price clearfix">
@@ -89,10 +90,11 @@
               </ul>
             </div>
             <div class="generic_price_btn clearfix">
-              <a [routerLink]="['/subscriptions/cart']">Subscribirse</a>
+              <a (click)="goToCart(3)">Subscribirse</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+</div>

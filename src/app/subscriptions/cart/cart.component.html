@@ -2,127 +2,44 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
-        <div
-          class="card"
-          style="
+        <div class="card" style="
             background-color: #23282e;
             text-shadow: 10px #23282e;
             border: 0;
             -webkit-box-shadow: 0px 0px 25px 4px rgba(35, 40, 46, 1);
             -moz-box-shadow: 0px 0px 25px 4px rgba(35, 40, 46, 1);
             box-shadow: 0px 0px 25px 4px rgba(35, 40, 46, 1);
-          "
-        >
+          ">
           <div class="card-body p-4">
             <div class="row">
               <div class="col-lg-7">
                 <h5 class="mb-3">
-                  <a
-                    href="#!"
-                    class="text-body colorWhite"
-                    style="text-decoration: none"
-                    ><i class="fas fa-long-arrow-alt-left"></i>TUS
-                    PRODUCTOS:</a
-                  >
+                  <a [routerLink]="['/subscriptions/type']" class="text-body ourProducts"
+                    style="text-decoration: none;"><i class="fas fa-long-arrow-alt-left"></i> TUS
+                    PRODUCTOS:</a>
                 </h5>
                 <hr />
 
-                <div
-                  class="d-flex justify-content-between align-items-center mb-4"
-                >
+                <div class="d-flex justify-content-between align-items-center mb-4 itemsHeader">
                   <div>
                     <p class="mb-1">Total de productos:</p>
-                    <p class="mb-0">Tienes 2 productos en total</p>
-                  </div>
-                  <div>
-                    <p class="mb-0">
-                      <span class="text-muted">Ordenar por:</span>
-                      <a href="#!" class="text-muted"
-                        >precio <i class="fas fa-angle-down mt-1"></i
-                      ></a>
-                    </p>
+                    <p class="mb-0">Tienes 1 productos en total</p>
                   </div>
                 </div>
 
                 <div class="card mb-3">
-                  <div class="card-body">
+                  <div class="card-body subscriptionContent">
                     <div class="d-flex justify-content-between">
                       <div class="d-flex flex-row align-items-center">
                         <div>
-                          <img
-                            src="../img/Mangas/Portada_JujutsuKaisen.jpg"
-                            class="img-fluid rounded-3"
-                            alt="Shopping item"
-                            style="width: 65px"
-                          />
+                          <img src="assets/Iconos/cart/icono_Basic.png" class="img-fluid rounded-3" alt="Shopping item"
+                            style="width: 8em" />
                         </div>
                         <div class="ms-3">
-                          <h5>Manga: Jujutsu Kaisen</h5>
-                          <p class="small mb-0">Castellano</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px">
-                          <h5 class="mb-0">12.00€</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece"
-                          ><i class="fas fa-trash-alt"></i
-                        ></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="../img/Mangas/Portada_Bluelock.jpg"
-                            class="img-fluid rounded-3"
-                            alt="Shopping item"
-                            style="width: 65px"
-                          />
-                        </div>
-                        <div class="ms-3">
-                          <h5>Manga: Bluelock</h5>
-                          <p class="small mb-0">Castellano</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px">
-                          <h5 class="mb-0">7.90€</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece"
-                          ><i class="fas fa-trash-alt"></i
-                        ></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="../img/Mangas/Portada_Bersek.jpg"
-                            class="img-fluid rounded-3"
-                            alt="Shopping item"
-                            style="width: 65px"
-                          />
-                        </div>
-                        <div class="ms-3">
-                          <h5>Manga: Berserk</h5>
-                          <p class="small mb-0">Japones</p>
+                          <h5>Subscripcion: &nbsp; Basica</h5>
+                          <p class="small mb-0">Acceso limitado</p>
+                          <p class="small mb-0">1 Usuario activo</p>
+                          <p class="small mb-0">Soporte 24/7</p>
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
@@ -132,119 +49,80 @@
                         <div style="width: 80px">
                           <h5 class="mb-0">20.00€</h5>
                         </div>
-                        <a href="#!" style="color: #cecece"
-                          ><i class="fas fa-trash-alt"></i
-                        ></a>
+                        <a href="#!" style="color: #cecece"><i class="fas fa-trash-alt"></i></a>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="../img/Mangas/Portada_FireForce.jpg"
-                            class="img-fluid rounded-3"
-                            alt="Shopping item"
-                            style="width: 65px"
-                          />
+
+
+                <!--   -->
+                  <!-- <div id="generic_price_table">
+                    <section>
+                      <div class="generic_content clearfix">
+                        <div class="generic_head_price clearfix">
+                          <div class="generic_head_content clearfix">
+                            <div class="head_bg"></div>
+                            <div class="head">
+                              <span>Basico</span>
+                            </div>
+                          </div>
+                          <div class="generic_price_tag clearfix">
+                            <span class="price">
+                              <span class="currency">9</span>
+                              <span class="cent">.99</span>
+                              <span class="sign">€</span>
+                              <span class="month">/Mes</span>
+                            </span>
+                          </div>
                         </div>
-                        <div class="ms-3">
-                          <h5>Manga: Fire Force</h5>
-                          <p class="small mb-0">Castellano</p>
+                        <div class="generic_feature_list">
+                          <ul>
+                            <li><span></span>Acceso limitado</li>
+                            <li><span>1</span> Usuario activo</li>
+                            <li><span>24/7</span> Soporte</li>
+                          </ul>
                         </div>
                       </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px">
-                          <h5 class="mb-0">7.50€</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece"
-                          ><i class="fas fa-trash-alt"></i
-                        ></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                    </section>
+                  </div> -->
+                <!--   -->
+
+
               </div>
               <div class="col-lg-5">
-                <div
-                  class="card text-white rounded-3"
-                  style="background-color: #060d17; border: 0"
-                >
+                <div class="card text-white rounded-3" style="background-color: #060d17; border: 0">
                   <div class="card-body">
-                    <div
-                      class="d-flex justify-content-between align-items-center mb-4"
-                    >
+                    <div class="d-flex justify-content-between align-items-center mb-4">
                       <h5 class="mb-0">Detalles del pago:</h5>
                     </div>
 
                     <p class="small mb-2 form-label">Tipos de pago:</p>
-                    <img
-                      src="../img/pago/Formas_Pago.png"
-                      alt="Formas de pago aceptadas"
-                      class="imgFormasPago"
-                    />
+                    <img src="assets/pago/Formas_Pago.png" alt="Formas de pago aceptadas" class="imgFormasPago" />
 
-                    <form class="mt-4">
+                    <form class="mt-4 colorWhite">
                       <div class="form-outline form-white mb-4">
-                        <input
-                          type="text"
-                          id="typeName"
-                          class="form-control form-control-m"
-                          siez="17"
-                          placeholder="Nombre titular"
-                        />
-                        <label class="form-label" for="typeName"
-                          >Nombre del titular</label
-                        >
+                        <input type="text" id="typeName" class="form-control form-control-m" siez="17"
+                          placeholder="Nombre titular" />
+                        <label class="form-label" for="typeName">Nombre del titular</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
-                        <input
-                          type="text"
-                          id="typeText"
-                          class="form-control form-control-m"
-                          siez="17"
-                          placeholder="1234 5678 9012 3457"
-                          minlength="19"
-                          maxlength="19"
-                        />
-                        <label class="form-label" for="typeText"
-                          >Número tarjeta</label
-                        >
+                        <input type="text" id="typeText" class="form-control form-control-m" siez="17"
+                          placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                        <label class="form-label" for="typeText">Número tarjeta</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
-                        <input
-                          type="text"
-                          id="typeText"
-                          class="form-control form-control-m"
-                          siez="17"
-                          placeholder="MM/YY"
-                          minlength="19"
-                          maxlength="19"
-                        />
-                        <label class="form-label" for="typeText"
-                          >Fecha expiración</label
-                        >
+                        <input type="text" id="typeText" class="form-control form-control-m" siez="17"
+                          placeholder="MM/YY" minlength="19" maxlength="19" />
+                        <label class="form-label" for="typeText">Fecha expiración</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
-                        <input
-                          type="text"
-                          id="typeText"
-                          class="form-control form-control-m"
-                          siez="17"
-                          placeholder="&#9679;&#9679;&#9679;"
-                          minlength="19"
-                          maxlength="19"
-                        />
+                        <input type="text" id="typeText" class="form-control form-control-m" siez="17"
+                          placeholder="&#9679;&#9679;&#9679;" minlength="19" maxlength="19" />
                         <label class="form-label" for="typeText">CVV</label>
                       </div>
                     </form>
@@ -266,10 +144,7 @@
                       <p class="mb-2">47.40€</p>
                     </div>
 
-                    <button
-                      type="button"
-                      class="btn btn-info btn-block btn-lg pulse"
-                      style="
+                    <button type="button" class="btn btn-info btn-block btn-lg pulse" style="
                         background-color: #a309cd;
                         border-radius: 30px;
                         border: 0;
@@ -279,21 +154,12 @@
                         -moz-box-shadow: 0px 0px 15px 4px
                           rgba(163, 9, 205, 1);
                         box-shadow: 0px 0px 15px 4px rgba(163, 9, 205, 1);
-                      "
-                    >
+                      ">
                       <div class="d-flex justify-content-between">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="25"
-                          height="25"
-                          fill="currentColor"
-                          class="bi bi-bag-check-fill me-1"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
-                          />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                          class="bi bi-bag-check-fill me-1" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                         </svg>
                         <span style="font-weight: bold">47.40€</span>
                       </div>

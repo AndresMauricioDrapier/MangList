@@ -28,10 +28,13 @@ export class UsersService {
     }
 
     saveProfile(name: string, email: string): Observable<void> {
-        return this.http.put<void>(this.USERS_URL +"/"+this.userId + "/user", {
-            name,
-            email,
-        });
+        return this.http.put<void>(
+            this.USERS_URL + "/" + this.userId + "/user",
+            {
+                name,
+                email,
+            }
+        );
     }
 
     saveAvatar(avatar: string): Observable<string> {
@@ -43,12 +46,15 @@ export class UsersService {
         );
     }
 
-    savePassword(firstPassword: string, secondPassword: string): Observable<void> {
+    savePassword(
+        firstPassword: string,
+        secondPassword: string
+    ): Observable<void> {
         return this.http.put<void>(
             this.USERS_URL + "/" + this.userId + "/password",
             {
-              firstPassword,
-              secondPassword
+                firstPassword,
+                secondPassword,
             }
         );
     }
@@ -63,4 +69,14 @@ export class UsersService {
     isLogged(): boolean {
         return localStorage.getItem("auth-token") ? true : false;
     }
+
+    hasRoleToRead(): boolean {
+      this.getUser(this.userId).subscribe((user) => {
+        if (user.role === "admin" || user.role === "subscribed") {
+          return true;
+        }
+        return false;
+      });
+      return false;
+  }
 }
