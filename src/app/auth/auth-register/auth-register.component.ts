@@ -16,6 +16,8 @@ import { isTheSame } from "src/app/shared/validators/isTheSame";
 import { AuthService } from "../services/auth.service";
 import Swal from "sweetalert2";
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
+import { Mail } from "src/app/shared/mail/interfaces/mail";
+import { MailService } from "src/app/shared/mail/services/mail.service";
 
 @Component({
     selector: "ml-auth-register",
@@ -48,10 +50,19 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         avatar: "",
     };
 
+    newMail: Mail = {
+        from: "info.manglist@gmail.com",
+        subject: "¡Gracias por registrate!",
+        to: "",
+        message:
+            "Muchas gracias por registrarte en MangList. \n Esperamos que disfrutes de nuestra aplicación ya puedes empezar a ver a otros usuarios",
+    };
+
     constructor(
         private readonly authService: AuthService,
         private readonly router: Router,
-        private readonly fb: NonNullableFormBuilder
+        private readonly fb: NonNullableFormBuilder,
+        private readonly mailServices: MailService
     ) {}
     ngOnInit(): void {
         this.nameControl = this.fb.control("", [
@@ -106,6 +117,20 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
             });
         }
     }
+
+    sendMail(): void {
+        this.newMail.to = this.newUser.email;
+
+        this.mailServices.send(this.newMail).subscribe({
+            next: () => {
+                console.log(this.newMail);
+            },
+            error: (e) => {
+                console.error("Error al enviar el mail" + e);
+            },
+        });
+    }
+
     addUser(): void {
         this.newUser.name = this.nameControl.value;
         this.newUser.email = this.emailControl.value;
@@ -114,6 +139,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
 
         this.authService.register(this.newUser).subscribe({
             next: () => {
+                this.sendMail();
                 this.exit = true;
                 this.router.navigate(["/auth/login"]);
             },
@@ -121,7 +147,6 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
                 console.log(error);
             },
         });
-
     }
 
     validClasses(

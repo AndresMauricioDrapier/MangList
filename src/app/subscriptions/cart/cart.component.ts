@@ -78,6 +78,7 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
 
     newPayment: Payment = {
         id: 0,
+        idUser: "0",
         name: "",
         card: "",
         expiration: "",
@@ -97,7 +98,7 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
         private readonly fb: NonNullableFormBuilder,
         private readonly paymentService: PaymentService,
         private readonly mailServices: MailService,
-        private userService: UsersService
+        private readonly userService: UsersService
     ) {}
 
     ngOnInit(): void {
@@ -107,15 +108,7 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
             (s) => s.id.toString() === this.id
         );
 
-        this.route.data.subscribe((user) => {
-            if (user["user"]) {
-                this.user = user["user"];
-            } else {
-                this.userService
-                    .getUser(this.userId)
-                    .subscribe((u) => (this.user = u));
-            }
-        });
+        this.userService.getUser(this.userId).subscribe((u) => (this.user = u));
 
         this.vat = +(this.subscription!.price * 0.21).toFixed(2);
         this.exclusiveVAT = +(this.subscription!.price - this.vat).toFixed(2);
@@ -186,6 +179,7 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
         this.newPayment.card = this.cardControl.value;
         this.newPayment.expiration = this.expirationControl.value;
         this.newPayment.cvv = this.cvvControl.value;
+        this.newPayment.idUser = this.userId;
 
         this.paymentService.addPayment(this.newPayment).subscribe({
             next: () => {
