@@ -24,6 +24,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "axios": "^1.4.0",
     "bootstrap": "^5.0.2",
     "ngx-image-cropper": "^6.3.3",
     "rxjs": "~7.8.0",

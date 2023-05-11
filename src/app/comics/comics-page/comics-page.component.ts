@@ -5,8 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { ComicsService } from "../services/comics.service";
 import {
-  FormBuilder,
-    FormControl,
+    FormBuilder,
     FormGroup,
     FormsModule,
     ReactiveFormsModule,
@@ -16,6 +15,7 @@ import { MenuComponent } from "src/app/shared/menu/menu.component";
 import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
 import { searchComic } from "../interfaces/responses";
 import { Genres } from "../interfaces/categories";
+import { TranslateService } from "../services/translate.service";
 
 @Component({
     selector: "ml-comics-page",
@@ -38,21 +38,21 @@ export class ComicsPageComponent implements OnInit {
     active = true;
     userCreated = false;
 
-
     genres = Genres;
     filterGenres: FormGroup;
 
     constructor(
         private readonly comicsService: ComicsService,
         private readonly route: ActivatedRoute,
-        private readonly fb: FormBuilder // private readonly httpUser: UserService
+        private readonly fb: FormBuilder, // private readonly httpUser: UserService
+        private readonly translateService: TranslateService
     ) {
-      this.filterGenres = this.fb.group({
-        genres: this.genres,
-    });
-    this.filterGenres.controls["genres"].setValue("Todos", {
-        onlySelf: true,
-    });
+        this.filterGenres = this.fb.group({
+            genres: this.genres,
+        });
+        this.filterGenres.controls["genres"].setValue("Todos", {
+            onlySelf: true,
+        });
     }
 
     ngOnInit(): void {
@@ -70,5 +70,7 @@ export class ComicsPageComponent implements OnInit {
                 });
             }
         });
+
+        this.translateService.translate("Hello").then((r) => console.log(r.data[0].translations[0].text));
     }
 }
