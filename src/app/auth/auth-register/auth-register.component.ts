@@ -66,7 +66,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         this.passwordControl = this.fb.control("", [
             Validators.required,
             Validators.pattern(
-                "^(?=.*[!@#$%&/.()=+?\\[\\]~\\-^])[a-zA-Z!@#$%&./()=+?\\[\\]~\\-^]{8,}$"
+                "^(?=.*[!@#$%&/.()=+?\\[\\]~\\-^0-9])[a-zA-Z0-9!@#$%&./()=+?\\[\\]~\\-^]{8,}$"
             ),
         ]);
         this.password2Control = this.fb.control("", [

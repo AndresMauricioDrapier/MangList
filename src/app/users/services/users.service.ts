@@ -29,7 +29,7 @@ export class UsersService {
 
     saveProfile(name: string, email: string): Observable<void> {
         return this.http.put<void>(
-            this.USERS_URL + "/" + this.userId + "/user",
+            this.USERS_URL + "/user/" + this.userId,
             {
                 name,
                 email,
@@ -39,7 +39,7 @@ export class UsersService {
 
     saveAvatar(avatar: string): Observable<string> {
         return this.http.put<string>(
-            this.USERS_URL + "/" + this.userId + "/avatar",
+            this.USERS_URL + "/avatar/" + this.userId ,
             {
                 avatar,
             }
@@ -51,7 +51,7 @@ export class UsersService {
         secondPassword: string
     ): Observable<void> {
         return this.http.put<void>(
-            this.USERS_URL + "/" + this.userId + "/password",
+            this.USERS_URL + "/password/" + this.userId,
             {
                 firstPassword,
                 secondPassword,
@@ -61,7 +61,7 @@ export class UsersService {
 
     addFavorites(idComic: number, idUser: number): Observable<void> {
         return this.http.put<void>(
-            this.USERS_URL + "/" + idUser + "/favorites",
+            this.USERS_URL + "/favorites/" + idUser,
             { idComic }
         );
     }

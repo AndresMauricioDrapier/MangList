@@ -80,7 +80,7 @@ export class UsersComponent implements OnInit {
         this.passwordControl = this.fb.control("", [
             Validators.required,
             Validators.pattern(
-                "^(?=.*[!@#$%&/.()=+?\\[\\]~\\-^])[a-zA-Z!@#$%&./()=+?\\[\\]~\\-^]{8,}$"
+                "^(?=.*[!@#$%&/.()=+?\\[\\]~\\-^0-9])[a-zA-Z0-9!@#$%&./()=+?\\[\\]~\\-^]{8,}$"
             ),
         ]);
         this.password2Control = this.fb.control("", [
@@ -142,10 +142,7 @@ export class UsersComponent implements OnInit {
             confirmButtonText: "Confirmar",
             denyButtonText: "Cerrar",
         }).then((result) => {
-            if (
-                result.isConfirmed &&
-                this.passwordControl.value === this.password2Control.value
-            ) {
+            if (result.isConfirmed) {
                 this.userService
                     .savePassword(
                         this.passwordControl.value,
@@ -160,7 +157,7 @@ export class UsersComponent implements OnInit {
                             this.router.navigate(["/users", this.userId]);
                         },
                         error: (err) => {
-                          console.log(err);
+                            console.log(err);
                             Swal.fire({
                                 title: "Contraseña descartada",
                                 text: err,
