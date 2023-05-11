@@ -40,6 +40,7 @@ export const APP_ROUTES: Routes = [
             import("./app/subscriptions/subscriptions.routes").then(
                 (p) => p.SUBSCRIPTIONS_ROUTES
             ),
+        canActivate: [loginActivateGuard],
     },
     // {
     //     path: "User",

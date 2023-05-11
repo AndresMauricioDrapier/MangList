@@ -1,4 +1,10 @@
-import { Component, OnInit,OnChanges,SimpleChanges,Input } from "@angular/core";
+import {
+    Component,
+    OnInit,
+    OnChanges,
+    SimpleChanges,
+    Input,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -12,7 +18,7 @@ import Swal from "sweetalert2";
     templateUrl: "./menu.component.html",
     styleUrls: ["./menu.component.scss"],
 })
-export class MenuComponent implements OnInit,OnChanges {
+export class MenuComponent implements OnInit, OnChanges {
     loggedIn!: boolean;
     filterSearch = "";
     @Input() comicId!: boolean;
@@ -25,31 +31,35 @@ export class MenuComponent implements OnInit,OnChanges {
     ) {}
 
     ngOnInit(): void {
-      this.authService.isLogged();
-      this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
+        this.authService.isLogged();
+        this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
+
+        console.log(this.userId);
     }
     ngOnChanges(changes: SimpleChanges): void {
-      if (changes) {
-        // Realizar acciones basadas en el nuevo valor de myValue
-        console.log('El nuevo valor de myValue es:', changes);
-      }
+        if (changes) {
+            // Realizar acciones basadas en el nuevo valor de myValue
+            console.log("El nuevo valor de myValue es:", changes);
+            this.authService.isLogged();
+            this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
+        }
     }
 
     logout(): void {
-      Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¡Si cierra la sesión, ya no podrá leer ningún comic!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, cerrar sesión!',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.authService.logout();
-          Swal.fire('¡Ya no está conectado!');
-        }
-      });
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡Si cierra la sesión, ya no podrá leer ningún comic!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, cerrar sesión!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.authService.logout();
+                Swal.fire("¡Ya no está conectado!");
+            }
+        });
     }
 
     busqueda() {

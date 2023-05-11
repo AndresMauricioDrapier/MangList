@@ -71,6 +71,6 @@ export class ComicsPageComponent implements OnInit {
             }
         });
 
-        this.translateService.translate("Hello").then((r) => console.log(r.data[0].translations[0].text));
+        // this.translateService.translate("Hello").then((r) => console.log(r.data[0].translations[0].text));
     }
 }
