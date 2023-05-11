@@ -27,18 +27,18 @@
                   </div>
                 </div>
 
-                <div class="card mb-3">
+                <div class="card mb-3" *ngIf="subscription">
                   <div class="card-body subscriptionContent">
                     <div class="d-flex justify-content-between">
                       <div class="d-flex flex-row align-items-center">
                         <div>
-                          <img src="assets/Iconos/cart/icono_Basic.png" class="img-fluid rounded-3" alt="Shopping item"
+                          <img src="{{subscription.icon}}" class="img-fluid rounded-3" alt="Shopping item"
                             style="width: 8em" />
                         </div>
                         <div class="ms-3">
-                          <h5>Subscripcion: &nbsp; Basica</h5>
-                          <p class="small mb-0">Acceso limitado</p>
-                          <p class="small mb-0">1 Usuario activo</p>
+                          <h5>Subscripcion: &nbsp; {{subscription.type}}</h5>
+                          <p class="small mb-0">Acceso {{subscription.content.acces}}</p>
+                          <p class="small mb-0">{{subscription.content.activeUsers}} Usuario activo</p>
                           <p class="small mb-0">Soporte 24/7</p>
                         </div>
                       </div>
@@ -47,7 +47,7 @@
                           <h5 class="fw-normal mb-0">1</h5>
                         </div>
                         <div style="width: 80px">
-                          <h5 class="mb-0">20.00€</h5>
+                          <h5 class="mb-0">{{subscription.price}}€</h5>
                         </div>
                         <a href="#!" style="color: #cecece"><i class="fas fa-trash-alt"></i></a>
                       </div>

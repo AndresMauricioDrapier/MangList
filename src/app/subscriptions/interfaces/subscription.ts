@@ -5,5 +5,6 @@ export interface Subscription {
       acces: string,
       activeUsers: number,
     },
-    price: number;
+    price: number,
+    icon: string,
 }
