@@ -66,7 +66,7 @@
                     <p class="small mb-2 form-label">Tipos de pago:</p>
                     <img src="assets/pago/Formas_Pago.png" alt="Formas de pago aceptadas" class="imgFormasPago" />
 
-                    <form class="mt-4 colorWhite">
+                    <form class="mt-4 colorWhite" method="POST" role="form" (ngSubmit)="onPurchase()" [formGroup]="paymentForm">
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeName" class="form-control form-control-m" siez="17"
                           placeholder="Nombre titular" />
@@ -90,26 +90,25 @@
                           placeholder="&#9679;&#9679;&#9679;" minlength="19" maxlength="19" />
                         <label class="form-label" for="typeText">CVV</label>
                       </div>
-                    </form>
 
-                    <hr class="my-4" />
+                      <hr class="my-4" />
 
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">{{exclusiveVAT}}€</p>
-                    </div>
+                      <div class="d-flex justify-content-between">
+                        <p class="mb-2">Subtotal</p>
+                        <p class="mb-2">{{exclusiveVAT}}€</p>
+                      </div>
 
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">IVA</p>
-                      <p class="mb-2">{{vat}}€</p>
-                    </div>
+                      <div class="d-flex justify-content-between">
+                        <p class="mb-2">IVA</p>
+                        <p class="mb-2">{{vat}}€</p>
+                      </div>
 
-                    <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2">Total [Iva incuido]</p>
-                      <p class="mb-2">{{subscription.price}}€</p>
-                    </div>
+                      <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">Total [Iva incuido]</p>
+                        <p class="mb-2">{{subscription.price}}€</p>
+                      </div>
 
-                    <button type="button" class="btn btn-info btn-block btn-lg pulse" style="
+                      <button type="submit" class="btn btn-info btn-block btn-lg pulse" style="
                         background-color: #a309cd;
                         border-radius: 30px;
                         border: 0;
@@ -120,15 +119,16 @@
                           rgba(163, 9, 205, 1);
                         box-shadow: 0px 0px 15px 4px rgba(163, 9, 205, 1);
                       ">
-                      <div class="d-flex justify-content-between">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                          class="bi bi-bag-check-fill me-1" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd"
-                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                        </svg>
-                        <span style="font-weight: bold">{{subscription.price}}€</span>
-                      </div>
-                    </button>
+                        <div class="d-flex justify-content-between">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            class="bi bi-bag-check-fill me-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                              d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                          </svg>
+                          <span style="font-weight: bold">{{subscription.price}}€</span>
+                        </div>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
