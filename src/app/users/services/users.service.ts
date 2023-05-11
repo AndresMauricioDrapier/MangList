@@ -27,19 +27,32 @@ export class UsersService {
         );
     }
 
+    // getUserImage(imageName: string): Observable<string> {
+    //     return this.http
+    //         .get<string>(`${this.USERS_URL}/images/${imageName}`)
+    //         .pipe(
+    //             map((r) => {
+    //                 return r;
+    //             }),
+    //             catchError((resp: HttpErrorResponse) =>
+    //                 throwError(
+    //                     () =>
+    //                         `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
+    //                 )
+    //             )
+    //         );
+    // }
+
     saveProfile(name: string, email: string): Observable<void> {
-        return this.http.put<void>(
-            this.USERS_URL + "/user/" + this.userId,
-            {
-                name,
-                email,
-            }
-        );
+        return this.http.put<void>(this.USERS_URL + "/user/" + this.userId, {
+            name,
+            email,
+        });
     }
 
     saveAvatar(avatar: string): Observable<string> {
         return this.http.put<string>(
-            this.USERS_URL + "/avatar/" + this.userId ,
+            this.USERS_URL + "/avatar/" + this.userId,
             {
                 avatar,
             }
@@ -60,10 +73,9 @@ export class UsersService {
     }
 
     addFavorites(idComic: number, idUser: number): Observable<void> {
-        return this.http.put<void>(
-            this.USERS_URL + "/favorites/" + idUser,
-            { idComic }
-        );
+        return this.http.put<void>(this.USERS_URL + "/favorites/" + idUser, {
+            idComic,
+        });
     }
 
     isLogged(): boolean {
@@ -71,12 +83,12 @@ export class UsersService {
     }
 
     hasRoleToRead(): boolean {
-      this.getUser(this.userId).subscribe((user) => {
-        if (user.role === "admin" || user.role === "subscribed") {
-          return true;
-        }
+        this.getUser(this.userId).subscribe((user) => {
+            if (user.role === "admin" || user.role === "subscribed") {
+                return true;
+            }
+            return false;
+        });
         return false;
-      });
-      return false;
-  }
+    }
 }
