@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, RouterModule } from "@angular/router";
@@ -45,6 +46,8 @@ export class CartComponent implements OnInit {
     ];
     subscription!: Subscription | undefined;
     id!: string;
+    exclusiveVAT!: number;
+    vat!: number;
 
     constructor(private route: ActivatedRoute) {}
 
@@ -54,5 +57,12 @@ export class CartComponent implements OnInit {
         this.subscription = this.subscriptions.find(
             (s) => s.id.toString() === this.id
         );
+
+        this.vat = +(this.subscription!.price * 0.21).toFixed(2);
+        this.exclusiveVAT = +(this.subscription!.price - this.vat).toFixed(2);
+    }
+
+    onPurchase(): void {
+        alert("¡Gracias por su compra!");
     }
 }
