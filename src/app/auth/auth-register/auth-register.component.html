@@ -86,9 +86,11 @@
                   </div>
                 </div>
 
-                <img [src]="newUser.avatar" class="mb-3 mb-3 previewAvatar" *ngIf="!(newUser.avatar ==='')?'d-none':''">
+                <img [src]="newUser.avatar" class="mb-3 mb-3 previewAvatar" *ngIf="!(newUser.avatar ==='')?'d-none':''" alt="avatar">
 
-                <p class="text-danger" id="errorInfo"></p>
+                <p class="text-danger" id="errorInfo">
+                  <!-- La imagen es obligatoria. -->
+                </p>
 
                 <div class="d-flex justify-content-end pt-3 pulse">
                   <button type="button" class="btn btn-light btn-m" style="
