@@ -92,13 +92,13 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
             return true;
         } else {
             return Swal.fire({
-                title: "Do you want to leave this page?",
+                title: "Si sales perderas los datos de registro",
                 showDenyButton: true,
-                confirmButtonText: "Exit",
-                denyButtonText: "Don't exit",
+                confirmButtonText: "Salir",
+                denyButtonText: "Quedarme",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire("Changes have not been saved", "", "info");
+                    Swal.fire("Los cambios no se han guardado", "", "info");
                     return true;
                 } else {
                     return false;
