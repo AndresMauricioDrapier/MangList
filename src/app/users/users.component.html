@@ -24,7 +24,8 @@
                     aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form class="h-100" method="PUT" role="form" (ngSubmit)="saveUser()" [formGroup]="userForm" aria-label="">
+                  <form class="h-100" method="PUT" role="form" (ngSubmit)="saveUser()" [formGroup]="userForm"
+                    aria-label="">
                     <div class="form-outline mb-4">
                       <div class="form-outline">
                         <input type="text" class="form-control form-control-m" placeholder="Usuario"
@@ -65,24 +66,42 @@
           </button>
 
           <div class="modal fade" id="editAvatar" tabindex="-1" aria-labelledby="editAvatarLabel" aria-hidden="true"
-            data-bs-backdrop="false">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="editAvatarLabel">Editar avatar:</h5>
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="boton">Guardar cambios</button>
-                </div>
+          data-bs-backdrop="false">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editAvatarLabel">Editar perfil:</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="h-100" method="PUT" role="form" (ngSubmit)="saveAvatar()" [formGroup]="userForm"
+                  aria-label="">
+                  <div class="form-outline mb-4">
+                    <div class="form-outline">
+                      <input type="file" class="form-control" id="avatar" name="avatar" formControlName="avatar" required
+                      data-bs-toggle="modal" data-bs-target="#exampleModal" (change)="fileChangeEvent($event)"
+                      formControlName="avatar" />
+                    </div>
+                  </div>
+
+                  <div class="form-outline">
+                    <img [src]="newAvatar" class="mb-1 previewAvatar"
+                    *ngIf="!(newAvatar ==='')?'d-none':''" alt="avatar">
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="boton">Guardar cambios</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
+        </div>
+
+
+
           <!-- Fin modal -->
 
 
@@ -102,13 +121,16 @@
                     aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form class="h-100" method="PUT" role="form" (ngSubmit)="savePassword()" [formGroup]="passForm" aria-label="">
+                  <form class="h-100" method="PUT" role="form" (ngSubmit)="savePassword()" [formGroup]="passForm"
+                    aria-label="">
                     <div class="mb-3">
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña:"
-                        name="password" formControlName="password" [ngClass]="validClasses(passwordControl)" required />
+                      <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Contraseña:" name="password" formControlName="password"
+                        [ngClass]="validClasses(passwordControl)" required />
 
                       <div class="invalid-feedback" *ngIf="passwordControl.errors?.['pattern']">
-                        La contraseña tiene que tener almenos 8 caracteres y caracteres especiales como: ! @ # $ % & / ( ) =
+                        La contraseña tiene que tener almenos 8 caracteres y caracteres especiales como: ! @ # $ % & / (
+                        ) =
                         + ? [ ] ~ – . ^
                       </div>
                       <div class="invalid-feedback" *ngIf="passwordControl.errors?.['required']">
@@ -117,8 +139,9 @@
                     </div>
 
                     <div class="form-outline mb-4">
-                      <input type="password" class="form-control" id="password2" name="password2" placeholder="Repita contraseña:"
-                        name="password2" formControlName="password2" [ngClass]="validClasses(password2Control)" required />
+                      <input type="password" class="form-control" id="password2" name="password2"
+                        placeholder="Repita contraseña:" name="password2" formControlName="password2"
+                        [ngClass]="validClasses(password2Control)" required />
 
                       <div class="invalid-feedback" *ngIf="password2Control.errors">
                         Las contraseñas no son iguales:
@@ -145,6 +168,43 @@
     <div class="row">
       <div *ngFor="let comic of comics">
         <!-- <ml-comic-card [comic]="comic.node"></ml-comic-card> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP PARA EL AVATAR CROPPER -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded">
+
+      <div class="modal-body">
+
+        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+          [roundCropper]=true format="png" (imageCropped)="imageCropped($event)"></image-cropper>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type=" button" class="btn btn-block btn-lg" style="
+                  color: white;
+                  background-color: #060d17;
+                  border-radius: 30px;
+                  border: 0;
+                  width: 48%;
+                " data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button type="button" class="btn btn-block btn-lg" style="
+                  color: white;
+                  background-color: #a309cd;
+                  border-radius: 30px;
+                  border: 0;
+                  width: 48%;
+                " data-bs-dismiss="modal" (click)="saveImage()">
+          Guardar imagen
+        </button>
       </div>
     </div>
   </div>

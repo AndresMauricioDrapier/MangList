@@ -14,19 +14,16 @@ import {
 } from "@angular/forms";
 import Swal from "sweetalert2";
 import { isTheSame } from "../shared/validators/isTheSame";
+import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 
 @Component({
     selector: "ml-users",
     standalone: true,
-    imports: [CommonModule, ComicCardComponent, ReactiveFormsModule],
+    imports: [CommonModule, ComicCardComponent, ReactiveFormsModule,ImageCropperModule],
     templateUrl: "./users.component.html",
     styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-    user: Auth = {
-        email: "",
-        avatar: "assets/utiles/icono_usuario.png",
-    };
     comics!: Comic[];
     userId: string = localStorage.getItem("user-id") || "";
     isMe!: boolean;
@@ -39,8 +36,18 @@ export class UsersComponent implements OnInit {
     passwordControl!: FormControl<string>;
     password2Control!: FormControl<string>;
 
-    avatarForm!: FormGroup;
-    imageControl!: FormControl<string>;
+    imageChangedEvent: any = "";
+    croppedImage: any = "";
+
+    newAvatar = "";
+
+    user: Auth = {
+        email: "",
+        avatar: "",
+    };
+
+
+
 
     constructor(
         private router: Router,
@@ -154,7 +161,7 @@ export class UsersComponent implements OnInit {
                                 title: "Contraseña guardada",
                                 icon: "success",
                             });
-                            this.router.navigate(["/users", this.userId]);
+                            this.router.navigate(["/users/", this.userId]);
                         },
                         error: (err) => {
                             console.log(err);
@@ -175,6 +182,60 @@ export class UsersComponent implements OnInit {
                 return false;
             }
         });
+    }
+
+    saveAvatar(): void {
+      Swal.fire({
+          title: "¿Seguro que quieres cambiar el avatar?",
+          showDenyButton: true,
+          confirmButtonText: "Confirmar",
+          denyButtonText: "Cerrar",
+      }).then((result) => {
+          if (result.isConfirmed) {
+              this.userService
+                  .saveAvatar(
+                    this.newAvatar,
+                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                    this.user.name!,
+                    this.user.avatar!
+                  )
+                  .subscribe({
+                      next: () => {
+                          Swal.fire({
+                              title: "Avatar guardado",
+                              icon: "success",
+                          });
+                          this.router.navigate(["/users", this.userId]);
+                      },
+                      error: (err) => {
+                          console.log(err);
+                          Swal.fire({
+                              title: "Avatar descartada",
+                              text: err,
+                              icon: "error",
+                          });
+                          this.router.navigate(["/users", this.userId]);
+                      },
+                  });
+              return true;
+          } else {
+              Swal.fire({
+                  title: "Contraseña descartada",
+                  icon: "error",
+              });
+              return false;
+          }
+      });
+  }
+
+    fileChangeEvent(event: unknown): void {
+        this.imageChangedEvent = event;
+    }
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+    }
+    saveImage() {
+        this.newAvatar = this.croppedImage;
     }
 
     validClasses(

@@ -50,11 +50,13 @@ export class UsersService {
         });
     }
 
-    saveAvatar(avatar: string): Observable<string> {
+    saveAvatar(avatar: string,name:string,avatarAntigua:string): Observable<string> {
         return this.http.put<string>(
             this.USERS_URL + "/avatar/" + this.userId,
             {
                 avatar,
+                name,
+                avatarAntigua
             }
         );
     }
