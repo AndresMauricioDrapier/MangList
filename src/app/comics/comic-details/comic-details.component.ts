@@ -34,7 +34,6 @@ export class ComicDetailsComponent implements OnInit {
         this.route.data.subscribe((data) => {
             this.comic = data["comic"];
         });
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         if (this.comic) {
             this.UsersService.getUser(
                 localStorage.getItem("user-id")!
@@ -47,7 +46,6 @@ export class ComicDetailsComponent implements OnInit {
 
     //TODO Néstor: Implementar el método addToFavorites y containsFavorite correctamente
     addToFavorites(idComic: number): void {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.UsersService.addFavorites(idComic, this.user._id!).subscribe();
     }
 

@@ -111,7 +111,6 @@ export class CommentsComponent implements OnInit, OnChanges {
     }
 
     userHaveComment(comments: Commentary[], id: number): boolean {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         return comments.some((c) => c.user._id! == id);
     }
 
