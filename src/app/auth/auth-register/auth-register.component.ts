@@ -153,7 +153,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
-                    text: error.error.message,
+                    text: "No se ha podido registrar: " + error.error.message,
                 });
             },
         });
