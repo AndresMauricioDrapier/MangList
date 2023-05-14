@@ -85,9 +85,12 @@ export class UsersService {
     }
 
     deleteFavorite(idComic: number, idUser: number): Observable<void> {
-      return this.http.put<void>(this.USERS_URL + "/favorites/delete/" + idUser, {
-        idComic,
-    });
+        return this.http.put<void>(
+            this.USERS_URL + "/favorites/delete/" + idUser,
+            {
+                idComic,
+            }
+        );
     }
 
     isLogged(): boolean {
@@ -97,6 +100,16 @@ export class UsersService {
     hasRoleToRead(): boolean {
         this.getUser(this.userId).subscribe((user) => {
             if (user.role === "admin" || user.role === "subscribed") {
+                return true;
+            }
+            return false;
+        });
+        return false;
+    }
+
+    hasRoleToAdd(): boolean {
+        this.getUser(this.userId).subscribe((user) => {
+            if (user.role === "admin") {
                 return true;
             }
             return false;

@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { comicResolve } from "./resolvers/comic.resolver";
 import { loginActivateGuard } from "../guards/loginActivateGuard.guard";
 import { roleActivateGuard } from "../guards/roleActivateGuard.guard";
+import { addComicRoleActivateGuard } from "../guards/addComicRoleActivateGuard.guard";
 
 export const COMICS_ROUTES: Routes = [
     {
@@ -18,6 +19,17 @@ export const COMICS_ROUTES: Routes = [
             import("./comic-categories/comic-categories.component").then(
                 (m) => m.ComicCategoriesComponent
             ),
+        // resolve: {
+        //     comic: comicResolve,
+        // },
+    },
+    {
+        path: "comics/add",
+        loadComponent: () =>
+            import("./comic-form/comic-form.component").then(
+                (m) => m.ComicFormComponent
+            ),
+        canActivate: [loginActivateGuard],
         // resolve: {
         //     comic: comicResolve,
         // },
