@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Commentary } from "../interfaces/comment";
 import { RouterModule } from "@angular/router";
@@ -12,8 +12,9 @@ import { CommentsService } from "../services/comments.service";
     templateUrl: "./comments.component.html",
     styleUrls: ["./comments.component.scss"],
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit,OnChanges {
     @Input() comicId!: number;
+    @Input() comment:Commentary;
 
     comments!: Commentary[];
     userComment = false;
@@ -25,7 +26,10 @@ export class CommentsComponent implements OnInit {
             .getComments(this.comicId)
             .subscribe((comments) => {
                 this.comments = comments.result;
-                console.log(this.comments);
             });
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+      if(changes && this.comments)this.comments.push(changes["comment"].currentValue);
     }
 }
