@@ -15,19 +15,26 @@ import {
 import Swal from "sweetalert2";
 import { isTheSame } from "../shared/validators/isTheSame";
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
+import { ComicsService } from "../comics/services/comics.service";
 
 @Component({
     selector: "ml-users",
     standalone: true,
-    imports: [CommonModule, ComicCardComponent, ReactiveFormsModule,ImageCropperModule],
+    imports: [
+        CommonModule,
+        ComicCardComponent,
+        ReactiveFormsModule,
+        ImageCropperModule,
+    ],
     templateUrl: "./users.component.html",
     styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-    comics!: Comic[];
+    comics: Comic[]=[];
     userId: string = localStorage.getItem("user-id") || "";
     isMe!: boolean;
 
+    favourites
     userForm!: FormGroup;
     nameControl!: FormControl<string>;
     emailControl!: FormControl<string>;
@@ -46,13 +53,11 @@ export class UsersComponent implements OnInit {
         avatar: "",
     };
 
-
-
-
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private userService: UsersService,
+        private readonly comicService: ComicsService,
         private readonly fb: NonNullableFormBuilder
     ) {}
 
@@ -98,6 +103,15 @@ export class UsersComponent implements OnInit {
         this.passForm = this.fb.group({
             password: this.passwordControl,
             password2: this.password2Control,
+        });
+
+        this.user.favorites.map((idComic) => {
+            this.comicService.getIdComic(idComic).subscribe({
+              next:(comic)=>{
+                console.log(comic);
+                this.comics.push(comic);
+              }
+            });
         });
     }
 
@@ -185,48 +199,48 @@ export class UsersComponent implements OnInit {
     }
 
     saveAvatar(): void {
-      Swal.fire({
-          title: "¿Seguro que quieres cambiar el avatar?",
-          showDenyButton: true,
-          confirmButtonText: "Confirmar",
-          denyButtonText: "Cerrar",
-      }).then((result) => {
-          if (result.isConfirmed) {
-            console.log(this.user.avatar);
-              this.userService
-                  .saveAvatar(
-                    this.newAvatar,
-                    this.user.name!,
-                    this.user.avatar!
-                  )
-                  .subscribe({
-                      next: () => {
-                          Swal.fire({
-                              title: "Avatar guardado",
-                              icon: "success",
-                          });
-                          this.router.navigate(["/users", this.userId]);
-                      },
-                      error: (err) => {
-                          console.log(err);
-                          Swal.fire({
-                              title: "Avatar descartada",
-                              text: err,
-                              icon: "error",
-                          });
-                          this.router.navigate(["/users", this.userId]);
-                      },
-                  });
-              return true;
-          } else {
-              Swal.fire({
-                  title: "Contraseña descartada",
-                  icon: "error",
-              });
-              return false;
-          }
-      });
-  }
+        Swal.fire({
+            title: "¿Seguro que quieres cambiar el avatar?",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            denyButtonText: "Cerrar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(this.user.avatar);
+                this.userService
+                    .saveAvatar(
+                        this.newAvatar,
+                        this.user.name!,
+                        this.user.avatar!
+                    )
+                    .subscribe({
+                        next: () => {
+                            Swal.fire({
+                                title: "Avatar guardado",
+                                icon: "success",
+                            });
+                            this.router.navigate(["/users", this.userId]);
+                        },
+                        error: (err) => {
+                            console.log(err);
+                            Swal.fire({
+                                title: "Avatar descartada",
+                                text: err,
+                                icon: "error",
+                            });
+                            this.router.navigate(["/users", this.userId]);
+                        },
+                    });
+                return true;
+            } else {
+                Swal.fire({
+                    title: "Contraseña descartada",
+                    icon: "error",
+                });
+                return false;
+            }
+        });
+    }
 
     fileChangeEvent(event: unknown): void {
         this.imageChangedEvent = event;

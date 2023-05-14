@@ -1,15 +1,12 @@
-<section id="seccionComentarios">
+
   <ul class="list-group mt-4 mb-4" id="comments">
-    <li class="list-group-item active"><h2 id="tituloComentarios">Comentarios:</h2></li>
+    <li class="list-group-item active">
+      <h2 id="tituloComentarios">Comentarios:</h2>
+    </li>
     <li *ngFor="let comment of comments" class="list-group-item d-flex flex-row">
       <div>
         <a [routerLink]="['/users', comment.user._id]">
-          <img
-            class="rounded-circle me-3"
-            style="width: 40px"
-            src="{{ comment.user!.avatar }}"
-            alt=""
-          />
+          <img class="rounded-circle me-3" style="width: 40px" src="{{ comment.user!.avatar }}" alt="" />
         </a>
       </div>
       <div>
@@ -28,38 +25,3 @@
       </div>
     </li>
   </ul>
-
-  <div [ngClass]="{ 'd-none': userComment }">
-    <form
-    class="mt-4"
-    id="commentForm"
-    novalidate
-    [formGroup]="formComment"
-    (ngSubmit)="addComment()"
-  >
-    <h4 id="tituloFormulario">Escribe sobre el manga:</h4>
-    <div class="form-group">
-      <textarea
-        class="form-control textoComentario"
-        name="comment"
-        formControlName="comment"
-        placeholder="..."
-        [ngClass]="validClasses(commentControl, 'is-valid', 'is-invalid')"
-      ></textarea>
-      <div class="invalid-feedback" *ngIf="commentControl.errors?.['required']">
-        El comentario es obligatorio.
-      </div>
-    </div>
-    <div id="stars">
-      <ml-star-rating [rating]="newComment.stars" (changed)="setRating($event)" [edit]="true"></ml-star-rating>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary mt-3 botonEnviarComentario"
-      [disabled]="formComment.invalid"
-    >
-      Enviar
-    </button>
-  </form>
-  </div>
-</section>

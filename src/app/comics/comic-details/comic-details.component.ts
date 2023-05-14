@@ -6,6 +6,7 @@ import { Comic } from "../interfaces/comics";
 import { CommentsComponent } from "../comments/comments.component";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { UsersService } from "src/app/users/services/users.service";
+import { CreateCommentComponent } from "../comments/create-comment/create-comment.component";
 
 @Component({
     selector: "ml-comic-details",
@@ -15,6 +16,7 @@ import { UsersService } from "src/app/users/services/users.service";
         RouterModule,
         ReactiveFormsModule,
         CommentsComponent,
+        CreateCommentComponent
     ],
     templateUrl: "./comic-details.component.html",
     styleUrls: ["./comic-details.component.scss"],
@@ -34,7 +36,7 @@ export class ComicDetailsComponent implements OnInit {
         this.route.data.subscribe((data) => {
             this.comic = data["comic"];
         });
-        if (this.comic) {
+        if (this.comic && localStorage.getItem("user-id") ) {
             this.UsersService.getUser(
                 localStorage.getItem("user-id")!
             ).subscribe((user) => {
@@ -44,9 +46,8 @@ export class ComicDetailsComponent implements OnInit {
         }
     }
 
-    //TODO Néstor: Implementar el método addToFavorites y containsFavorite correctamente
-    addToFavorites(idComic: number): void {
-        this.UsersService.addFavorites(idComic, this.user._id!).subscribe();
+    addToFavorites(): void {
+        this.UsersService.addFavorites(this.comic.id, this.user._id!).subscribe();
     }
 
     containsFavorite(): boolean {
