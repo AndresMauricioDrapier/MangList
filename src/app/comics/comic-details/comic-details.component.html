@@ -42,8 +42,8 @@
     <!-- /Datos -->
     <!-- Botones -->
     <div *ngIf="user" class="descripcionBotones">
-      <a class="descripcionBotonCesta" (click)="addToFavorites()" *ngIf="!containsFavorite()">Añadir a favoritos</a>
-      <a class="descripcionBotonCesta" (click)="deleteFronFavorites()" *ngIf="containsFavorite()">Quitar de favoritos</a>
+      <a class="descripcionBotonCesta" (click)="addToFavorites()" *ngIf="!inFav">Añadir a favoritos</a>
+      <a class="descripcionBotonCesta" (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
       <a class="descripcionBotonCesta" (click)="goToReadingPage()">Leer capitulos</a>
     </div>
     <!-- /Botones -->
@@ -53,7 +53,7 @@
 
 <!-- Comentarios -->
 <section id="seccionComentarios">
-  <ml-comments *ngIf="comic" [comicId]="comic.id"></ml-comments>
-  <ml-create-comment *ngIf="user && comic.id" [user]="user" [comicId]="comic.id"></ml-create-comment>
+  <ml-comments *ngIf="comic" [comicId]="comic.id" [comment]="comment"></ml-comments>
+  <ml-create-comment *ngIf="user && comic.id" [user]="user" [comicId]="comic.id" (comentary)="addComment($event)"></ml-create-comment>
 </section>
 <!-- /Comentarios -->

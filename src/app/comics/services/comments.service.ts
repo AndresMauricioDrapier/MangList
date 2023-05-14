@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Commentary } from "../interfaces/comment";
-import { CommentsResponse } from "../interfaces/responses";
+import { CommentResponse, CommentsResponse } from "../interfaces/responses";
 
 @Injectable({
     providedIn: "root",
@@ -19,7 +19,7 @@ export class CommentsService {
         return this.http.get<CommentsResponse>(`${this.COMIC_URL}`);
     }
 
-    addComment(comment: Commentary): Observable<Commentary> {
-        return this.http.post<Commentary>(`${this.COMIC_URL}`, comment);
+    addComment(comment: Commentary): Observable<CommentResponse> {
+        return this.http.post<CommentResponse>(`${this.COMIC_URL}`, comment);
     }
 }

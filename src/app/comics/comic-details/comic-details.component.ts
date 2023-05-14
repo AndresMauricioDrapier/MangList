@@ -9,6 +9,7 @@ import { UsersService } from "src/app/users/services/users.service";
 import { CreateCommentComponent } from "../comments/create-comment/create-comment.component";
 import { TranslateService } from "../services/translate.service";
 import Swal from "sweetalert2";
+import { Commentary } from "../interfaces/comment";
 
 @Component({
     selector: "ml-comic-details",
@@ -26,6 +27,8 @@ import Swal from "sweetalert2";
 export class ComicDetailsComponent implements OnInit {
     comic!: Comic;
     user!: Auth;
+    comment:Commentary;
+    inFav = false;
 
     constructor(
         private router: Router,
@@ -45,7 +48,7 @@ export class ComicDetailsComponent implements OnInit {
                 localStorage.getItem("user-id")!
             ).subscribe((user) => {
                 this.user = user;
-                console.log(user._id);
+                this.containsFavorite();
             });
         }
 
@@ -58,9 +61,14 @@ export class ComicDetailsComponent implements OnInit {
         this.comic.start_date = this.formatDate(this.comic.start_date);
     }
 
+    addComment(comment:Commentary){
+      this.comment = comment;
+    }
+
     addToFavorites(): void {
         this.UsersService.addFavorites(this.comic.id, this.user._id).subscribe({
             next: () => {
+              this.inFav = true;
                 Swal.fire({
                     icon: "success",
                     title: "¡Comic añadido a favoritos!",
@@ -82,6 +90,7 @@ export class ComicDetailsComponent implements OnInit {
             this.user._id
         ).subscribe({
             next: () => {
+              this.inFav = false;
                 Swal.fire({
                     icon: "success",
                     title: "¡Comic eliminado de favoritos!",
@@ -97,12 +106,12 @@ export class ComicDetailsComponent implements OnInit {
         });
     }
 
-    containsFavorite(): boolean {
+    containsFavorite(): void {
         let boolean = false;
         this.user.favorites?.map((r) =>
             r === this.comic.id ? (boolean = true) : boolean
         );
-        return boolean;
+        this.inFav = boolean;
     }
 
     goToReadingPage(): void {

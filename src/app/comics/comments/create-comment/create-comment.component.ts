@@ -1,4 +1,4 @@
-import { Component, Input,OnInit } from "@angular/core";
+import { Component, Input,OnInit, Output,EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Commentary } from "../../interfaces/comment";
 import { FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -17,6 +17,7 @@ import { Auth } from "src/app/auth/interfaces/auth";
 export class CreateCommentComponent implements OnInit {
     @Input() user!: Auth;
     @Input() comicId:number;
+    @Output() comentary = new EventEmitter<Commentary>();
 
     formComment!: FormGroup;
     commentControl!: FormControl<string>;
@@ -58,15 +59,12 @@ export class CreateCommentComponent implements OnInit {
         this.newComment.text = this.commentControl.value;
         this.commentsServices.addComment(this.newComment).subscribe({
             next: (resp) => {
-                console.log(resp);
-                window.location.reload();
+                this.comentary.emit(resp.result);
             },
             error: (e) => {
                 console.log(e);
             },
         });
-
-
     }
 
     setRating(newRating: number): void {

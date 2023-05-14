@@ -15,14 +15,15 @@ export interface CommentsResponse {
 }
 
 export interface CommentResponse {
-    comment: Commentary;
+    ok: boolean;
+    result: Commentary;
 }
 export interface searchComic {
-  paging: {next:string};
-  data: [{node:Comic}];
+    paging: { next: string };
+    data: [{ node: Comic }];
 }
 
-export interface categoriesComicResponse{
-  ok:boolean,
-  result:searchComic
+export interface categoriesComicResponse {
+    ok: boolean;
+    result: searchComic;
 }
