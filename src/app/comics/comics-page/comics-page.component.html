@@ -4,7 +4,7 @@
   <div id="filtro">
     <form [formGroup]="filterGenres">
       <select id="genres" formControlName="genres">
-        <option name="" selected>Todos</option>
+        <option selected>Todos</option>
         <ng-container *ngFor="let g of genres">
           <option [ngValue]="g">{{ g.name }}</option>
         </ng-container>

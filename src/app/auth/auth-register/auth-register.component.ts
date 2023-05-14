@@ -64,6 +64,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         private readonly fb: NonNullableFormBuilder,
         private readonly mailServices: MailService
     ) {}
+
     ngOnInit(): void {
         this.nameControl = this.fb.control("", [
             Validators.required,
@@ -141,10 +142,19 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
             next: () => {
                 this.sendMail();
                 this.exit = true;
+                Swal.fire({
+                    icon: "success",
+                    title: "¡Usuario registrado!",
+                    text: "¡Bienvenido " + this.newUser.name + "!",
+                });
                 this.router.navigate(["/auth/login"]);
             },
             error: (error) => {
-                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: error.error.message,
+                });
             },
         });
     }
