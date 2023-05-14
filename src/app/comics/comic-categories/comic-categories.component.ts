@@ -10,7 +10,7 @@ import {
 import { ComicsService } from "../services/comics.service";
 import { ActivatedRoute } from "@angular/router";
 import { ComicCardComponent } from "../comic-card/comic-card.component";
-import { Genres,Order,StartDate,Status } from "../interfaces/categories";
+import { Genres, Order, StartDate, Status } from "../interfaces/categories";
 import { ComicyRanking } from "../interfaces/comics";
 import { ComicsFilterCategoryPipe } from "../pipes/comics-filter-category.pipe";
 
@@ -22,7 +22,7 @@ import { ComicsFilterCategoryPipe } from "../pipes/comics-filter-category.pipe";
         FormsModule,
         ComicCardComponent,
         ReactiveFormsModule,
-        ComicsFilterCategoryPipe
+        ComicsFilterCategoryPipe,
     ],
     templateUrl: "./comic-categories.component.html",
     styleUrls: ["./comic-categories.component.scss"],
@@ -42,13 +42,14 @@ export class ComicCategoriesComponent implements OnInit {
         private readonly fb: FormBuilder // private readonly httpUser: UserService
     ) {
         this.filterAll = this.fb.group({
-            genres: [this.genres,Validators.required],
-            startDate: [this.startDate,Validators.required],
-            status: [this.status,Validators.required],
-            order: [this.order,Validators.required],
+            genres: [this.genres, Validators.required],
+            startDate: [this.startDate, Validators.required],
+            status: [this.status, Validators.required],
+            order: [this.order, Validators.required],
         });
         this.filterAll.controls["genres"].setValue("Genero:", {
             onlySelf: true,
+
         });
         this.filterAll.controls["startDate"].setValue("Año:", {
             onlySelf: true,
@@ -62,22 +63,15 @@ export class ComicCategoriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-      // this.route.queryParams.subscribe((params) => {
-      //     if (params["search"]) {
-      //         this.comicsService
-      //             .getComicsString(params["search"])
-      //             .subscribe((comics) => {
-      //                 this.comics = (comics as unknown as searchComic).data;
-      //             });
-      //     } else {
-      //         this.comicsService.getComics().subscribe((comics) => {
-      //             this.comics = comics;
-      //             console.log(this.comics);
-      //         });
-      //     }
-      // });
-      this.comicsService.getComicsCategorias("hola").subscribe((comics) => {
-        this.comics = comics;
-    });
-  }
+        this.comicsService.getComics().subscribe((comics) => {
+            this.comics = comics;
+            console.log(this.comics);
+        });
+        this.route.queryParams.subscribe((params) => {
+            if (params["filtro"]) {
+              this.filterAll.get('genres').setValue(this.genres.find(g => g.value === params["filtro"]));
+
+            }
+        });
+    }
 }

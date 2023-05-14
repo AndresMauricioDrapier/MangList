@@ -20,31 +20,34 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="background-color: #060d17">
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Fantasia</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Fantasy')">Fantasia</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Terror</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Horror')">Terror</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Intriga</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Mystery')">Misterio</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Acción</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Action')">Acción</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Sobrenatural</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Supernatural')">Sobrenatural</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Colegios y Universidad</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Martial Arts')">Artes Marciales</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Shonen</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('School')">Colegios y Universidad</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Sheinen</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Seinen')">Sheinen</a>
             </li>
             <li>
-              <a class="dropdown-item" [routerLink]="['/categorias']">Aventura</a>
+              <a class="dropdown-item" (click)="busquedaFiltro('Adventure')">Aventura</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="busquedaFiltro('Comedy')">Comedia</a>
             </li>
           </ul>
         </li>

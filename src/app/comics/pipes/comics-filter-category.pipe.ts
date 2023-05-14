@@ -1,6 +1,5 @@
-import { Pipe, PipeTransform, inject } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 import { ComicyRanking, Ranking } from "../interfaces/comics";
-import { ComicsService } from "../services/comics.service";
 import { Comic } from "../interfaces/comics";
 
 @Pipe({
@@ -10,7 +9,7 @@ import { Comic } from "../interfaces/comics";
 export class ComicsFilterCategoryPipe implements PipeTransform {
 
     transform(comics: ComicyRanking[], genres?: string,status?:string,year?:string,order?:string): ComicyRanking[] {
-
+      console.log(genres);
       const yearSplit=year?.split("-");
       if(yearSplit)
       {

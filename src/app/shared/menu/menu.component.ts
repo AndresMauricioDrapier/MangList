@@ -67,4 +67,9 @@ export class MenuComponent implements OnInit, OnChanges {
             queryParams: { search: this.filterSearch },
         });
     }
+    busquedaFiltro(genero){
+      this.router.navigate(["/categorias"], {
+        queryParams: { filtro: genero },
+    });
+    }
 }
