@@ -50,13 +50,17 @@ export class UsersService {
         });
     }
 
-    saveAvatar(avatar: string,name:string,avatarAntigua:string): Observable<string> {
+    saveAvatar(
+        avatar: string,
+        name: string,
+        avatarAntigua: string
+    ): Observable<string> {
         return this.http.put<string>(
             this.USERS_URL + "/avatar/" + this.userId,
             {
                 avatar,
                 name,
-                avatarAntigua
+                avatarAntigua,
             }
         );
     }
@@ -78,6 +82,12 @@ export class UsersService {
         return this.http.put<void>(this.USERS_URL + "/favorites/" + idUser, {
             idComic,
         });
+    }
+
+    deleteFavorite(idComic: number, idUser: number): Observable<void> {
+      return this.http.put<void>(this.USERS_URL + "/favorites/delete/" + idUser, {
+        idComic,
+    });
     }
 
     isLogged(): boolean {

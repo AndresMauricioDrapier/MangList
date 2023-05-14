@@ -66,44 +66,40 @@
           </button>
 
           <div class="modal fade" id="editAvatar" tabindex="-1" aria-labelledby="editAvatarLabel" aria-hidden="true"
-          data-bs-backdrop="false">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editAvatarLabel">Editar perfil:</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                  aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form class="h-100" method="PUT" role="form" (ngSubmit)="saveAvatar()" [formGroup]="userForm"
-                  aria-label="">
-                  <div class="form-outline mb-4">
-                    <div class="form-outline">
-                      <input type="file" class="form-control" id="avatar" name="avatar" formControlName="avatar" required
-                      data-bs-toggle="modal" data-bs-target="#exampleModal" (change)="fileChangeEvent($event)"
-                      formControlName="avatar" />
+            data-bs-backdrop="false">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editAvatarLabel">Editar perfil:</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form class="h-100" method="PUT" role="form" (ngSubmit)="saveAvatar()" [formGroup]="userForm"
+                    aria-label="">
+                    <div class="form-outline mb-4">
+                      <div class="form-outline">
+                        <input type="file" class="form-control" id="avatar" name="avatar" formControlName="avatar"
+                          required data-bs-toggle="modal" data-bs-target="#exampleModal"
+                          (change)="fileChangeEvent($event)" formControlName="avatar" />
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="form-outline">
-                    <img [src]="newAvatar" class="mb-1 previewAvatar"
-                    *ngIf="!(newAvatar ==='')?'d-none':''" alt="avatar">
-                  </div>
+                    <div class="form-outline">
+                      <img [src]="newAvatar" class="mb-1 previewAvatar" *ngIf="!(newAvatar ==='')?'d-none':''"
+                        alt="avatar">
+                    </div>
 
-                  <div class="modal-footer">
-                    <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="boton">Guardar cambios</button>
-                  </div>
-                </form>
+                    <div class="modal-footer">
+                      <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="boton">Guardar cambios</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-
-
           <!-- Fin modal -->
-
 
           <!-- Editar conytraseña modal -->
           <button type="button" class="boton" data-bs-backdrop="false" data-bs-toggle="modal"
@@ -165,7 +161,7 @@
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h3 class="mb-0">Comics favoritos:</h3>
     </div>
-    <div class="row">
+    <div class="contenido">
       <div *ngFor="let comic of comics">
         <ml-comic-card [comic]="comic"></ml-comic-card>
       </div>

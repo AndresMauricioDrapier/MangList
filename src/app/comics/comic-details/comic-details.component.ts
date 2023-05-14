@@ -7,6 +7,8 @@ import { CommentsComponent } from "../comments/comments.component";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { UsersService } from "src/app/users/services/users.service";
 import { CreateCommentComponent } from "../comments/create-comment/create-comment.component";
+import { TranslateService } from "../services/translate.service";
+import Swal from "sweetalert2";
 
 @Component({
     selector: "ml-comic-details",
@@ -16,7 +18,7 @@ import { CreateCommentComponent } from "../comments/create-comment/create-commen
         RouterModule,
         ReactiveFormsModule,
         CommentsComponent,
-        CreateCommentComponent
+        CreateCommentComponent,
     ],
     templateUrl: "./comic-details.component.html",
     styleUrls: ["./comic-details.component.scss"],
@@ -29,14 +31,16 @@ export class ComicDetailsComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private readonly fb: NonNullableFormBuilder,
-        private UsersService: UsersService
+        private UsersService: UsersService,
+        private readonly translateService: TranslateService
     ) {}
 
     ngOnInit(): void {
         this.route.data.subscribe((data) => {
             this.comic = data["comic"];
         });
-        if (this.comic && localStorage.getItem("user-id") ) {
+
+        if (this.comic && localStorage.getItem("user-id")) {
             this.UsersService.getUser(
                 localStorage.getItem("user-id")!
             ).subscribe((user) => {
@@ -44,10 +48,53 @@ export class ComicDetailsComponent implements OnInit {
                 console.log(user._id);
             });
         }
+
+        this.translateService
+            .translate(this.comic.synopsis)
+            .then(
+                (r) => (this.comic.synopsis = r.data[0].translations[0].text)
+            );
+
+        this.comic.start_date = this.formatDate(this.comic.start_date);
     }
 
     addToFavorites(): void {
-        this.UsersService.addFavorites(this.comic.id, this.user._id!).subscribe();
+        this.UsersService.addFavorites(this.comic.id, this.user._id).subscribe({
+            next: () => {
+                Swal.fire({
+                    icon: "success",
+                    title: "¡Comic añadido a favoritos!",
+                });
+            },
+            error: () => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Comic no añadido a favoritos",
+                });
+            },
+        });
+    }
+
+    deleteFronFavorites(): void {
+        this.UsersService.deleteFavorite(
+            this.comic.id,
+            this.user._id
+        ).subscribe({
+            next: () => {
+                Swal.fire({
+                    icon: "success",
+                    title: "¡Comic eliminado de favoritos!",
+                });
+            },
+            error: () => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Comic no eliminado de favoritos",
+                });
+            },
+        });
     }
 
     containsFavorite(): boolean {
@@ -68,5 +115,19 @@ export class ComicDetailsComponent implements OnInit {
         } else {
             this.router.navigate(["/auth/login"]);
         }
+    }
+
+    formatDate(fecha: string): string {
+        const date = new Date(fecha);
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        return (
+            (day < 10 ? "0" + day : day) +
+            "/" +
+            (month < 10 ? "0" + month : month) +
+            "/" +
+            year
+        );
     }
 }

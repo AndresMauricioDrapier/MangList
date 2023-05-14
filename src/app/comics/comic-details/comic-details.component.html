@@ -43,7 +43,7 @@
     <!-- Botones -->
     <div *ngIf="user" class="descripcionBotones">
       <a class="descripcionBotonCesta" (click)="addToFavorites()" *ngIf="!containsFavorite()">Añadir a favoritos</a>
-      <a class="descripcionBotonCesta" *ngIf="containsFavorite()">Quitar de favoritos</a>
+      <a class="descripcionBotonCesta" (click)="deleteFronFavorites()" *ngIf="containsFavorite()">Quitar de favoritos</a>
       <a class="descripcionBotonCesta" (click)="goToReadingPage()">Leer capitulos</a>
     </div>
     <!-- /Botones -->

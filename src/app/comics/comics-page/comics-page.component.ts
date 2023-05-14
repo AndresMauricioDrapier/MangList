@@ -15,7 +15,6 @@ import { MenuComponent } from "src/app/shared/menu/menu.component";
 import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
 import { searchComic } from "../interfaces/responses";
 import { Genres } from "../interfaces/categories";
-import { TranslateService } from "../services/translate.service";
 
 @Component({
     selector: "ml-comics-page",
@@ -45,7 +44,6 @@ export class ComicsPageComponent implements OnInit {
         private readonly comicsService: ComicsService,
         private readonly route: ActivatedRoute,
         private readonly fb: FormBuilder, // private readonly httpUser: UserService
-        private readonly translateService: TranslateService
     ) {
         this.filterGenres = this.fb.group({
             genres: this.genres,
@@ -70,7 +68,5 @@ export class ComicsPageComponent implements OnInit {
                 });
             }
         });
-
-        // this.translateService.translate("Hello").then((r) => console.log(r.data[0].translations[0].text));
     }
 }
