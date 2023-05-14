@@ -12,7 +12,7 @@ import { Auth } from "src/app/auth/interfaces/auth";
     standalone: true,
     imports: [CommonModule,StarRatingComponent,ReactiveFormsModule],
     templateUrl: "./create-comment.component.html",
-    styleUrls: ["./create-comment.component.css"],
+    styleUrls: ["./create-comment.component.scss"],
 })
 export class CreateCommentComponent implements OnInit {
     @Input() user!: Auth;

@@ -8,11 +8,7 @@ import { CommentsService } from "../services/comments.service";
 @Component({
     selector: "ml-comments",
     standalone: true,
-    imports: [
-        CommonModule,
-        RouterModule,
-        StarRatingComponent,
-    ],
+    imports: [CommonModule, RouterModule, StarRatingComponent],
     templateUrl: "./comments.component.html",
     styleUrls: ["./comments.component.scss"],
 })
@@ -22,13 +18,14 @@ export class CommentsComponent implements OnInit {
     comments!: Commentary[];
     userComment = false;
 
-    constructor(
-        private readonly commentsServices: CommentsService,
-    ) {}
+    constructor(private readonly commentsServices: CommentsService) {}
 
     ngOnInit(): void {
-        this.commentsServices.getComments(this.comicId).subscribe((comments) => {
-            this.comments = comments.result;
-        });
+        this.commentsServices
+            .getComments(this.comicId)
+            .subscribe((comments) => {
+                this.comments = comments.result;
+                console.log(this.comments);
+            });
     }
 }
