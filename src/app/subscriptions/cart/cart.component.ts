@@ -11,7 +11,6 @@ import {
     Validators,
 } from "@angular/forms";
 import { Payment } from "../interfaces/payment";
-import { PaymentService } from "../services/payment.service";
 import { CanDeactivateComponent } from "src/app/guards/leavePageGuard.guard";
 import { Observable } from "rxjs";
 import Swal from "sweetalert2";
@@ -19,6 +18,8 @@ import { Mail } from "src/app/shared/mail/interfaces/mail";
 import { MailService } from "src/app/shared/mail/services/mail.service";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { UsersService } from "src/app/users/services/users.service";
+import { enviarPDFyCorreo } from "../../shared/downloadPDF";
+
 
 @Component({
     selector: "ml-cart",
@@ -83,6 +84,8 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
         card: "",
         expiration: "",
         cvv: "",
+        amount: 0,
+        methodPayment: "Visa",
     };
 
     newMail: Mail = {
@@ -96,7 +99,6 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
     constructor(
         private route: ActivatedRoute,
         private readonly fb: NonNullableFormBuilder,
-        private readonly paymentService: PaymentService,
         private readonly mailServices: MailService,
         private readonly userService: UsersService
     ) {}
@@ -175,30 +177,17 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
     }
 
     onPurchase(): void {
-        this.newPayment.name = this.nameControl.value;
+        this.newPayment.name = this.user.name;
         this.newPayment.card = this.cardControl.value;
         this.newPayment.expiration = this.expirationControl.value;
         this.newPayment.cvv = this.cvvControl.value;
         this.newPayment.idUser = this.userId;
+        this.newPayment.amount = this.subscription?.price
+            ? this.subscription.price
+            : 0;
+        this.newPayment.mail = this.user.email;
 
-        this.paymentService.addPayment(this.newPayment).subscribe({
-            next: () => {
-                Swal.fire(
-                    "¡Pago realizado!",
-                    "¡Ya puedes disfrutar de tu suscripción!",
-                    "success"
-                );
-                this.sendMail();
-                this.exit = true;
-            },
-            error: () => {
-                Swal.fire(
-                    "¡Error!",
-                    "No se ha podido realizar el pago",
-                    "error"
-                );
-            },
-        });
+        enviarPDFyCorreo(this.newPayment,this.subscription);
     }
 
     validClasses(

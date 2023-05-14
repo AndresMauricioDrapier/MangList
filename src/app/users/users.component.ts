@@ -192,31 +192,32 @@ export class UsersComponent implements OnInit {
           denyButtonText: "Cerrar",
       }).then((result) => {
           if (result.isConfirmed) {
-              this.userService
-                  .saveAvatar(
-                    this.newAvatar,
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    this.user.name!,
-                    this.user.avatar!
-                  )
-                  .subscribe({
-                      next: () => {
-                          Swal.fire({
-                              title: "Avatar guardado",
-                              icon: "success",
-                          });
-                          this.router.navigate(["/users", this.userId]);
-                      },
-                      error: (err) => {
-                          console.log(err);
-                          Swal.fire({
-                              title: "Avatar descartada",
-                              text: err,
-                              icon: "error",
-                          });
-                          this.router.navigate(["/users", this.userId]);
-                      },
-                  });
+            console.log(this.user.avatar);
+              // this.userService
+              //     .saveAvatar(
+              //       this.newAvatar,
+              //       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              //       this.user.name!,
+              //       this.user.avatar!
+              //     )
+              //     .subscribe({
+              //         next: () => {
+              //             Swal.fire({
+              //                 title: "Avatar guardado",
+              //                 icon: "success",
+              //             });
+              //             this.router.navigate(["/users", this.userId]);
+              //         },
+              //         error: (err) => {
+              //             console.log(err);
+              //             Swal.fire({
+              //                 title: "Avatar descartada",
+              //                 text: err,
+              //                 icon: "error",
+              //             });
+              //             this.router.navigate(["/users", this.userId]);
+              //         },
+              //     });
               return true;
           } else {
               Swal.fire({
