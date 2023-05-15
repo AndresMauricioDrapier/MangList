@@ -16,8 +16,8 @@ RUN npm install
 # Copia todos los archivos y carpetas del directorio actual en el sistema de archivos del host donde se está construyendo el contenedor Docker al directorio de trabajo actual en el contenedor
 COPY . .
 
-# Indica que el contenedor escuchará en el puerto 3000
+# Indica que el contenedor escuchará en el puerto 80
 EXPOSE 80
 
 # Especifica el comando por defecto para ejecutar al iniciar el contenedor
-CMD ["ng","serve","--port","80"]
+CMD ["ng","serve"]
