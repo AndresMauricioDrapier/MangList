@@ -6,17 +6,6 @@ services:
             - "80:80"
         build: .
         restart: unless-stopped
-        links:
-            - mymongodb
         volumes:
             - .:/usr/src/app
             - /usr/src/app/node_modules
-
-    mymongodb:
-        container_name: mymongodatabase
-        image: mongo
-        ports:
-            - "27018:27017"
-        restart: unless-stopped
-        volumes:
-            - ../data:/data/db
