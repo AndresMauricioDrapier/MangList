@@ -1,14 +1,18 @@
-# Etapa de compilación
-FROM node:16.17-alpine as build-stage
+# Imagen base
+FROM node:16.17-alpine
+
+# Directorio de trabajo
 WORKDIR /app
+
+# Copiar archivos necesarios
 COPY package*.json ./
-RUN npm install
 COPY . .
-RUN npm run build --prod
 
-# Etapa de producción
-FROM nginx:1.21-alpine
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+# Instalar dependencias
+RUN npm install
+
+# Exponer el puerto 4200
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
 
+# Comando para iniciar la aplicación
+CMD ["npm", "start"]
