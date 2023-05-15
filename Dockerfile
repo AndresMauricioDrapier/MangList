@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 80
 
 # Especifica el comando por defecto para ejecutar al iniciar el contenedor
-CMD ["ng","serve"]
+CMD ["ng","serve","--port","80"]
