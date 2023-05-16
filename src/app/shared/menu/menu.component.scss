@@ -1,30 +1,3 @@
-html {
-  font-size: 100%;
-}
-
-p {
-  font-size: 1em;
-}
-
-h2 {
-  font-size: 1.5em;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-@media (max-width: 767px) {
-  html {
-    font-size: 0.75em;
-  }
-}
-
-body {
-  background-color: #060d17 !important;
-  color: white;
-}
-
 .navbar-brand {
   color: #a309cd !important;
   font-weight: bold;
@@ -95,8 +68,16 @@ body {
 .iconoUsuario {
   margin-right: 2em;
   margin-left: 2em;
+  cursor: pointer;
 
-  color: white;
+  &:hover {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
 }
 
 @-webkit-keyframes pulse {
