@@ -33,6 +33,7 @@ export class UsersComponent implements OnInit {
     comics: Comic[] = [];
     userId: string = localStorage.getItem("user-id") || "";
     isMe!: boolean;
+    haveRoleToAddComic!: boolean;
 
     favourites;
     userForm!: FormGroup;
@@ -62,6 +63,8 @@ export class UsersComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.haveRoleToAddComic = this.userService.hasRoleToAdd();
+
         this.route.data.subscribe((user) => {
             if (user["user"]) {
                 this.user = user["user"];
@@ -260,5 +263,9 @@ export class UsersComponent implements OnInit {
             [validClass]: ngModel.touched && ngModel.valid,
             [errorClass]: ngModel.touched && ngModel.invalid,
         };
+    }
+
+    goToAddComic(): void {
+      this.router.navigate(["/comics/add"]);
     }
 }
