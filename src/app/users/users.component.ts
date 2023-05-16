@@ -30,11 +30,11 @@ import { ComicsService } from "../comics/services/comics.service";
     styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-    comics: Comic[]=[];
+    comics: Comic[] = [];
     userId: string = localStorage.getItem("user-id") || "";
     isMe!: boolean;
 
-    favourites
+    favourites;
     userForm!: FormGroup;
     nameControl!: FormControl<string>;
     emailControl!: FormControl<string>;
@@ -105,12 +105,11 @@ export class UsersComponent implements OnInit {
             password2: this.password2Control,
         });
 
-        this.user.favorites.map((idComic) => {
+        this.user.favorites.forEach((idComic) => {
             this.comicService.getIdComic(idComic).subscribe({
-              next:(comic)=>{
-                console.log(comic);
-                this.comics.push(comic);
-              }
+                next: (comic) => {
+                    this.comics.push(comic);
+                },
             });
         });
     }

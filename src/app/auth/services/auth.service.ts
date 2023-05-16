@@ -21,6 +21,7 @@ export class AuthService {
         const login = this.http.post<TokenResponse>("auth/login", userLogin);
 
         login.subscribe((data: TokenResponse) => {
+            this.logged = true;
             this.loginChange$.next(true);
             this.putToken((data as unknown as TokenResponse).data.token);
             this.putUserID((data as unknown as TokenResponse).data.id);
@@ -33,7 +34,8 @@ export class AuthService {
         const login = this.http.post<TokenResponse>("auth/google", userLogin);
 
         login.subscribe((data: TokenResponse) => {
-            this.loginChange$.next(true);
+          this.logged = true;
+          this.loginChange$.next(true);
             // this.putToken((data as unknown as TokenResponse).data.token);
             // this.putUserID((data as unknown as TokenResponse).data.id);
         });
