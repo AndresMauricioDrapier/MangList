@@ -63,9 +63,8 @@ export class ComicCategoriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.comicsService.getComicsCategorias("").subscribe((comics) => {
+        this.comicsService.getComicsCategorias().subscribe((comics) => {
             this.comics = comics;
-            console.log(this.comics);
         });
         this.route.queryParams.subscribe((params) => {
             if (params["filtro"]) {

@@ -9,7 +9,8 @@ import { Comic } from "../interfaces/comics";
 export class ComicsFilterCategoryPipe implements PipeTransform {
 
     transform(comics: ComicyRanking[], genres?: string,status?:string,year?:string,order?:string): ComicyRanking[] {
-      console.log(genres);
+
+      if(genres || status || year|| order){
       const yearSplit=year?.split("-");
       if(yearSplit)
       {
@@ -46,6 +47,11 @@ export class ComicsFilterCategoryPipe implements PipeTransform {
         })
       }
       return comicsFiltrados;
+     }
+     else{
+      const limitedComics = comics.slice(0,50);
+      return limitedComics;
+     }
 
 
     }

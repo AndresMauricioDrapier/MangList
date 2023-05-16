@@ -7,7 +7,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from "@angular/forms";
-import { Router, RouterModule, UrlTree } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import Swal from "sweetalert2";
@@ -58,7 +58,8 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
 
     constructor(
         private readonly router: Router,
-        private readonly fb: NonNullableFormBuilder
+        private readonly fb: NonNullableFormBuilder,
+        private readonly route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -68,7 +69,7 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         this.start_dateControl = this.fb.control("", [Validators.required]);
         this.genresControl = this.fb.control("", [Validators.required]);
         this.num_volumesControl = this.fb.control("", [Validators.required]);
-        this.statusControl = this.fb.control("", [Validators.required]);
+        this.statusControl = this.fb.control("");
         this.meanControl = this.fb.control("", [Validators.required]);
         this.comicForm = this.fb.group({
             title: this.titleControl,
@@ -79,6 +80,12 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
             num_volumes: this.num_volumesControl,
             status: this.statusControl,
             mean: this.meanControl,
+        });
+
+        this.route.queryParams.subscribe((params) => {
+            if (params["comicId"]) {
+                console.log(params);
+            }
         });
     }
 
@@ -139,7 +146,7 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     }
 
     resetForm() {
-      this.comicForm.reset();
-      this.newComic.main_picture.medium = "";
+        this.comicForm.reset();
+        this.newComic.main_picture.medium = "";
     }
 }

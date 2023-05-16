@@ -43,10 +43,10 @@ export class ComicsService {
                 )
             );
     }
-    getComicsCategorias(params: string): Observable<ComicyRanking[]> {
+    getComicsCategorias(): Observable<ComicyRanking[]> {
         return this.http
             .get<categoriesComicResponse>(
-                this.COMIC_URL + "?categorias=" + params
+                this.COMIC_URL + "?categorias=algo"
             )
             .pipe(
                 map((r) => {
