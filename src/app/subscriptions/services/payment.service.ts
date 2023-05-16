@@ -8,13 +8,13 @@ import { Observable } from "rxjs";
     providedIn: "root",
 })
 export class PaymentService {
-    private readonly PAYMENT_URL = "payment";
+    private readonly PAYMENT_URL = "payments";
     constructor(
         private readonly http: HttpClient,
         private readonly router: Router
     ) {}
 
     paySubscription(payment: Payment): Observable<Payment> {
-        return this.http.post<Payment>(`${this.PAYMENT_URL}/`, payment);
+        return this.http.post<Payment>(`${this.PAYMENT_URL}`, payment);
     }
 }

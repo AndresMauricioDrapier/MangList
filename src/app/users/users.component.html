@@ -6,7 +6,8 @@
       </div>
       <div class="mb-5 text-white">
         <h2 class="mt-0 mb-0 nombreUsuario">{{user.name}}</h2>
-        <div *ngIf="isMe">
+        <small class="role">(Rol: {{user.role}})</small>
+        <div *ngIf="isMe" class="buttonsContainer">
 
           <!-- Editar perfil modal -->
           <button type="button" class="boton" data-bs-backdrop="false" data-bs-toggle="modal"

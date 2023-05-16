@@ -1,7 +1,8 @@
 export interface Payment {
   id?: number,
-  idUser: string;
+  userId: string;
   mailUser:string,
+  type: string,
   method: string,
   amount:number,
   date: string,

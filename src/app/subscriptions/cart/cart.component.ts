@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, RouterModule, UrlTree } from "@angular/router";
@@ -20,7 +19,6 @@ import { Auth } from "src/app/auth/interfaces/auth";
 import { UsersService } from "src/app/users/services/users.service";
 import { enviarPDFyCorreo } from "../../shared/downloadPDF";
 import { PaymentService } from "../services/payment.service";
-
 
 @Component({
     selector: "ml-cart",
@@ -80,8 +78,9 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
 
     newPayment: Payment = {
         id: 0,
-        idUser: "0",
+        userId: "0",
         mailUser: "",
+        type: "",
         method: "Visa",
         amount: 0,
         date: "",
@@ -177,18 +176,36 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
     }
 
     onPurchase(): void {
-        this.newPayment.idUser = this.userId;
+        this.newPayment.userId = this.user._id.toString();
         this.newPayment.mailUser = this.user.email;
-        this.newPayment.amount = this.subscription.price
+        this.newPayment.type = this.subscription.type;
+        this.newPayment.amount = this.subscription.price;
         this.newPayment.date = new Date().toLocaleDateString();
 
         this.paymentService.paySubscription(this.newPayment).subscribe({
             next: () => {
-                enviarPDFyCorreo(this.newPayment,this.subscription);
+                Swal.fire({
+                    title: "¿Quieres descargar el recibo de compra?",
+                    text: "Pago realizado con éxito",
+                    showDenyButton: true,
+                    confirmButtonText: "Descargar",
+                    denyButtonText: "No, gracias",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        enviarPDFyCorreo(this.newPayment, this.subscription);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
             },
             error: (e) => {
-                console.error("Error al realizar el pago" + e);
-            }
+                Swal.fire({
+                    icon: "error",
+                    title: "Error al hacer el pago",
+                    text: e.error.message,
+                });
+            },
         });
     }
 
