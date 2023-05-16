@@ -84,7 +84,7 @@ export class AuthLoginComponent implements OnInit {
 
 
     loggin(): void {
-        this.userInfo.email = this.userForm.controls["email"].value;
+        this.userInfo.email = this.emailControl.value.toLocaleLowerCase();
         this.userInfo.password = this.userForm.controls["password"].value;
         this.http.login(this.userInfo).subscribe({
             next: () => {
