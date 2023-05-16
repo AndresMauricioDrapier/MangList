@@ -1,10 +1,4 @@
-import {
-    Component,
-    OnInit,
-    OnChanges,
-    SimpleChanges,
-    Input,
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
@@ -18,10 +12,9 @@ import Swal from "sweetalert2";
     templateUrl: "./menu.component.html",
     styleUrls: ["./menu.component.scss"],
 })
-export class MenuComponent implements OnInit, OnChanges {
+export class MenuComponent implements OnInit {
     loggedIn!: boolean;
     filterSearch = "";
-    @Input() comicId!: boolean;
 
     userId: string = localStorage.getItem("user-id") || "";
 
@@ -33,16 +26,6 @@ export class MenuComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this.authService.isLogged();
         this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
-
-        console.log(this.userId);
-    }
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes) {
-            // Realizar acciones basadas en el nuevo valor de myValue
-            console.log("El nuevo valor de myValue es:", changes);
-            this.authService.isLogged();
-            this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
-        }
     }
 
     logout(): void {
@@ -67,9 +50,9 @@ export class MenuComponent implements OnInit, OnChanges {
             queryParams: { search: this.filterSearch },
         });
     }
-    busquedaFiltro(genero){
-      this.router.navigate(["/categorias"], {
-        queryParams: { filtro: genero },
-    });
+    busquedaFiltro(genero) {
+        this.router.navigate(["/categorias"], {
+            queryParams: { filtro: genero },
+        });
     }
 }

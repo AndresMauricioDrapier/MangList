@@ -43,7 +43,7 @@ export class AuthLoginComponent implements OnInit {
 
     constructor(
         private readonly router: Router,
-        private readonly http: AuthService,
+        private readonly authService: AuthService,
         private readonly fb: NonNullableFormBuilder
     ) {}
 
@@ -77,7 +77,7 @@ export class AuthLoginComponent implements OnInit {
         this.userInfo.token = user.getAuthResponse().id_token;
         console.log(this.userInfo, user.getAuthResponse().id_token);
 
-        this.http.loginGoogle(this.userInfo).subscribe({
+        this.authService.loginGoogle(this.userInfo).subscribe({
             next: () => this.router.navigate(["/restaurants"]),
         });
     }
@@ -86,7 +86,7 @@ export class AuthLoginComponent implements OnInit {
     loggin(): void {
         this.userInfo.email = this.emailControl.value.toLocaleLowerCase();
         this.userInfo.password = this.userForm.controls["password"].value;
-        this.http.login(this.userInfo).subscribe({
+        this.authService.login(this.userInfo).subscribe({
             next: () => {
                 this.router.navigate(["/"]);
                 Swal.fire({
