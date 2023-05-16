@@ -19,6 +19,7 @@ import { MailService } from "src/app/shared/mail/services/mail.service";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { UsersService } from "src/app/users/services/users.service";
 import { enviarPDFyCorreo } from "../../shared/downloadPDF";
+import { PaymentService } from "../services/payment.service";
 
 
 @Component({
@@ -80,12 +81,10 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
     newPayment: Payment = {
         id: 0,
         idUser: "0",
-        name: "",
-        card: "",
-        expiration: "",
-        cvv: "",
+        mailUser: "",
+        method: "Visa",
         amount: 0,
-        methodPayment: "Visa",
+        date: "",
     };
 
     newMail: Mail = {
@@ -100,7 +99,8 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
         private route: ActivatedRoute,
         private readonly fb: NonNullableFormBuilder,
         private readonly mailServices: MailService,
-        private readonly userService: UsersService
+        private readonly userService: UsersService,
+        private readonly paymentService: PaymentService
     ) {}
 
     ngOnInit(): void {
@@ -112,8 +112,8 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
 
         this.userService.getUser(this.userId).subscribe((u) => (this.user = u));
 
-        this.vat = +(this.subscription!.price * 0.21).toFixed(2);
-        this.exclusiveVAT = +(this.subscription!.price - this.vat).toFixed(2);
+        this.vat = +(this.subscription.price * 0.21).toFixed(2);
+        this.exclusiveVAT = +(this.subscription.price - this.vat).toFixed(2);
 
         this.nameControl = this.fb.control("", [
             Validators.required,
@@ -177,17 +177,19 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
     }
 
     onPurchase(): void {
-        this.newPayment.name = this.user.name;
-        this.newPayment.card = this.cardControl.value;
-        this.newPayment.expiration = this.expirationControl.value;
-        this.newPayment.cvv = this.cvvControl.value;
         this.newPayment.idUser = this.userId;
-        this.newPayment.amount = this.subscription?.price
-            ? this.subscription.price
-            : 0;
-        this.newPayment.mail = this.user.email;
+        this.newPayment.mailUser = this.user.email;
+        this.newPayment.amount = this.subscription.price
+        this.newPayment.date = new Date().toLocaleDateString();
 
-        enviarPDFyCorreo(this.newPayment,this.subscription);
+        this.paymentService.paySubscription(this.newPayment).subscribe({
+            next: () => {
+                enviarPDFyCorreo(this.newPayment,this.subscription);
+            },
+            error: (e) => {
+                console.error("Error al realizar el pago" + e);
+            }
+        });
     }
 
     validClasses(

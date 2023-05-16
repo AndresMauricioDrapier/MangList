@@ -1,13 +1,10 @@
 export interface Payment {
   id?: number,
   idUser: string;
-  name?: string,
-  mail?:string,
+  mailUser:string,
+  method: string,
   amount:number,
-  card?: string,
-  expiration?: string,
-  cvv?: string,
-  methodPayment: string,
+  date: string,
 }
 
 export interface PaymentResponse {

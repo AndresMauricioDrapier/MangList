@@ -132,4 +132,14 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     saveImage() {
         this.newComic.main_picture.medium = this.croppedImage;
     }
+
+    closeModal() {
+        this.imageChangedEvent = "";
+        this.croppedImage = "";
+    }
+
+    resetForm() {
+      this.comicForm.reset();
+      this.newComic.main_picture.medium = "";
+    }
 }
