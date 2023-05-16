@@ -1,27 +1,11 @@
 .categoriaFiltro {
-  margin-left: 6em;
+  margin-left: 7em;
   margin-top: 2em;
 
   .categoriaSelect {
     height: 2em;
     border-radius: 5px;
     margin-right: 1em;
-  }
-  .categoriaBoton {
-    background-color: #a309cd;
-    color: white;
-    padding: 0.4em 2em;
-    border-radius: 5px;
-    border: 0;
-    box-shadow: 0 0 10px #a309cd;
-  }
-  .carousel-open {
-    &:checked {
-      .carousel-item {
-        position: static;
-        opacity: 100;
-      }
-    }
   }
 }
 #contenido {
@@ -38,8 +22,8 @@
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-    align-items: normal;
-    align-content: normal;
+    align-items: center;
+    align-content: center;
   }
 
   .categoriaSelect {
@@ -50,125 +34,5 @@
     align-self: auto;
     order: 0;
     margin-bottom: 0.5em;
-  }
-}
-.carousel {
-  position: relative;
-  margin: 3em 4em;
-
-  &-inner {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-  }
-
-  &-item {
-    display: flex;
-    position: absolute;
-    opacity: 0;
-    -webkit-transition: opacity 0.6s ease-out;
-    transition: opacity 0.6s ease-out;
-    margin-left: 1em;
-    margin-right: 1em;
-    padding-top: 1em;
-  }
-
-  a {
-    margin: auto;
-
-    figure {
-      margin-bottom: 2em;
-    }
-
-    img {
-      display: block;
-      height: 270px;
-      width: 180px;
-      border-radius: 10px;
-      box-shadow: 1px 2px 10px #23282e;
-    }
-
-    &:hover {
-      -webkit-animation-name: pulse;
-      animation-name: pulse;
-      -webkit-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
-    }
-  }
-
-  &-control {
-    color: white;
-    cursor: pointer;
-    font-size: 40px;
-    height: 40px;
-    line-height: 35px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(0, -50%);
-    cursor: pointer;
-    -ms-transform: translate(0, -50%);
-    transform: translate(0, -50%);
-    text-align: center;
-    width: 40px;
-    z-index: 10;
-  }
-
-  &:hover {
-    color: #a309cd;
-  }
-
-  &.prev {
-    left: 2%;
-  }
-
-  &.next {
-    right: 2%;
-  }
-}
-#carousel-1:checked ~ .control-1 {
-  display: block;
-
-  ~ &-indicators li:nth-child(1) &-bullet {
-    color: #a309cd;
-  }
-}
-#carousel-2:checked ~ .control-2 {
-  display: block;
-
-  ~ &-indicators li:nth-child(2) &-bullet {
-    color: #a309cd;
-  }
-}
-#carousel-3:checked ~ .control-3 {
-  display: block;
-
-  ~ &-indicators li:nth-child(3) &-bullet {
-    color: #a309cd;
-  }
-  &-indicators {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    bottom: 2%;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 10;
-  }
-  li {
-    display: inline-block;
-    margin: 0 5px;
-  }
-  &-bullet {
-    color: white;
-    cursor: pointer;
-    display: block;
-    font-size: 35px;
-  }
-  &:hover {
-    color: #23282e;
   }
 }
