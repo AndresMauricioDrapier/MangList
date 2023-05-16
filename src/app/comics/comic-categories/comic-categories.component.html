@@ -7,25 +7,21 @@
     <form [formGroup]="filterAll">
 
       <label>
-
         <select id="genres" formControlName="genres" class="categoriaSelect">
           <option name="genres" selected>Genero:</option>
           <ng-container *ngFor="let g of genres">
             <option [ngValue]="g">{{ g.name }}</option>
           </ng-container>
         </select>
-
       </label>
 
       <label>
-
         <select id="startDate" formControlName="startDate" class="categoriaSelect">
           <option name="startDate" selected>Año:</option>
           <ng-container *ngFor="let g of startDate">
             <option [ngValue]="g">{{ g.name }}</option>
           </ng-container>
         </select>
-
       </label>
 
 
@@ -47,16 +43,13 @@
         </select>
       </label>
 
-      <button type="submit" class="categoriaBoton" name="botonFiltrar">
-        FILTRAR
-      </button>
-
     </form>
   </div>
   <!-- /Div Filtro -->
 
   <div id="contenido">
-    <div *ngFor="let comic of comics | comicsFilterCategory: filterAll.value.genres.value:filterAll.value.status.value:filterAll.value.startDate.value:filterAll.value.order.value">
+    <div
+      *ngFor="let comic of comics | comicsFilterCategory: filterAll.value.genres.value:filterAll.value.status.value:filterAll.value.startDate.value:filterAll.value.order.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>
     </div>
   </div>
