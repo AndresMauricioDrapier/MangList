@@ -136,7 +136,6 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         this.newUser.name = this.nameControl.value;
         this.newUser.email = this.emailControl.value;
         this.newUser.password = this.passwordControl.value;
-        this.newUser.role = "user";
 
         this.authService.register(this.newUser).subscribe({
             next: () => {
@@ -173,10 +172,22 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
     fileChangeEvent(event: unknown): void {
         this.imageChangedEvent = event;
     }
+
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
     }
+
     saveImage() {
         this.newUser.avatar = this.croppedImage;
+    }
+
+    closeModal() {
+        this.imageChangedEvent = "";
+        this.croppedImage = "";
+    }
+
+    resetForm() {
+      this.userForm.reset();
+      this.newUser.avatar = "";
     }
 }
