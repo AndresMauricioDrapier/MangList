@@ -13,6 +13,8 @@ import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import Swal from "sweetalert2";
 import { Comic } from "../interfaces/comics";
 import { CanDeactivateComponent } from "src/app/guards/leavePageGuard.guard";
+import { Genres } from "../interfaces/categories";
+import { ComicsService } from "../services/comics.service";
 
 @Component({
     selector: "ml-comic-form",
@@ -42,7 +44,6 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     croppedImage: any = "";
 
     newComic: Comic = {
-        id: 0,
         title: "",
         main_picture: {
             medium: "",
@@ -59,7 +60,8 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     constructor(
         private readonly router: Router,
         private readonly fb: NonNullableFormBuilder,
-        private readonly route: ActivatedRoute
+        private readonly route: ActivatedRoute,
+        private readonly comicService: ComicsService
     ) {}
 
     ngOnInit(): void {
@@ -89,10 +91,6 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         });
     }
 
-    addComic() {
-        console.log(this.newComic);
-    }
-
     canDeactivate():
         | Observable<boolean | UrlTree>
         | Promise<boolean | UrlTree>
@@ -117,6 +115,43 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         }
     }
 
+    addComic() {
+        this.newComic.title = this.titleControl.value;
+        this.newComic.synopsis = this.synopsisControl.value;
+        this.newComic.start_date = this.start_dateControl.value;
+        this.newComic.genres = this.giveGenresArray();
+        this.newComic.num_volumes = Number(this.num_volumesControl.value);
+        this.newComic.status = this.meanControl.value;
+        this.newComic.mean = Number(this.meanControl.value);
+
+        this.comicService.addComic(this.newComic).subscribe({
+          next:(res)=>{
+            console.log(res);
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        });
+
+        console.log(this.newComic);
+    }
+
+    giveGenresArray(): { id: number; name: string }[] {
+        const arrayGenres = this.genresControl.value.split(",");
+        const arrayObject: { id: number; name: string }[] = [];
+        const genres = Genres;
+
+        for (let i = 0; i < arrayGenres.length; i++) {
+            genres.forEach((element) => {
+                if (element.name === arrayGenres[i].trim() || element.value === arrayGenres[i].trim())
+                    arrayObject.push({ id: i, name: element.value });
+            });
+        }
+        return arrayObject;
+    }
+
+
+
     validClasses(
         ngModel: FormControl,
         validClass = "is-valid",
@@ -137,6 +172,7 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     }
 
     saveImage() {
+        this.newComic.main_picture.large = this.croppedImage;
         this.newComic.main_picture.medium = this.croppedImage;
     }
 
@@ -148,5 +184,6 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     resetForm() {
         this.comicForm.reset();
         this.newComic.main_picture.medium = "";
+        this.newComic.main_picture.large = "";
     }
 }

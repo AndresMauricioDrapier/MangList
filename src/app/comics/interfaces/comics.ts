@@ -1,5 +1,5 @@
 export interface Comic {
-    id: number;
+    id?: number;
     title: string;
     main_picture: {
         medium: string;
@@ -15,7 +15,7 @@ export interface Comic {
     num_list_users?: number;
     num_scoring_users?: number;
     nsfw?: string;
-    genres?: [{id: number, name: string}];
+    genres?: {id: number, name: string}[];
     created_at?: string;
     updated_at?: string;
     media_type?: string;
