@@ -99,7 +99,7 @@ export class UsersService {
 
     hasRoleToRead(): boolean {
         this.getUser(this.userId).subscribe((user) => {
-            if (user.role === "admin" || user.role === "subscribed") {
+            if (user.role == "admin" || user.role == "subscribed") {
                 return true;
             }
             return false;

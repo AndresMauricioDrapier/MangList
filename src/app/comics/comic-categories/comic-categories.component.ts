@@ -63,7 +63,7 @@ export class ComicCategoriesComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.comicsService.getComics().subscribe((comics) => {
+        this.comicsService.getComicsCategorias("").subscribe((comics) => {
             this.comics = comics;
             console.log(this.comics);
         });
