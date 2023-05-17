@@ -7,7 +7,7 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # Copiar archivos necesarios
-COPY package*.json
+COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
