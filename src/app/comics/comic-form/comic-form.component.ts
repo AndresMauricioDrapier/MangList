@@ -156,20 +156,34 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         if (this.withID) {
           console.log(this.newComic);
             this.comicService.addComic(this.newComic, this.withID).subscribe({
-                next: (res) => {
-                    console.log(res);
+                next: () => {
+                  Swal.fire({
+                    title: "Comic editado correctamente",
+                    icon: "success",
+                });
                 },
                 error: (err) => {
-                    console.log(err);
+                  Swal.fire({
+                    title: "Error al editar el comic",
+                    text: err,
+                    icon: "error",
+                });
                 },
             });
         } else {
             this.comicService.addComic(this.newComic).subscribe({
-                next: (res) => {
-                    console.log(res);
+                next: () => {
+                  Swal.fire({
+                    title: "Comic añadido correctamente",
+                    icon: "success",
+                });
                 },
                 error: (err) => {
-                    console.log(err);
+                  Swal.fire({
+                    title: "Error al añadir el comic",
+                    text: err,
+                    icon: "error",
+                });
                 },
             });
         }
