@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from "@angular/common/http";
 
 export const UserInterceptor: HttpInterceptorFn = (req, next) => {
-    const user_id = localStorage.getItem("user_id");
+    const user_id = localStorage.getItem("user-id");
     if (user_id) {
         // Clone the request to add the new header.
         const authReq = req.clone({
