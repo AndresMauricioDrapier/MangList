@@ -78,13 +78,13 @@ export class UsersService {
         );
     }
 
-    addFavorites(idComic: number, idUser: number): Observable<void> {
+    addFavorites(idComic: string, idUser: number): Observable<void> {
         return this.http.put<void>(this.USERS_URL + "/favorites/" + idUser, {
             idComic,
         });
     }
 
-    deleteFavorite(idComic: number, idUser: number): Observable<void> {
+    deleteFavorite(idComic: string, idUser: number): Observable<void> {
         return this.http.put<void>(
             this.USERS_URL + "/favorites/delete/" + idUser,
             {

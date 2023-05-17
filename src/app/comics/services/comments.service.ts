@@ -11,7 +11,7 @@ export class CommentsService {
     private readonly COMIC_URL = "comments";
     constructor(private readonly http: HttpClient) {}
 
-    getComments(id: number): Observable<CommentsResponse> {
+    getComments(id: string): Observable<CommentsResponse> {
         return this.http.get<CommentsResponse>(`${this.COMIC_URL}/comic/${id}`);
     }
 

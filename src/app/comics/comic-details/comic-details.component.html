@@ -56,7 +56,7 @@
 
 <!-- Comentarios -->
 <section class="commentsDetailsContainer">
-  <ml-comments *ngIf="comic" [comicId]="comic.id" [comment]="comment"></ml-comments>
+  <ml-comments *ngIf="comic" [comicId]="comic.id.toString() || comic._id" [comment]="comment"></ml-comments>
   <ml-create-comment *ngIf="user && comic.id" [user]="user" [comicId]="comic.id" (comentary)="addComment($event)"></ml-create-comment>
 </section>
 <!-- /Comentarios -->

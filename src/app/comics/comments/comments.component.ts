@@ -13,7 +13,7 @@ import { CommentsService } from "../services/comments.service";
     styleUrls: ["./comments.component.scss"],
 })
 export class CommentsComponent implements OnInit,OnChanges {
-    @Input() comicId!: number;
+    @Input() comicId!: string;
     @Input() comment:Commentary;
 
     comments!: Commentary[];

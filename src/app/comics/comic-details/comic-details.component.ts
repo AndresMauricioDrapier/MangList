@@ -69,7 +69,7 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     addToFavorites(): void {
-        this.usersService.addFavorites(this.comic.id, this.user._id).subscribe({
+        this.usersService.addFavorites(this.comic.id.toString() || this.comic._id, this.user._id).subscribe({
             next: () => {
               this.inFav = true;
                 Swal.fire({
@@ -89,7 +89,7 @@ export class ComicDetailsComponent implements OnInit {
 
     deleteFronFavorites(): void {
         this.usersService.deleteFavorite(
-            this.comic.id,
+            this.comic.id.toString() ||this.comic._id,
             this.user._id
         ).subscribe({
             next: () => {
@@ -112,7 +112,7 @@ export class ComicDetailsComponent implements OnInit {
     containsFavorite(): void {
         let boolean = false;
         this.user.favorites?.map((r) =>
-            r === this.comic.id ? (boolean = true) : boolean
+            r === this.comic.id || this.comic._id ? (boolean = true) : boolean
         );
         this.inFav = boolean;
     }
@@ -120,7 +120,7 @@ export class ComicDetailsComponent implements OnInit {
     goToReadingPage(): void {
         if (this.usersService.isLogged()) {
             if (this.user.role !== "user" && this.user.role !== "api") {
-                this.router.navigate(["/comics", this.comic.id, "reading"]);
+                this.router.navigate(["/comics", this.comic.id || this.comic._id, "reading"]);
             } else {
                 this.router.navigate(["/subscriptions/type"]);
             }
@@ -145,7 +145,7 @@ export class ComicDetailsComponent implements OnInit {
 
     goToEditComic(): void {
       this.router.navigate(["/comics/edit"], {
-        queryParams: { id: this.comic.id },
+        queryParams: { id: this.comic._id },
       });
     }
 }
