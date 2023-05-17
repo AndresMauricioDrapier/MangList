@@ -43,7 +43,7 @@
 
     .descripcionNombre {
       text-align: center;
-      font-size: 2.8em;
+      font-size: 3em;
       font-weight: bolder;
       margin-left: 0.7em;
     }
@@ -99,15 +99,11 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .descripcionBotones {
-    margin-left: 0 !important;
-    text-align: left !important;
-  }
-}
-
-@media screen and (max-width: 873px) {
+@media screen and (max-width: 1400px) {
   .mainDescripcion {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     align-content: center;
     margin-bottom: 2em;
     margin-left: 1em;
@@ -116,22 +112,55 @@
     .descripcionIzquierda {
       .descripcionImagen {
         text-align: center;
-        width: 10em;
-        height: 15em;
+        width: 19em;
+        height: 28em;
         margin-top: 2em;
+        margin-bottom: 2em;
       }
 
       h1 {
         text-align: center !important;
-        font-size: 1.7em !important;
+        font-size: 2em !important;
+        margin-bottom: 0.5em;
       }
     }
   }
 }
 
-@media screen and (max-width: 617px) {
+@media screen and (max-width: 873px) {
   .mainDescripcion {
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    .descripcionIzquierda {
+      .descripcionImagen {
+        text-align: center;
+        width: 19em;
+        height: 28em;
+        margin-top: 2em;
+        margin-bottom: 2em;
+      }
+
+      h1 {
+        text-align: center !important;
+        font-size: 2em !important;
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mainDescripcion {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 
     .descripcionIzquierda {
       text-align: center;
@@ -140,48 +169,22 @@
       .descripcionImagen {
         width: 17em;
         height: 25em;
+        margin-bottom: 2em;
       }
 
       h1 {
         text-align: center !important;
         font-size: 2.6em !important;
+        margin-bottom: 0.5em;
       }
     }
-  }
-}
+    .descripcionDerecha {
+      margin-bottom: 0.5em;
 
-
-#seccionComentarios {
-  margin-top: 5em;
-
-  .list-group-item {
-    background-color: #a309cd;
-    border: 0;
-
-    #tituloComentarios {
-      color: white;
+      .descripcionBotones {
+        margin-left: 0;
+        text-align: left;
+      }
     }
-  }
-
-  #tituloFormulario {
-    color: white;
-  }
-
-  .textoComentario {
-    background-color: #23282e;
-    color: white;
-  }
-
-  .botonEnviarComentario {
-    background-color: #a309cd;
-    border-radius: 40px;
-    border: 0;
-    width: 5em;
-    opacity: 0.8;
-    text-align: center;
-    font-size: medium;
-    box-shadow: 0 0 10px #a309cd;
-    margin-right: 3px;
-    padding: 0.7em;
   }
 }
