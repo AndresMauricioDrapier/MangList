@@ -1,9 +1,6 @@
 # Imagen base
 FROM node:16.17-alpine as build-stage
 
-RUN mkdir -p /app
-
-# Directorio de trabajo
 WORKDIR /app
 
 # Copiar archivos necesarios
@@ -20,7 +17,7 @@ RUN npm run build-prod
 
 FROM nginx:1.21-alpine
 
-COPY --from=build-stage /app/dist /usr/share/nginx/index.html
+COPY --from=build-stage /app/dist/mang-list /usr/share/nginx/index.html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
