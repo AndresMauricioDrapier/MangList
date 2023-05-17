@@ -12,7 +12,9 @@
   color: white;
 
   &:hover {
-    color: #060d17;
+    color: #060d17 !important;
+    background-color: #a309cd !important;
+    font-weight: bold;
   }
 }
 
@@ -70,7 +72,7 @@
   margin-left: 2em;
   cursor: pointer;
 
-  &:hover {
+   &:hover {
     -webkit-animation-name: pulse;
     animation-name: pulse;
     -webkit-animation-duration: 1s;
