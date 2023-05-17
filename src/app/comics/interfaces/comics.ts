@@ -1,5 +1,6 @@
 export interface Comic {
     id?: number;
+    _id?: string;
     title: string;
     main_picture: {
         medium: string;

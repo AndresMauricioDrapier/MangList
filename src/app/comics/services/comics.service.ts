@@ -60,21 +60,21 @@ export class ComicsService {
                 )
             );
     }
-    getIdComic(id: number): Observable<Comic> {
+    getIdComic(id: string): Observable<Comic> {
         return this.http.get<ComicResponse>(`${this.COMIC_URL}/${id}`).pipe(
             map((r) => {
                 return r.result;
             })
         );
     }
-    addComic(rest: Comic, id?: number): Observable<Comic> {
+    addComic(rest: Comic, id?: string): Observable<Comic> {
         if (id) {
             return this.http
                 .put<ComicResponse>(`${this.COMIC_URL}/${id}`, rest)
                 .pipe(map((rest) => rest.result));
         } else {
             return this.http
-                .post<ComicResponse>(`${this.COMIC_URL}`, rest)
+                .post<ComicResponse>(`${this.COMIC_URL}/add`, rest)
                 .pipe(map((rest) => rest.result));
         }
     }

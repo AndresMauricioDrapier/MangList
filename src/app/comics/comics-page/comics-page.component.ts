@@ -64,6 +64,7 @@ export class ComicsPageComponent implements OnInit {
             } else {
                 this.comicsService.getComics().subscribe((comics) => {
                     this.comics = comics;
+                    console.log(this.comics);
                 });
             }
         });

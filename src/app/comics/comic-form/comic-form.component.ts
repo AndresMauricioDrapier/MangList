@@ -121,7 +121,7 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         this.newComic.start_date = this.start_dateControl.value;
         this.newComic.genres = this.giveGenresArray();
         this.newComic.num_volumes = Number(this.num_volumesControl.value);
-        this.newComic.status = this.meanControl.value;
+        this.newComic.status = this.statusControl.value;
         this.newComic.mean = Number(this.meanControl.value);
 
         this.comicService.addComic(this.newComic).subscribe({

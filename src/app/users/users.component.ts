@@ -109,7 +109,7 @@ export class UsersComponent implements OnInit {
         });
 
         this.user.favorites.forEach((idComic) => {
-            this.comicService.getIdComic(idComic).subscribe({
+            this.comicService.getIdComic(idComic.toString()).subscribe({
                 next: (comic) => {
                     this.comics.push(comic);
                 },

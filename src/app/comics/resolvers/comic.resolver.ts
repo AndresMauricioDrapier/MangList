@@ -5,11 +5,12 @@ import { Comic } from "../interfaces/comics";
 import { ComicsService } from "../services/comics.service";
 
 export const comicResolve: ResolveFn<Comic> = (route) => {
+  console.log(route.params["id"]);
     return inject(ComicsService)
-        .getIdComic(+route.params["id"])
+        .getIdComic(route.params["id"])
         .pipe(
             catchError(() => {
-                inject(Router).navigate(["/manglist"]);
+                inject(Router).navigate(["/"]);
                 return EMPTY;
             })
         );
