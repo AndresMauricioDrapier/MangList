@@ -28,6 +28,9 @@
                     <div class="invalid-feedback" *ngIf="emailControl.errors?.['required']">
                       El email es necesario.
                     </div>
+                    <div class="invalid-feedback" *ngIf="emailControl.errors?.['email']">
+                      El email no es correcto.
+                    </div>
                   </div>
 
                   <div class="form-outline mb-4">
@@ -35,7 +38,7 @@
                       placeholder="Introduce la contraseña" [ngClass]="validClasses(passwordControl)"
                       formControlName="password" required />
                     <div class="invalid-feedback" *ngIf="passwordControl.errors?.['required']">
-                      La contraseña es necesario.
+                      La contraseña es necesaria.
                     </div>
                   </div>
 
@@ -62,45 +65,45 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                       aria-hidden="true">
                       <div class="modal-dialog">
-                        <div class="modal-content rounded">
+                        <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">
                               Recuperar Contraseña
                             </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                              style="color: white !important"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                              aria-label="Close" style="color: white !important"></button>
                           </div>
                           <div class="modal-body">
-                            <form>
+                            <form method="POST" role="form" aria-label="none" (ngSubmit)="mailPasswordRecovery()"
+                              [formGroup]="passRecoveryForm">
                               <div class="mb-3">
-                                <label for="recipient-email" class="col-form-label">Email:</label>
-                                <input type="email" class="form-control" id="recipient-email" />
+                                <input type="email" class="form-control form-control-2" id="recipient-email"
+                                  formControlName="emailRecovery" placeholder="Email:"
+                                  [ngClass]="validClasses(emailRecoveryControl)" />
+                                <div class="invalid-feedback" *ngIf="emailRecoveryControl.errors?.['required']">
+                                  El email es necesario.
+                                </div>
+                                <div class="invalid-feedback" *ngIf="emailRecoveryControl.errors?.['email']">
+                                  El email no es correcto.
+                                </div>
                               </div>
                               <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Mensaje:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                                <textarea class="form-control form-control-2" id="message-text"
+                                  formControlName="textRecovery" placeholder="Escribe aquí tu explicación ..."
+                                  [ngClass]="validClasses(textRecoveryControl)"></textarea>
+                                <div class="invalid-feedback" *ngIf="textRecoveryControl.errors?.['required']">
+                                  El texto es necesario.
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="reset" class="btn btn-block btn-lg button buttonClose" data-bs-dismiss="modal">
+                                  Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-block btn-lg button">
+                                  Enviar mensaje
+                                </button>
                               </div>
                             </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type=" button" class="btn btn-block btn-lg" style="
-                                    color: white;
-                                    background-color: #060d17;
-                                    border-radius: 30px;
-                                    border: 0;
-                                    width: 48%;
-                                  " data-bs-dismiss="modal">
-                              Cerrar
-                            </button>
-                            <button type="button" class="btn btn-block btn-lg" style="
-                                    color: white;
-                                    background-color: #a309cd;
-                                    border-radius: 30px;
-                                    border: 0;
-                                    width: 48%;
-                                  ">
-                              Enviar mensaje
-                            </button>
                           </div>
                         </div>
                       </div>

@@ -14,6 +14,8 @@ import { GoogleLoginDirective } from "./google-login/google-login.directive";
 import { AuthService } from "../services/auth.service";
 import { AuthLogin } from "../interfaces/auth";
 import Swal from "sweetalert2";
+import { Mail } from "src/app/shared/mail/interfaces/mail";
+import { UsersService } from "src/app/users/services/users.service";
 
 @Component({
     selector: "ml-auth-login",
@@ -41,10 +43,15 @@ export class AuthLoginComponent implements OnInit {
         userId: "",
     };
 
+    passRecoveryForm!: FormGroup;
+    emailRecoveryControl!: FormControl<string>;
+    textRecoveryControl!: FormControl<string>;
+
     constructor(
         private readonly router: Router,
         private readonly authService: AuthService,
-        private readonly fb: NonNullableFormBuilder
+        private readonly userService: UsersService,
+        private readonly fb: NonNullableFormBuilder,
     ) {}
 
     ngOnInit(): void {
@@ -59,6 +66,18 @@ export class AuthLoginComponent implements OnInit {
         this.userForm = this.fb.group({
             email: this.emailControl,
             password: this.passwordControl,
+        });
+
+        this.emailRecoveryControl = this.fb.control("", [
+          Validators.required,
+          Validators.email,
+        ]);
+        this.textRecoveryControl = this.fb.control("", [
+          Validators.required,
+        ]);
+        this.passRecoveryForm = this.fb.group({
+          emailRecovery: this.emailRecoveryControl,
+          textRecovery: this.textRecoveryControl,
         });
     }
 
@@ -102,6 +121,25 @@ export class AuthLoginComponent implements OnInit {
                     text: error.error.message,
                 });
             },
+        });
+    }
+
+    mailPasswordRecovery(): void {
+        this.userService.passwordRecovery(this.emailRecoveryControl.value).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: "success",
+              title: "Correo enviado",
+              text: "Se ha enviado un correo para recuperar la contraseña",
+            });
+          },
+          error: (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: error.error.message,
+            });
+          },
         });
     }
 
