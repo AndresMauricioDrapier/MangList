@@ -12,7 +12,7 @@ COPY package*.json /app
 # Instalar dependencias
 RUN npm install
 
-COPY . /app
+COPY . .
 
 RUN npm run build-prod
 
