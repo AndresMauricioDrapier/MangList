@@ -15,6 +15,7 @@ import { AuthService } from "../services/auth.service";
 import { AuthLogin } from "../interfaces/auth";
 import Swal from "sweetalert2";
 import { Mail } from "src/app/shared/mail/interfaces/mail";
+import { UsersService } from "src/app/users/services/users.service";
 
 @Component({
     selector: "ml-auth-login",
@@ -49,7 +50,8 @@ export class AuthLoginComponent implements OnInit {
     constructor(
         private readonly router: Router,
         private readonly authService: AuthService,
-        private readonly fb: NonNullableFormBuilder
+        private readonly userService: UsersService,
+        private readonly fb: NonNullableFormBuilder,
     ) {}
 
     ngOnInit(): void {
@@ -123,7 +125,22 @@ export class AuthLoginComponent implements OnInit {
     }
 
     mailPasswordRecovery(): void {
-        this.router.navigate(["auth/password-recovery"]);
+        this.userService.passwordRecovery(this.emailRecoveryControl.value).subscribe({
+          next: () => {
+            Swal.fire({
+              icon: "success",
+              title: "Correo enviado",
+              text: "Se ha enviado un correo para recuperar la contraseña",
+            });
+          },
+          error: (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: error.error.message,
+            });
+          },
+        });
     }
 
     goRegister(): void {

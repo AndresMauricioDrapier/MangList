@@ -93,6 +93,12 @@ export class UsersService {
         );
     }
 
+    passwordRecovery(email: string): Observable<void> {
+        return this.http.put<void>("users/password-recovery", {
+            email: email,
+        });
+    }
+
     isLogged(): boolean {
         return localStorage.getItem("auth-token") ? true : false;
     }
