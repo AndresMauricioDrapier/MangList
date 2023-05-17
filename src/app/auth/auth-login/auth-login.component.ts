@@ -14,6 +14,7 @@ import { GoogleLoginDirective } from "./google-login/google-login.directive";
 import { AuthService } from "../services/auth.service";
 import { AuthLogin } from "../interfaces/auth";
 import Swal from "sweetalert2";
+import { Mail } from "src/app/shared/mail/interfaces/mail";
 
 @Component({
     selector: "ml-auth-login",
@@ -41,6 +42,10 @@ export class AuthLoginComponent implements OnInit {
         userId: "",
     };
 
+    passRecoveryForm!: FormGroup;
+    emailRecoveryControl!: FormControl<string>;
+    textRecoveryControl!: FormControl<string>;
+
     constructor(
         private readonly router: Router,
         private readonly authService: AuthService,
@@ -59,6 +64,18 @@ export class AuthLoginComponent implements OnInit {
         this.userForm = this.fb.group({
             email: this.emailControl,
             password: this.passwordControl,
+        });
+
+        this.emailRecoveryControl = this.fb.control("", [
+          Validators.required,
+          Validators.email,
+        ]);
+        this.textRecoveryControl = this.fb.control("", [
+          Validators.required,
+        ]);
+        this.passRecoveryForm = this.fb.group({
+          emailRecovery: this.emailRecoveryControl,
+          textRecovery: this.textRecoveryControl,
         });
     }
 
@@ -103,6 +120,10 @@ export class AuthLoginComponent implements OnInit {
                 });
             },
         });
+    }
+
+    mailPasswordRecovery(): void {
+        this.router.navigate(["auth/password-recovery"]);
     }
 
     goRegister(): void {
