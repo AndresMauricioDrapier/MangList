@@ -16,7 +16,7 @@ import { Auth } from "src/app/auth/interfaces/auth";
 })
 export class CreateCommentComponent implements OnInit {
     @Input() user!: Auth;
-    @Input() comicId:number;
+    @Input() comicId:string;
     @Output() comentary = new EventEmitter<Commentary>();
 
     formComment!: FormGroup;
@@ -31,7 +31,7 @@ export class CreateCommentComponent implements OnInit {
             email: "",
             avatar: "",
         },
-        comicId: 0,
+        comicId: "",
         stars: 0,
         text: "",
         date: new Date().toLocaleString(),

@@ -30,6 +30,7 @@ export class ComicDetailsComponent implements OnInit {
     comment:Commentary;
     inFav = false;
     haveRoleToEditComic!: boolean;
+    comicId:string;
 
     constructor(
         private router: Router,
@@ -41,6 +42,7 @@ export class ComicDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.route.data.subscribe((data) => {
             this.comic = data["comic"];
+            this.comicId = this.comic.id ? this.comic.id.toString():this.comic._id;
         });
 
         if (this.comic && localStorage.getItem("user-id")) {
@@ -69,7 +71,7 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     addToFavorites(): void {
-        this.usersService.addFavorites(this.comic.id.toString() || this.comic._id, this.user._id).subscribe({
+        this.usersService.addFavorites(this.comicId, this.user._id).subscribe({
             next: () => {
               this.inFav = true;
                 Swal.fire({
@@ -89,7 +91,7 @@ export class ComicDetailsComponent implements OnInit {
 
     deleteFronFavorites(): void {
         this.usersService.deleteFavorite(
-            this.comic.id.toString() ||this.comic._id,
+            this.comicId,
             this.user._id
         ).subscribe({
             next: () => {
@@ -112,7 +114,7 @@ export class ComicDetailsComponent implements OnInit {
     containsFavorite(): void {
         let boolean = false;
         this.user.favorites?.map((r) =>
-            r === this.comic.id || this.comic._id ? (boolean = true) : boolean
+            r.toString() === this.comicId ? (boolean = true) : boolean
         );
         this.inFav = boolean;
     }
@@ -120,7 +122,7 @@ export class ComicDetailsComponent implements OnInit {
     goToReadingPage(): void {
         if (this.usersService.isLogged()) {
             if (this.user.role !== "user" && this.user.role !== "api") {
-                this.router.navigate(["/comics", this.comic.id || this.comic._id, "reading"]);
+                this.router.navigate(["/comics", this.comicId, "reading"]);
             } else {
                 this.router.navigate(["/subscriptions/type"]);
             }
