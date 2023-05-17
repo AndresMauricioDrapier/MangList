@@ -79,7 +79,6 @@
     .descripcionBotones {
       font-weight: 700;
       margin-top: 3em;
-      margin-left: 21em;
       text-align: right;
 
       .descripcionBotonCesta {
@@ -91,12 +90,22 @@
         height: 1.4em;
         font-size: medium;
         box-shadow: 0 0 10px #a309cd;
-        margin-right: 3px;
+        margin-left: 1em;
         padding: 0.7em;
         cursor: pointer;
       }
+
+      .newComicButton{
+        background-color: #3200a8;
+        box-shadow: 0 0 10px #3200a8;
+        border: 1px solid #3200a8;
+      }
     }
   }
+}
+
+.commentsDetailsContainer{
+  padding-top: 2em !important;
 }
 
 @media screen and (max-width: 1400px) {
@@ -183,7 +192,11 @@
 
       .descripcionBotones {
         margin-left: 0;
-        text-align: left;
+        text-align: center;
+
+        .favButton{
+          margin-left: 0px !important;
+        }
       }
     }
   }

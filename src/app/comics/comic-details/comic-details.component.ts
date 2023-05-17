@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
-import { NonNullableFormBuilder, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { Comic } from "../interfaces/comics";
 import { CommentsComponent } from "../comments/comments.component";
 import { Auth } from "src/app/auth/interfaces/auth";
@@ -29,12 +29,12 @@ export class ComicDetailsComponent implements OnInit {
     user!: Auth;
     comment:Commentary;
     inFav = false;
+    haveRoleToEditComic!: boolean;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private readonly fb: NonNullableFormBuilder,
-        private UsersService: UsersService,
+        private usersService: UsersService,
         private readonly translateService: TranslateService
     ) {}
 
@@ -44,13 +44,15 @@ export class ComicDetailsComponent implements OnInit {
         });
 
         if (this.comic && localStorage.getItem("user-id")) {
-            this.UsersService.getUser(
+            this.usersService.getUser(
                 localStorage.getItem("user-id")!
             ).subscribe((user) => {
                 this.user = user;
                 this.containsFavorite();
             });
         }
+
+        this.haveRoleToEditComic = this.usersService.hasRoleToAdd();
 
         this.translateService
             .translate(this.comic.synopsis)
@@ -66,7 +68,7 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     addToFavorites(): void {
-        this.UsersService.addFavorites(this.comic.id, this.user._id).subscribe({
+        this.usersService.addFavorites(this.comic.id, this.user._id).subscribe({
             next: () => {
               this.inFav = true;
                 Swal.fire({
@@ -85,7 +87,7 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     deleteFronFavorites(): void {
-        this.UsersService.deleteFavorite(
+        this.usersService.deleteFavorite(
             this.comic.id,
             this.user._id
         ).subscribe({
@@ -115,7 +117,7 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     goToReadingPage(): void {
-        if (this.UsersService.isLogged()) {
+        if (this.usersService.isLogged()) {
             if (this.user.role !== "user" && this.user.role !== "api") {
                 this.router.navigate(["/comics", this.comic.id, "reading"]);
             } else {
@@ -138,5 +140,11 @@ export class ComicDetailsComponent implements OnInit {
             "/" +
             year
         );
+    }
+
+    goToEditComic(): void {
+      this.router.navigate(["/comics/edit"], {
+        queryParams: { id: this.comic.id },
+      });
     }
 }
