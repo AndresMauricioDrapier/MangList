@@ -1,23 +1,30 @@
-# Imagen base
-FROM node:16.17-alpine as build-stage
+# Stage 1: Build
+FROM node:16-alpine AS build
+# Directorio donde se mantendran los archivos de la app
+WORKDIR /usr/src/app
 
-WORKDIR /app
-
-# Copiar archivos necesarios
+# Copiar el package.json y el package-lock en nuestro WORKDIR
 COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
 
+# Copiar todos los archivos
 COPY . .
 
-RUN npm run build-prod
+# Construir la aplicacion lista para produccion, puede no incluir el # flag --prod
+RUN npm run build --prod
 
-#Segunda parte
+# Stage 2
+FROM nginx:1.17.1-alpine
 
-FROM nginx:1.21-alpine
+# Copiar desde la "Etapa" build el contenido de la carpeta build/
+# dentro del directorio indicado en nginx
+COPY --from=build /usr/src/app/dist/ang-dockerized-app /usr/share/nginx/html
 
-COPY --from=build-stage /app/dist/mang-list /usr/share/nginx/index.html
+# Copiar desde la "Etapa" build el contenido de la carpeta la
+# configuracion de nginx dentro del directorio indicado en nginx
+COPY --from=build /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
+
 
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
