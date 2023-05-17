@@ -53,6 +53,7 @@ export class ComicDetailsComponent implements OnInit {
         }
 
         this.haveRoleToEditComic = this.usersService.hasRoleToAdd();
+        this.comic.synopsis = this.comic.synopsis.substring(0, this.comic.synopsis.length - 24);
 
         this.translateService
             .translate(this.comic.synopsis)
