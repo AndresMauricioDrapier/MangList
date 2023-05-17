@@ -146,8 +146,8 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     goToEditComic(): void {
-      this.router.navigate(["/comics/edit"], {
-        queryParams: { id: this.comic._id },
+      this.router.navigate(["/comics/add"], {
+        queryParams: { comicId: this.comic._id },
       });
     }
 }

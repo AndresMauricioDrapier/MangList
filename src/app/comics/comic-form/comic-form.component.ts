@@ -35,13 +35,14 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
     synopsisControl!: FormControl<string>;
     start_dateControl!: FormControl<string>;
     genresControl!: FormControl<string>;
-    num_volumesControl!: FormControl<string>;
+    num_volumesControl!: FormControl<number>;
     statusControl!: FormControl<string>;
-    meanControl!: FormControl<string>;
+    meanControl!: FormControl<number>;
 
     exit = false;
     imageChangedEvent: any = "";
     croppedImage: any = "";
+    withID = "";
 
     newComic: Comic = {
         title: "",
@@ -70,9 +71,9 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         this.synopsisControl = this.fb.control("", [Validators.required]);
         this.start_dateControl = this.fb.control("", [Validators.required]);
         this.genresControl = this.fb.control("", [Validators.required]);
-        this.num_volumesControl = this.fb.control("", [Validators.required]);
+        this.num_volumesControl = this.fb.control(0, [Validators.required]);
         this.statusControl = this.fb.control("");
-        this.meanControl = this.fb.control("", [Validators.required]);
+        this.meanControl = this.fb.control(0, [Validators.required]);
         this.comicForm = this.fb.group({
             title: this.titleControl,
             main_picture: this.main_pictureControl,
@@ -86,7 +87,36 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
 
         this.route.queryParams.subscribe((params) => {
             if (params["comicId"]) {
-                console.log(params);
+                this.comicService.getIdComic(params["comicId"]).subscribe({
+                    next: (res) => {
+                        this.newComic = res;
+                        this.withID = params["comicId"];
+                        let genresComic = "";
+                        this.newComic.genres.forEach((e, index) => {
+                            if (this.newComic.genres.length - 1 != index)
+                                genresComic += e.name + ",";
+                            else genresComic += e.name;
+                        });
+                        this.titleControl.setValue(this.newComic.title);
+                        this.main_pictureControl.setValue(
+                            this.newComic.main_picture.medium
+                        );
+                        this.synopsisControl.setValue(this.newComic.synopsis);
+                        this.start_dateControl.setValue(
+                            this.newComic.start_date
+                        );
+                        this.genresControl.setValue(genresComic);
+                        this.num_volumesControl.setValue(
+                            this.newComic.num_volumes
+                        );
+                        this.statusControl.setValue(this.newComic.status);
+                        this.meanControl.setValue(this.newComic.mean);
+                        console.log(this.newComic);
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    },
+                });
             }
         });
     }
@@ -123,17 +153,26 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         this.newComic.num_volumes = Number(this.num_volumesControl.value);
         this.newComic.status = this.statusControl.value;
         this.newComic.mean = Number(this.meanControl.value);
-
-        this.comicService.addComic(this.newComic).subscribe({
-          next:(res)=>{
-            console.log(res);
-          },
-          error:(err)=>{
-            console.log(err);
-          }
-        });
-
-        console.log(this.newComic);
+        if (this.withID) {
+          console.log(this.newComic);
+            this.comicService.addComic(this.newComic, this.withID).subscribe({
+                next: (res) => {
+                    console.log(res);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+        } else {
+            this.comicService.addComic(this.newComic).subscribe({
+                next: (res) => {
+                    console.log(res);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+        }
     }
 
     giveGenresArray(): { id: number; name: string }[] {
@@ -147,11 +186,7 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
                     element.name.toLocaleLowerCase() ===
                         arrayGenres[i].trim().toLocaleLowerCase() ||
                     element.value.toLocaleLowerCase() ===
-                        arrayGenres[i].trim().toLocaleLowerCase() ||
-                    arrayGenres[i].trim().toLocaleLowerCase() ===
-                        "Accion".toLocaleLowerCase() ||
-                    arrayGenres[i].trim().toLocaleLowerCase() ===
-                        "Fantasia".toLocaleLowerCase()
+                        arrayGenres[i].trim().toLocaleLowerCase()
                 )
                     arrayObject.push({ id: i, name: element.value });
             });
