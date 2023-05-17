@@ -143,14 +143,21 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
 
         for (let i = 0; i < arrayGenres.length; i++) {
             genres.forEach((element) => {
-                if (element.name === arrayGenres[i].trim() || element.value === arrayGenres[i].trim())
+                if (
+                    element.name.toLocaleLowerCase() ===
+                        arrayGenres[i].trim().toLocaleLowerCase() ||
+                    element.value.toLocaleLowerCase() ===
+                        arrayGenres[i].trim().toLocaleLowerCase() ||
+                    arrayGenres[i].trim().toLocaleLowerCase() ===
+                        "Accion".toLocaleLowerCase() ||
+                    arrayGenres[i].trim().toLocaleLowerCase() ===
+                        "Fantasia".toLocaleLowerCase()
+                )
                     arrayObject.push({ id: i, name: element.value });
             });
         }
         return arrayObject;
     }
-
-
 
     validClasses(
         ngModel: FormControl,
