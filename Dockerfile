@@ -1,9 +1,6 @@
 # Imagen base
 FROM node:16.17-alpine as build-stage
 
-RUN mkdir -p /app
-
-# Directorio de trabajo
 WORKDIR /app
 
 # Copiar archivos necesarios
