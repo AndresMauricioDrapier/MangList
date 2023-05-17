@@ -11,7 +11,7 @@
     <div id="stars">
       <ml-star-rating [rating]="newComment.stars" (changed)="setRating($event)" [edit]="true"></ml-star-rating>
     </div>
-    <button type="submit" class="btn btn-primary mt-3 botonEnviarComentario" [disabled]="formComment.invalid">
+    <button type="submit" class="btn btn-primary mt-3 sendCommentButton" [disabled]="formComment.invalid">
       Enviar
     </button>
   </form>
