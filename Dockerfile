@@ -1,6 +1,5 @@
 # Stage 1: Build
 FROM node:16-alpine AS build
-
 # Directorio donde se mantendran los archivos de la app
 WORKDIR /usr/src/app
 
@@ -8,7 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm ci
+RUN npm install
 
 # Copiar todos los archivos
 COPY . .
@@ -26,5 +25,6 @@ COPY --from=build /usr/src/app/dist/ang-dockerized-app /usr/share/nginx/html
 # Copiar desde la "Etapa" build el contenido de la carpeta la
 # configuracion de nginx dentro del directorio indicado en nginx
 COPY --from=build /usr/src/app/nginx.conf /etc/nginx/conf.d/default.conf
+
 
 EXPOSE 80
