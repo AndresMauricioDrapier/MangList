@@ -56,8 +56,6 @@
     }
 
   }
-
-
 }
 
 .boton {
@@ -98,4 +96,10 @@
   border-radius: 50%;
   width: 100px;
   height: 100px;
+}
+
+@media screen and (max-width: 530px) {
+  .contenido {
+    padding-left: 6.7em;
+  }
 }
