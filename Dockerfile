@@ -20,7 +20,7 @@ RUN npm run build-prod
 
 FROM nginx:1.21-alpine
 
-COPY --from=build-stage /app/dist/MangList /usr/share/nginx/html
+COPY --from=build-stage /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
