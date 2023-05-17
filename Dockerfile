@@ -20,7 +20,7 @@ FROM nginx:1.17.1-alpine
 
 # Copiar desde la "Etapa" build el contenido de la carpeta build/
 # dentro del directorio indicado en nginx
-COPY --from=build /usr/src/app/dist/ang-dockerized-app /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/mang-list /usr/share/nginx/html
 
 # Copiar desde la "Etapa" build el contenido de la carpeta la
 # configuracion de nginx dentro del directorio indicado en nginx
