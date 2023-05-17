@@ -82,6 +82,30 @@
   }
 }
 
+.menuIcons{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+@media screen and (max-width: 530px) {
+  .menuList{
+    margin-left: 1.5em;
+  }
+
+  .searchInput{
+    width: 20em !important;
+    margin-left: 1.5em;
+  }
+
+  .menuIcons{
+    margin-top: 1.3em;
+  }
+}
+
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale3d(1, 1, 1);

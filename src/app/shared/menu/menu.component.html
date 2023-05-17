@@ -9,7 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse pt-2" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll menuList" style="--bs-scroll-height: 200px">
         <li class="nav-item">
           <a class="nav-link active m-1" aria-current="page" [routerLink]="['/']"
             [routerLinkActive]="['active']">Inicio</a>
@@ -60,18 +60,20 @@
         </li>
       </ul>
       <form class="d-flex" style="width: 35%" (submit)="busqueda()">
-        <input class="form-control me-3 busquedaInput" type="search" placeholder="Busqueda de Manga o Manhwa"
+        <input class="form-control me-3 searchInput" type="search" placeholder="Busqueda de Manga o Manhwa"
           aria-label="Search" style="background-color: #23282e !important; color: white" [(ngModel)]="filterSearch"
           [ngModelOptions]="{standalone:true}">
       </form>
-      <a [routerLink]="['/auth/login']" *ngIf="!loggedIn" class="iconoUsuario">
-        <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
-      </a>
-      <a [routerLink]="['/users', userId]" *ngIf="loggedIn" class="iconoUsuario" style="margin-right: 0;">
-        <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
-      </a>
-      <a class="nav-link iconoUsuario" *ngIf="loggedIn" [routerLinkActive]="['active']" id="logout" (click)="logout()">
-        <i class="fa-solid fa-right-from-bracket" style="color: #ffffff; font-size: 1.3em;"></i></a>
+      <div class="menuIcons">
+        <a [routerLink]="['/auth/login']" *ngIf="!loggedIn" class="iconoUsuario">
+          <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
+        </a>
+        <a [routerLink]="['/users', userId]" *ngIf="loggedIn" class="iconoUsuario" style="margin-right: 0;">
+          <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
+        </a>
+        <a class="nav-link iconoUsuario" *ngIf="loggedIn" [routerLinkActive]="['active']" id="logout" (click)="logout()">
+          <i class="fa-solid fa-right-from-bracket" style="color: #ffffff; font-size: 1.3em;"></i></a>
+      </div>
     </div>
   </div>
 </nav>
