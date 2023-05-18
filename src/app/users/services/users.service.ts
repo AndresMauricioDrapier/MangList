@@ -113,13 +113,12 @@ export class UsersService {
         return false;
     }
 
-    hasRoleToAdd(): boolean {
-        this.getUser(this.userId).subscribe((user) => {
-            if (user.role === "admin") {
-                return true;
-            }
-            return false;
+    hasRoleToAdd(): Observable<boolean> {
+        return new Observable<boolean>((observer) => {
+            this.getUser(this.userId).subscribe((user) => {
+                observer.next(user.role === "admin");
+                observer.complete();
+            });
         });
-        return false;
     }
 }

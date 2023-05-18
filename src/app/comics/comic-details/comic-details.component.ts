@@ -54,7 +54,9 @@ export class ComicDetailsComponent implements OnInit {
             });
         }
 
-        this.haveRoleToEditComic = this.usersService.hasRoleToAdd();
+        this.usersService.hasRoleToAdd().subscribe((bool) => {
+          this.haveRoleToEditComic = bool;
+        });
         this.comic.synopsis = this.comic.synopsis.substring(0, this.comic.synopsis.length - 24);
 
         this.translateService

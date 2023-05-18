@@ -15,6 +15,7 @@ import { Comic } from "../interfaces/comics";
 import { CanDeactivateComponent } from "src/app/guards/leavePageGuard.guard";
 import { Genres } from "../interfaces/categories";
 import { ComicsService } from "../services/comics.service";
+import { UsersService } from "src/app/users/services/users.service";
 
 @Component({
     selector: "ml-comic-form",
@@ -62,10 +63,17 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         private readonly router: Router,
         private readonly fb: NonNullableFormBuilder,
         private readonly route: ActivatedRoute,
-        private readonly comicService: ComicsService
+        private readonly comicService: ComicsService,
+        private readonly userService:UsersService
     ) {}
 
     ngOnInit(): void {
+
+      this.userService.hasRoleToAdd().subscribe((e)=>{
+        if(!e){
+          this.router.navigate(["/"]);
+        }
+      });
         this.titleControl = this.fb.control("", [Validators.required]);
         this.main_pictureControl = this.fb.control("", [Validators.required]);
         this.synopsisControl = this.fb.control("", [Validators.required]);
