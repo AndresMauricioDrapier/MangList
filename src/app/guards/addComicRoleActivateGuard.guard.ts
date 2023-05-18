@@ -1,13 +1,23 @@
-import { inject } from "@angular/core";
-import { CanActivateFn, Router } from "@angular/router";
+import { Injectable } from "@angular/core";
+import { CanActivate, Router } from "@angular/router";
+import { Observable } from "rxjs";
 import { UsersService } from "../users/services/users.service";
 
-export const addComicRoleActivateGuard: CanActivateFn = () => {
-    const router = inject(Router);
-    if (inject(UsersService).hasRoleToAdd()) {
-        return true;
-    } else {
-        router.navigate(["/"]);
-        return false;
+@Injectable()
+export class addComicRoleActivateGuard implements CanActivate {
+    constructor(private userService: UsersService, private router: Router) {}
+
+    canActivate(): Observable<boolean> {
+        return new Observable<boolean>((observer) => {
+            this.userService.hasRoleToAdd().subscribe((hasRoleToAdd) => {
+                if (!hasRoleToAdd) {
+                    this.router.navigate(["/"]); // Redirige a la página principal
+                    observer.next(false);
+                } else {
+                    observer.next(true);
+                }
+                observer.complete();
+            });
+        });
     }
-};
+}

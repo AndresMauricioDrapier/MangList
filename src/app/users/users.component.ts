@@ -63,8 +63,9 @@ export class UsersComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.haveRoleToAddComic = this.userService.hasRoleToAdd();
-
+        this.userService.hasRoleToAdd().subscribe((bool) => {
+          this.haveRoleToAddComic = bool;
+        });
         this.route.data.subscribe((user) => {
             if (user["user"]) {
                 this.user = user["user"];

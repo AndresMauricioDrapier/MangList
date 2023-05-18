@@ -2,7 +2,6 @@ import { Routes } from "@angular/router";
 import { comicResolve } from "./resolvers/comic.resolver";
 import { loginActivateGuard } from "../guards/loginActivateGuard.guard";
 import { roleActivateGuard } from "../guards/roleActivateGuard.guard";
-import { addComicRoleActivateGuard } from "../guards/addComicRoleActivateGuard.guard";
 
 export const COMICS_ROUTES: Routes = [
     {
@@ -29,7 +28,7 @@ export const COMICS_ROUTES: Routes = [
             import("./comic-form/comic-form.component").then(
                 (m) => m.ComicFormComponent
             ),
-        canActivate: [loginActivateGuard],
+            canActivate: [loginActivateGuard],
         // resolve: {
         //     comic: comicResolve,
         // },
