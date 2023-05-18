@@ -59,7 +59,6 @@ export async function enviarPDFyCorreo(payment, subscription) {
           },
       },
   };
-  console.log(pdfMake);
   pdfMake.createPdf(documentDefinition).open();
 }
 

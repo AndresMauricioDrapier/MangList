@@ -119,10 +119,9 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
                         );
                         this.statusControl.setValue(this.newComic.status);
                         this.meanControl.setValue(this.newComic.mean);
-                        console.log(this.newComic);
                     },
                     error: (err) => {
-                        console.log(err);
+                        console.error(err);
                     },
                 });
             }
@@ -162,7 +161,6 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         this.newComic.status = this.statusControl.value;
         this.newComic.mean = Number(this.meanControl.value);
         if (this.withID) {
-          console.log(this.newComic);
             this.comicService.addComic(this.newComic, this.withID).subscribe({
                 next: () => {
                   Swal.fire({

@@ -123,9 +123,6 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         this.newMail.to = this.newUser.email;
 
         this.mailServices.send(this.newMail).subscribe({
-            next: () => {
-                console.log(this.newMail);
-            },
             error: (e) => {
                 console.error("Error al enviar el mail" + e);
             },

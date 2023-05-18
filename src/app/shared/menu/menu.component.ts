@@ -24,8 +24,8 @@ export class MenuComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.authService.isLogged();
-        this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
+      this.authService.isLogged();
+      this.authService.loginChange$.subscribe((t) => (this.loggedIn = t));
     }
 
     logout(): void {
@@ -50,6 +50,7 @@ export class MenuComponent implements OnInit {
             queryParams: { search: this.filterSearch },
         });
     }
+
     busquedaFiltro(genero) {
         this.router.navigate(["/categorias"], {
             queryParams: { filtro: genero },

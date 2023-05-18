@@ -62,7 +62,7 @@ export class CreateCommentComponent implements OnInit {
                 this.comentary.emit(resp.result);
             },
             error: (e) => {
-                console.log(e);
+                console.error(e);
             },
         });
     }

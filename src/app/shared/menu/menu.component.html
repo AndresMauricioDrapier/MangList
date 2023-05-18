@@ -68,7 +68,7 @@
         <a [routerLink]="['/auth/login']" *ngIf="!loggedIn" class="iconoUsuario">
           <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
         </a>
-        <a [routerLink]="['/users', userId]" *ngIf="loggedIn" class="iconoUsuario" style="margin-right: 0;">
+        <a [routerLink]="['/users/me']" *ngIf="loggedIn" class="iconoUsuario" style="margin-right: 0;">
           <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
         </a>
         <a class="nav-link iconoUsuario" *ngIf="loggedIn" [routerLinkActive]="['active']" id="logout" (click)="logout()">

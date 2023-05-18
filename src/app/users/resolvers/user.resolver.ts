@@ -10,7 +10,7 @@ export const userResolve: ResolveFn<Auth> = (route) => {
         .getUser(route.params["id"])
         .pipe(
             catchError(() => {
-                inject(Router).navigate(["/"]);
+                inject(Router).navigate(["/login"]);
                 return EMPTY;
             })
         );

@@ -66,7 +66,6 @@ export class ContactComponent implements OnInit {
 
         this.mailServices.send(this.newMail).subscribe({
             next: () => {
-                console.log(this.newMail);
                 Swal.fire({
                     title: "¡Mensaje enviado!",
                     icon: "success",

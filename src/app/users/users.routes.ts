@@ -11,6 +11,15 @@ export const USER_ROUTES: Routes = [
         // canDeactivate: [leavePageGuard],
     },
     {
+      path: 'me',
+      loadComponent: () =>
+        import('./users.component').then(
+          (m) => m.UsersComponent
+        ),
+      canDeactivate: [leavePageGuard],
+      canActivate: [loginActivateGuard],
+    },
+    {
       path: ':id',
       loadComponent: () =>
         import('./users.component').then(

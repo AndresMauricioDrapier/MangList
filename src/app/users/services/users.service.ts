@@ -13,18 +13,45 @@ export class UsersService {
 
     userId = localStorage.getItem("user-id") || "";
 
-    getUser(id: string): Observable<Auth> {
-        return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
-            map((r) => {
-                return r.result;
-            }),
-            catchError((resp: HttpErrorResponse) =>
-                throwError(
-                    () =>
-                        `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
+    // getUser(id: string): Observable<Auth> {
+    //     return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
+    //         map((r) => {
+    //             return r.result;
+    //         }),
+    //         catchError((resp: HttpErrorResponse) =>
+    //             throwError(
+    //                 () =>
+    //                     `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
+    //             )
+    //         )
+    //     );
+    // }
+
+    getUser(id: string, me?: boolean): Observable<Auth> {
+        if (me) {
+            const me = localStorage.getItem("user-id");
+            return this.http.get<AuthResponse>(`${this.USERS_URL}/${me}`).pipe(
+                map((r) => {
+                    return r.result;
+                }),
+                catchError((resp: HttpErrorResponse) =>
+                    throwError(
+                        () =>
+                            `Error al coger tu usuario. Estado: ${resp.status}. Mensaje: ${resp.message}`
+                    )
                 )
-            )
-        );
+            );
+        } else {
+            return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
+                map((r) => r.result),
+                catchError((resp: HttpErrorResponse) =>
+                    throwError(
+                        () =>
+                            `Error al coger tu usuario. Estado: ${resp.status}. Mensaje: ${resp.message}`
+                    )
+                )
+            );
+        }
     }
 
     // getUserImage(imageName: string): Observable<string> {

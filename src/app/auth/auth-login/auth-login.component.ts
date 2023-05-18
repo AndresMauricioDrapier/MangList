@@ -14,7 +14,6 @@ import { GoogleLoginDirective } from "./google-login/google-login.directive";
 import { AuthService } from "../services/auth.service";
 import { AuthLogin } from "../interfaces/auth";
 import Swal from "sweetalert2";
-import { Mail } from "src/app/shared/mail/interfaces/mail";
 import { UsersService } from "src/app/users/services/users.service";
 
 @Component({
@@ -94,7 +93,6 @@ export class AuthLoginComponent implements OnInit {
 
     loggedGoogle(user: gapi.auth2.GoogleUser): void {
         this.userInfo.token = user.getAuthResponse().id_token;
-        console.log(this.userInfo, user.getAuthResponse().id_token);
 
         this.authService.loginGoogle(this.userInfo).subscribe({
             next: () => this.router.navigate(["/restaurants"]),

@@ -64,15 +64,32 @@ export class UsersComponent implements OnInit {
 
     ngOnInit(): void {
         this.userService.hasRoleToAdd().subscribe((bool) => {
-          this.haveRoleToAddComic = bool;
+            this.haveRoleToAddComic = bool;
         });
+
         this.route.data.subscribe((user) => {
             if (user["user"]) {
                 this.user = user["user"];
+                this.user.favorites.forEach((idComic) => {
+                    this.comicService.getIdComic(idComic.toString()).subscribe({
+                        next: (comic) => {
+                            this.comics.push(comic);
+                        },
+                    });
+                });
             } else {
-                this.userService
-                    .getUser(this.userId)
-                    .subscribe((u) => (this.user = u));
+                this.userService.getUser("0", true).subscribe((u) => {
+                    this.user = u;
+                    this.user.favorites.forEach((idComic) => {
+                        this.comicService
+                            .getIdComic(idComic.toString())
+                            .subscribe({
+                                next: (comic) => {
+                                    this.comics.push(comic);
+                                },
+                            });
+                    });
+                });
             }
         });
 
@@ -107,14 +124,6 @@ export class UsersComponent implements OnInit {
         this.passForm = this.fb.group({
             password: this.passwordControl,
             password2: this.password2Control,
-        });
-
-        this.user.favorites.forEach((idComic) => {
-            this.comicService.getIdComic(idComic.toString()).subscribe({
-                next: (comic) => {
-                    this.comics.push(comic);
-                },
-            });
         });
     }
 
@@ -181,7 +190,6 @@ export class UsersComponent implements OnInit {
                             this.router.navigate(["/users/", this.userId]);
                         },
                         error: (err) => {
-                            console.log(err);
                             Swal.fire({
                                 title: "Contraseña descartada",
                                 text: err,
@@ -209,7 +217,6 @@ export class UsersComponent implements OnInit {
             denyButtonText: "Cerrar",
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(this.user.avatar);
                 this.userService
                     .saveAvatar(
                         this.newAvatar,
@@ -225,7 +232,6 @@ export class UsersComponent implements OnInit {
                             this.router.navigate(["/users", this.userId]);
                         },
                         error: (err) => {
-                            console.log(err);
                             Swal.fire({
                                 title: "Avatar descartada",
                                 text: err,
@@ -267,6 +273,6 @@ export class UsersComponent implements OnInit {
     }
 
     goToAddComic(): void {
-      this.router.navigate(["/comics/add"]);
+        this.router.navigate(["/comics/add"]);
     }
 }
