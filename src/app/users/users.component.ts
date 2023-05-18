@@ -63,37 +63,17 @@ export class UsersComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.userService.hasRoleToAdd().subscribe((bool) => {
-            this.haveRoleToAddComic = bool;
-        });
-
         this.route.data.subscribe((user) => {
             if (user["user"]) {
                 this.user = user["user"];
-                this.user.favorites.forEach((idComic) => {
-                    this.comicService.getIdComic(idComic.toString()).subscribe({
-                        next: (comic) => {
-                            this.comics.push(comic);
-                        },
-                    });
-                });
+                this.makeAtInit();
             } else {
                 this.userService.getUser("0", true).subscribe((u) => {
                     this.user = u;
-                    this.user.favorites.forEach((idComic) => {
-                        this.comicService
-                            .getIdComic(idComic.toString())
-                            .subscribe({
-                                next: (comic) => {
-                                    this.comics.push(comic);
-                                },
-                            });
-                    });
+                    this.makeAtInit();
                 });
             }
         });
-
-        this.isMe = this.userId === this.user._id?.toString();
 
         this.nameControl = this.fb.control("", [
             Validators.required,
@@ -165,6 +145,20 @@ export class UsersComponent implements OnInit {
                 });
                 return false;
             }
+        });
+    }
+
+    makeAtInit(): void {
+        this.userService.hasRoleToAdd().subscribe((bool) => {
+            this.haveRoleToAddComic = bool;
+        });
+        this.isMe = this.userId === this.user._id?.toString();
+        this.user.favorites.forEach((idComic) => {
+            this.comicService.getIdComic(idComic.toString()).subscribe({
+                next: (comic) => {
+                    this.comics.push(comic);
+                },
+            });
         });
     }
 

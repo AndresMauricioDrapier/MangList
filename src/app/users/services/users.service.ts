@@ -29,15 +29,14 @@ export class UsersService {
 
     getUser(id: string, me?: boolean): Observable<Auth> {
         if (me) {
-            const me = localStorage.getItem("user-id");
-            return this.http.get<AuthResponse>(`${this.USERS_URL}/${me}`).pipe(
+            return this.http.get<AuthResponse>(`${this.USERS_URL}/${this.userId}`).pipe(
                 map((r) => {
                     return r.result;
                 }),
                 catchError((resp: HttpErrorResponse) =>
                     throwError(
                         () =>
-                            `Error al coger tu usuario. Estado: ${resp.status}. Mensaje: ${resp.message}`
+                            `Error al coger tu usuario desde me. Estado: ${resp.status}. Mensaje: ${resp.message}`
                     )
                 )
             );
@@ -47,7 +46,7 @@ export class UsersService {
                 catchError((resp: HttpErrorResponse) =>
                     throwError(
                         () =>
-                            `Error al coger tu usuario. Estado: ${resp.status}. Mensaje: ${resp.message}`
+                            `Error al coger tu usuario desde id. Estado: ${resp.status}. Mensaje: ${resp.message}`
                     )
                 )
             );
