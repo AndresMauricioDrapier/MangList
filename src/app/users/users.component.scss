@@ -73,6 +73,7 @@
 
 #comicsFavoritos {
   color: white;
+  text-align: center;
 }
 
 .modal-content{
@@ -98,8 +99,11 @@
   height: 100px;
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 519px) {
   .contenido {
-    padding-left: 6.7em;
+    padding-left: 13%;
+  }
+  .editPassButton{
+    margin-top: 10px;
   }
 }

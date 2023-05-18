@@ -27,10 +27,10 @@ import { Commentary } from "../interfaces/comment";
 export class ComicDetailsComponent implements OnInit {
     comic!: Comic;
     user!: Auth;
-    comment:Commentary;
+    comment: Commentary;
     inFav = false;
     haveRoleToEditComic!: boolean;
-    comicId:string;
+    comicId: string;
 
     constructor(
         private router: Router,
@@ -42,20 +42,28 @@ export class ComicDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.route.data.subscribe((data) => {
             this.comic = data["comic"];
-            this.comicId = this.comic.id ? this.comic.id.toString():this.comic._id;
+            this.comicId = this.comic.id
+                ? this.comic.id.toString()
+                : this.comic._id;
         });
 
         if (this.comic && localStorage.getItem("user-id")) {
-            this.usersService.getUser(
-                localStorage.getItem("user-id")!
-            ).subscribe((user) => {
-                this.user = user;
-                this.containsFavorite();
-            });
+            this.usersService
+                .getUser(localStorage.getItem("user-id")!)
+                .subscribe((user) => {
+                    this.user = user;
+                    this.containsFavorite();
+                });
         }
 
         this.haveRoleToEditComic = this.usersService.hasRoleToAdd();
-        this.comic.synopsis = this.comic.synopsis.substring(0, this.comic.synopsis.length - 24);
+        this.comic.synopsis = this.comic.synopsis.substring(
+            0,
+            this.comic.synopsis.length - 24
+        );
+        this.comic.genres.length >= 5
+            ? (this.comic.genres = this.comic.genres.slice(0, 4))
+            : this.comic.genres;
 
         this.translateService
             .translate(this.comic.synopsis)
@@ -66,14 +74,14 @@ export class ComicDetailsComponent implements OnInit {
         this.comic.start_date = this.formatDate(this.comic.start_date);
     }
 
-    addComment(comment:Commentary){
-      this.comment = comment;
+    addComment(comment: Commentary) {
+        this.comment = comment;
     }
 
     addToFavorites(): void {
         this.usersService.addFavorites(this.comicId, this.user._id).subscribe({
             next: () => {
-              this.inFav = true;
+                this.inFav = true;
                 Swal.fire({
                     icon: "success",
                     title: "¡Comic añadido a favoritos!",
@@ -90,25 +98,24 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     deleteFronFavorites(): void {
-        this.usersService.deleteFavorite(
-            this.comicId,
-            this.user._id
-        ).subscribe({
-            next: () => {
-              this.inFav = false;
-                Swal.fire({
-                    icon: "success",
-                    title: "¡Comic eliminado de favoritos!",
-                });
-            },
-            error: () => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Comic no eliminado de favoritos",
-                });
-            },
-        });
+        this.usersService
+            .deleteFavorite(this.comicId, this.user._id)
+            .subscribe({
+                next: () => {
+                    this.inFav = false;
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Comic eliminado de favoritos!",
+                    });
+                },
+                error: () => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Comic no eliminado de favoritos",
+                    });
+                },
+            });
     }
 
     containsFavorite(): void {
@@ -146,8 +153,8 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     goToEditComic(): void {
-      this.router.navigate(["/comics/add"], {
-        queryParams: { comicId: this.comic._id },
-      });
+        this.router.navigate(["/comics/add"], {
+            queryParams: { comicId: this.comic._id },
+        });
     }
 }

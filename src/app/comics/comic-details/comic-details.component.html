@@ -43,7 +43,7 @@
     <!-- Botones -->
     <div *ngIf="user" class="descripcionBotones">
       <a class="descripcionBotonCesta favButton" (click)="addToFavorites()" *ngIf="!inFav">Añadir a favoritos</a>
-      <a class="descripcionBotonCesta" (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
+      <a class="descripcionBotonCesta favButton" (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
       <a class="descripcionBotonCesta" (click)="goToReadingPage()">Leer capitulos</a>
       <a *ngIf="haveRoleToEditComic" class="descripcionBotonCesta newComicButton" (click)="goToEditComic()">
         Editar comic
