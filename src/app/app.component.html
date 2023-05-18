@@ -1,6 +1,8 @@
 <ml-menu></ml-menu>
 <div class="container">
   <router-outlet></router-outlet>
+
+  <!-- Modal en caso de que sea un dispositivo mobil -->
   <div *ngIf="isMobile" id="modal">
     <div class="blog-card spring-fever">
       <div class="title-content">
@@ -21,4 +23,6 @@
       <div class="color-overlay"></div>
     </div><!-- /.blog-card -->
   </div>
+  <!-- /Modal en caso de que sea un dispositivo mobil -->
+  <ml-cookies></ml-cookies>
   <ml-footer></ml-footer>

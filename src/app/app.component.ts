@@ -4,13 +4,14 @@ import { isMobile } from "./shared/validators/isMobile";
 import { RouterModule } from "@angular/router";
 import { MenuComponent } from "./shared/menu/menu.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+import { CookiesComponent } from "./shared/cookies/cookies.component";
 
 @Component({
     selector: "ml-root",
     standalone: true,
-    imports: [CommonModule, RouterModule, MenuComponent, FooterComponent],
     templateUrl: "./app.component.html",
     styleUrls: ["./app.component.scss"],
+    imports: [CommonModule, RouterModule, MenuComponent, FooterComponent, CookiesComponent]
 })
 export class AppComponent implements OnInit {
     title = "MangList";
