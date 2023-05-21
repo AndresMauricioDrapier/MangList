@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ActivatedRoute, RouterModule, UrlTree } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule, UrlTree } from "@angular/router";
 import { Subscription } from "../interfaces/subscription";
 import {
     FormControl,
@@ -95,7 +95,8 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
     };
 
     constructor(
-        private route: ActivatedRoute,
+        private readonly route: ActivatedRoute,
+        private readonly router: Router,
         private readonly fb: NonNullableFormBuilder,
         private readonly mailServices: MailService,
         private readonly userService: UsersService,
@@ -190,6 +191,7 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         enviarPDFyCorreo(this.newPayment, this.subscription);
+                        this.router.navigate(["/"]);
                         return true;
                     } else {
                         return false;
