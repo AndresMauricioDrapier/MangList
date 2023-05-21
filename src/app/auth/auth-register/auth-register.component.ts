@@ -11,7 +11,7 @@ import {
     ReactiveFormsModule,
     Validators,
 } from "@angular/forms";
-import { Auth } from "../interfaces/auth";
+import { Auth, AuthLogin } from "../interfaces/auth";
 import { isTheSame } from "src/app/shared/validators/isTheSame";
 import { AuthService } from "../services/auth.service";
 import Swal from "sweetalert2";
@@ -48,6 +48,13 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
         name: "",
         email: "",
         avatar: "",
+    };
+
+    userInfo: AuthLogin = {
+        email: "",
+        password: "",
+        token: "",
+        userId: "",
     };
 
     newMail: Mail = {
@@ -143,7 +150,16 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
                     title: "¡Usuario registrado!",
                     text: "¡Bienvenido " + this.newUser.name + "!",
                 });
-                this.router.navigate(["/auth/login"]);
+                this.userInfo.email = this.newUser.email;
+                this.userInfo.password = this.newUser.password;
+                this.authService.login(this.userInfo).subscribe({
+                    next: () => {
+                        this.router.navigate(["/"]);
+                    },
+                    error: (error) => {
+                        console.error(error);
+                    },
+                });
             },
             error: (error) => {
                 Swal.fire({
@@ -184,7 +200,7 @@ export class AuthRegisterComponent implements OnInit, CanDeactivateComponent {
     }
 
     resetForm() {
-      this.userForm.reset();
-      this.newUser.avatar = "";
+        this.userForm.reset();
+        this.newUser.avatar = "";
     }
 }
