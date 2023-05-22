@@ -100,7 +100,7 @@ export class AuthLoginComponent implements OnInit {
     }
 
 
-    loggin(): void {
+    login(): void {
         this.userInfo.email = this.emailControl.value.toLocaleLowerCase();
         this.userInfo.password = this.userForm.controls["password"].value;
         this.authService.login(this.userInfo).subscribe({
