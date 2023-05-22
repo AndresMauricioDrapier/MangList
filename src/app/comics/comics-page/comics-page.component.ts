@@ -15,10 +15,14 @@ import { MenuComponent } from "src/app/shared/menu/menu.component";
 import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
 import { searchComic } from "../interfaces/responses";
 import { Genres } from "../interfaces/categories";
+import { SlideButtonComponent } from "../../shared/slide-button/slide-button.component";
 
 @Component({
     selector: "ml-comics-page",
     standalone: true,
+    providers: [{ provide: MenuComponent, useValue: {} }],
+    templateUrl: "./comics-page.component.html",
+    styleUrls: ["./comics-page.component.scss"],
     imports: [
         CommonModule,
         FormsModule,
@@ -26,10 +30,8 @@ import { Genres } from "../interfaces/categories";
         MenuComponent,
         ComicsFilterPipe,
         ReactiveFormsModule,
-    ],
-    providers: [{ provide: MenuComponent, useValue: {} }],
-    templateUrl: "./comics-page.component.html",
-    styleUrls: ["./comics-page.component.scss"],
+        SlideButtonComponent
+    ]
 })
 export class ComicsPageComponent implements OnInit {
     comics: ComicyRanking[] = [];

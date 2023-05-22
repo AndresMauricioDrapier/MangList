@@ -13,19 +13,21 @@ import { ComicCardComponent } from "../comic-card/comic-card.component";
 import { Genres, Order, StartDate, Status } from "../interfaces/categories";
 import { ComicyRanking } from "../interfaces/comics";
 import { ComicsFilterCategoryPipe } from "../pipes/comics-filter-category.pipe";
+import { SlideButtonComponent } from "../../shared/slide-button/slide-button.component";
 
 @Component({
     selector: "ml-comic-categories",
     standalone: true,
+    templateUrl: "./comic-categories.component.html",
+    styleUrls: ["./comic-categories.component.scss"],
     imports: [
         CommonModule,
         FormsModule,
         ComicCardComponent,
         ReactiveFormsModule,
         ComicsFilterCategoryPipe,
-    ],
-    templateUrl: "./comic-categories.component.html",
-    styleUrls: ["./comic-categories.component.scss"],
+        SlideButtonComponent
+    ]
 })
 export class ComicCategoriesComponent implements OnInit {
     filterAll: FormGroup;
