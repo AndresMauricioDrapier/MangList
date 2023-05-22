@@ -42,10 +42,14 @@
     <!-- /Datos -->
     <!-- Botones -->
     <div *ngIf="user" class="descripcionBotones">
-      <a class="descripcionBotonCesta favButton" (click)="addToFavorites()" *ngIf="!inFav">Añadir a favoritos</a>
-      <a class="descripcionBotonCesta favButton" (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
-      <a class="descripcionBotonCesta" (click)="goToReadingPage()">Leer capitulos</a>
-      <a *ngIf="haveRoleToEditComic" class="descripcionBotonCesta newComicButton" (click)="goToEditComic()">
+      <a class="descripcionBotonCesta favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+        (click)="addToFavorites()" *ngIf="!inFav">Añadir a favoritos</a>
+      <a class="descripcionBotonCesta favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+        (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
+      <a class="descripcionBotonCesta" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+        (click)="goToReadingPage()">Leer capitulos</a>
+      <a *ngIf="haveRoleToEditComic" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+        class="descripcionBotonCesta newComicButton" (click)="goToEditComic()">
         Editar comic
       </a>
     </div>
@@ -57,6 +61,7 @@
 <!-- Comentarios -->
 <section class="commentsDetailsContainer">
   <ml-comments *ngIf="comic" [comicId]="comicId" [comment]="comment"></ml-comments>
-  <ml-create-comment *ngIf="user && comicId" [user]="user" [comicId]="comicId" (comentary)="addComment($event)"></ml-create-comment>
+  <ml-create-comment *ngIf="user && comicId" [user]="user" [comicId]="comicId"
+    (comentary)="addComment($event)"></ml-create-comment>
 </section>
 <!-- /Comentarios -->
