@@ -67,6 +67,7 @@ export class UsersComponent implements OnInit {
             if (user["user"]) {
                 this.user = user["user"];
                 this.makeAtInit();
+                console.log(this.user);
             } else {
                 this.userService.getUser("0", true).subscribe((u) => {
                     this.user = u;
@@ -214,8 +215,7 @@ export class UsersComponent implements OnInit {
                 this.userService
                     .saveAvatar(
                         this.newAvatar,
-                        this.user.name!,
-                        this.user.avatar!
+                        this.user.name!
                     )
                     .subscribe({
                         next: () => {
