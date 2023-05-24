@@ -190,10 +190,21 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
                     denyButtonText: "No, gracias",
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "¡Gracias por la compra!",
+                            text: "Te has subscrito correctamente",
+                        });
                         enviarPDFyCorreo(this.newPayment, this.subscription);
                         this.router.navigate(["/"]);
                         return true;
                     } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "No se ha descargado el recibo",
+                        });
+                        this.router.navigate(["/"]);
                         return false;
                     }
                 });
