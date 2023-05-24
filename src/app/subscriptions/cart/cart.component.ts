@@ -200,9 +200,9 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
                         return true;
                     } else {
                         Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "No se ha descargado el recibo",
+                            icon: "success",
+                            title: "¡Gracias por la compra!",
+                            text: "Te has subscrito correctamente",
                         });
                         this.router.navigate(["/"]);
                         return false;
