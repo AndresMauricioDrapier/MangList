@@ -22,8 +22,6 @@ export class CreateCommentComponent implements OnInit {
     formComment!: FormGroup;
     commentControl!: FormControl<string>;
 
-    commentAgain:boolean;
-
     newComment: Commentary = {
         user: {
             _id: 0,
@@ -60,6 +58,8 @@ export class CreateCommentComponent implements OnInit {
         this.commentsServices.addComment(this.newComment).subscribe({
             next: (resp) => {
                 this.comentary.emit(resp.result);
+                this.formComment.reset();
+                this.newComment.stars = 0;
             },
             error: (e) => {
                 console.error(e);
