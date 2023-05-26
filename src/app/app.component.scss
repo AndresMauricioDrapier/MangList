@@ -24,3 +24,15 @@ body {
   background-color: #060d17 !important;
   color: white;
 }
+
+ml-menu{
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+ml-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+}
