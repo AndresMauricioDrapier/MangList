@@ -1,4 +1,4 @@
-<section class="h-100 gradient-form">
+<section class="gradient-form">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -20,7 +20,7 @@
                   </h4>
                 </div>
 
-                <form action="#" class="mt-4" method="POST" role="form" (ngSubmit)="login()" [formGroup]="userForm">
+                <form action="#" class="mt-4" method="POST" role="form" (ngSubmit)="login()" [formGroup]="userForm" aria-label="">
                   <div class="form-outline mb-4">
                     <input type="email" id="form2Example11" class="form-control form-control-2"
                       placeholder="Introduce el email" [ngClass]="validClasses(emailControl)" formControlName="email"
