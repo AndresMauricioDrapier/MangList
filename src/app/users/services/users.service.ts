@@ -79,10 +79,7 @@ export class UsersService {
         });
     }
 
-    saveAvatar(
-        avatar: string,
-        name: string,
-    ): Observable<string> {
+    saveAvatar(avatar: string, name: string): Observable<string> {
         return this.http.put<string>(
             this.USERS_URL + "/avatar/" + this.userId,
             {
@@ -101,6 +98,15 @@ export class UsersService {
             {
                 firstPassword,
                 secondPassword,
+            }
+        );
+    }
+
+    saveLastComicRead(idUser: number, idComic: string): Observable<void> {
+        return this.http.put<void>(
+            this.USERS_URL + "/lastComicRead/" + idUser,
+            {
+                idComic,
             }
         );
     }

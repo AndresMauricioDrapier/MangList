@@ -47,7 +47,7 @@
       <a class="descripcionBotonCesta favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
         (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
       <a class="descripcionBotonCesta" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
-        (click)="goToReadingPage()">Leer capitulos</a>
+        (click)="savelastComicRead()">Leer capitulos</a>
       <a *ngIf="haveRoleToEditComic" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
         class="descripcionBotonCesta newComicButton" (click)="goToEditComic()">
         Editar comic

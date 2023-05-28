@@ -57,9 +57,12 @@ export class ComicDetailsComponent implements OnInit {
         }
 
         this.usersService.hasRoleToAdd().subscribe((bool) => {
-          this.haveRoleToEditComic = bool;
+            this.haveRoleToEditComic = bool;
         });
-        this.comic.synopsis = this.comic.synopsis.substring(0, this.comic.synopsis.length - 24);
+        this.comic.synopsis = this.comic.synopsis.substring(
+            0,
+            this.comic.synopsis.length - 24
+        );
         this.comic.genres = this.comic.genres.slice(0, 4);
         this.translateService
             .translate(this.comic.synopsis)
@@ -132,6 +135,17 @@ export class ComicDetailsComponent implements OnInit {
         } else {
             this.router.navigate(["/auth/login"]);
         }
+    }
+
+    savelastComicRead() {
+        this.usersService
+            .saveLastComicRead(this.user._id, this.comicId)
+            .subscribe({
+              next: () => {
+                this.goToReadingPage();
+              },
+                error: (e) => console.error(e),
+            });
     }
 
     formatDate(fecha: string): string {

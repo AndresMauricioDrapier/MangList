@@ -34,6 +34,7 @@ export class UsersComponent implements OnInit {
     userId: string = localStorage.getItem("user-id") || "";
     isMe!: boolean;
     haveRoleToAddComic!: boolean;
+    lastComic!: Comic;
 
     favourites;
     userForm!: FormGroup;
@@ -161,6 +162,15 @@ export class UsersComponent implements OnInit {
                 },
             });
         });
+        this.comicService.getIdComic(this.user.lastComicRead).subscribe({
+            next: (comic) => {
+                this.lastComic = comic;
+                console.log(this.lastComic);
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
     }
 
     savePassword(): void {
@@ -213,10 +223,7 @@ export class UsersComponent implements OnInit {
         }).then((result) => {
             if (result.isConfirmed) {
                 this.userService
-                    .saveAvatar(
-                        this.newAvatar,
-                        this.user.name!
-                    )
+                    .saveAvatar(this.newAvatar, this.user.name!)
                     .subscribe({
                         next: () => {
                             Swal.fire({

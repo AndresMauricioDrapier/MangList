@@ -14,19 +14,19 @@
   margin-bottom: 2em;
   text-align: center;
 
-  .contenedorImagen{
-    .imagen{
+  .contenedorImagen {
+    .imagen {
       border-radius: 50% !important;
       border: 4px solid #a309cd;
     }
   }
 
-  .role{
+  .role {
     font-size: small;
     color: #798087;
   }
 
-  .buttonsContainer{
+  .buttonsContainer {
     margin-top: 1em;
     .boton {
       background-color: #a309cd;
@@ -49,12 +49,11 @@
         animation-fill-mode: both;
       }
     }
-    .newComicButton{
+    .newComicButton {
       background-color: #3200a8;
       box-shadow: 0 0 10px #3200a8;
       border: 1px solid #3200a8;
     }
-
   }
 }
 
@@ -71,29 +70,46 @@
   color: white;
 }
 
-#comicsFavoritos {
-  color: white;
-  text-align: center;
-}
+.divComicsProfile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
 
-.modal-content{
-  background-color: #23282E;
-
-  .modal-header{
-    background-color: #060D17;
-    border: 2px solid #23282E;
+  #comicsFavoritos {
+    color: white;
+    text-align: center;
   }
 
-  .modal-footer{
+  #ultimoComicLeido {
+    color: white;
+
+    .contenido{
+      padding: 0;
+    }
+  }
+}
+
+.modal-content {
+  background-color: #23282e;
+
+  .modal-header {
+    background-color: #060d17;
+    border: 2px solid #23282e;
+  }
+
+  .modal-footer {
     border: 0;
   }
 }
 
-.modal{
+.modal {
   height: 40em;
 }
 
-.previewAvatar{
+.previewAvatar {
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -103,7 +119,7 @@
   .contenido {
     padding-left: 13%;
   }
-  .editPassButton{
+  .editPassButton {
     margin-top: 10px;
   }
 }
