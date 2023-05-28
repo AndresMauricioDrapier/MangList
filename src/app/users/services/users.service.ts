@@ -102,11 +102,11 @@ export class UsersService {
         );
     }
 
-    saveLastComicRead(idUser: number, idComic: string): Observable<void> {
+    saveLastComicRead(idUser: number, lastComicRead: string): Observable<void> {
         return this.http.put<void>(
             this.USERS_URL + "/lastComicRead/" + idUser,
             {
-                idComic,
+                lastComicRead,
             }
         );
     }
