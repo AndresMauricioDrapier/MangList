@@ -64,16 +64,15 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         private readonly fb: NonNullableFormBuilder,
         private readonly route: ActivatedRoute,
         private readonly comicService: ComicsService,
-        private readonly userService:UsersService
+        private readonly userService: UsersService
     ) {}
 
     ngOnInit(): void {
-
-      this.userService.hasRoleToAdd().subscribe((e)=>{
-        if(!e){
-          this.router.navigate(["/"]);
-        }
-      });
+        this.userService.hasRoleToAdd().subscribe((e) => {
+            if (!e) {
+                this.router.navigate(["/"]);
+            }
+        });
         this.titleControl = this.fb.control("", [Validators.required]);
         this.main_pictureControl = this.fb.control("", [Validators.required]);
         this.synopsisControl = this.fb.control("", [Validators.required]);
@@ -163,33 +162,35 @@ export class ComicFormComponent implements OnInit, CanDeactivateComponent {
         if (this.withID) {
             this.comicService.addComic(this.newComic, this.withID).subscribe({
                 next: () => {
-                  Swal.fire({
-                    title: "Comic editado correctamente",
-                    icon: "success",
-                });
+                    Swal.fire({
+                        title: "Comic editado correctamente",
+                        icon: "success",
+                    });
+                    this.router.navigate(["/"]);
                 },
                 error: (err) => {
-                  Swal.fire({
-                    title: "Error al editar el comic",
-                    text: err,
-                    icon: "error",
-                });
+                    Swal.fire({
+                        title: "Error al editar el comic",
+                        text: err,
+                        icon: "error",
+                    });
                 },
             });
         } else {
             this.comicService.addComic(this.newComic).subscribe({
                 next: () => {
-                  Swal.fire({
-                    title: "Comic añadido correctamente",
-                    icon: "success",
-                });
+                    Swal.fire({
+                        title: "Comic añadido correctamente",
+                        icon: "success",
+                    });
+                    this.router.navigate(["/"]);
                 },
                 error: (err) => {
-                  Swal.fire({
-                    title: "Error al añadir el comic",
-                    text: err,
-                    icon: "error",
-                });
+                    Swal.fire({
+                        title: "Error al añadir el comic",
+                        text: err,
+                        icon: "error",
+                    });
                 },
             });
         }

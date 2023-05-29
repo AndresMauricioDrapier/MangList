@@ -45,9 +45,7 @@ export class ComicsService {
     }
     getComicsCategorias(): Observable<ComicyRanking[]> {
         return this.http
-            .get<categoriesComicResponse>(
-                this.COMIC_URL + "?categorias=algo"
-            )
+            .get<categoriesComicResponse>(this.COMIC_URL + "?categorias=algo")
             .pipe(
                 map((r) => {
                     return r.result.data;
@@ -79,7 +77,7 @@ export class ComicsService {
         }
     }
 
-    deleteRestaurant(id: number): Observable<void> {
+    deleteComic(id: string): Observable<void> {
         return this.http.delete<void>(`${this.COMIC_URL}/${id}`);
     }
 }

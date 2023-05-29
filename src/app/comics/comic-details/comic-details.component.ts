@@ -10,6 +10,8 @@ import { CreateCommentComponent } from "../comments/create-comment/create-commen
 import { TranslateService } from "../services/translate.service";
 import Swal from "sweetalert2";
 import { Commentary } from "../interfaces/comment";
+import { AuthService } from "src/app/auth/services/auth.service";
+import { ComicsService } from "../services/comics.service";
 
 @Component({
     selector: "ml-comic-details",
@@ -36,7 +38,9 @@ export class ComicDetailsComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private usersService: UsersService,
-        private readonly translateService: TranslateService
+        private readonly translateService: TranslateService,
+        private readonly authService: AuthService,
+        private readonly comicsService:ComicsService
     ) {}
 
     ngOnInit(): void {
@@ -147,6 +151,41 @@ export class ComicDetailsComponent implements OnInit {
                 error: (e) => console.error(e),
             });
     }
+
+    deleteComic(): void {
+      Swal.fire({
+          title: "¿Seguro que quieres borrar el comic?",
+          showDenyButton: true,
+          confirmButtonText: "Confirmar",
+          denyButtonText: "Cerrar",
+      }).then((result) => {
+          if (result.isConfirmed) {
+              this.comicsService.deleteComic(this.comicId).subscribe({
+                  next: () => {
+                      Swal.fire({
+                          title: "Comic borrado correctamente",
+                          icon: "success",
+                      });
+                      this.authService.logout();
+                  },
+                  error: (err) => {
+                      Swal.fire({
+                          title: "El comic no se ha borrado correctamente",
+                          text: err,
+                          icon: "error",
+                      });
+                  },
+              });
+              return true;
+          } else {
+              Swal.fire({
+                  title: "Comic no se ha borrado",
+                  icon: "error",
+              });
+              return false;
+          }
+      });
+  }
 
     formatDate(fecha: string): string {
         const date = new Date(fecha);
