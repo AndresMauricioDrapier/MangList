@@ -52,6 +52,10 @@
         class="descripcionBotonCesta newComicButton" (click)="goToEditComic()">
         Editar comic
       </a>
+      <a *ngIf="haveRoleToEditComic && comic._id" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+        class="descripcionBotonCesta newComicButton" (click)="deleteComic()">
+        Borrar comic
+      </a>
     </div>
     <!-- /Botones -->
   </div>
