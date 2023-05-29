@@ -146,6 +146,10 @@ export class UsersService {
         });
     }
 
+    deleteUser(): Observable<void> {
+        return this.http.delete<void>(this.USERS_URL + "/" + this.userId);
+    }
+
     isLogged(): boolean {
         return localStorage.getItem("auth-token") ? true : false;
     }
