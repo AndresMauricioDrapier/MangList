@@ -155,7 +155,7 @@
               </div>
             </div>
           </div>
-          <button type="button" class="btn-danger boton botonDelete" data-bs-backdrop="false" data-bs-toggle="modal"
+          <button *ngIf="user._id.toString() === userId || user.role ==='admin'" type="button" class="btn-danger boton botonDelete" data-bs-backdrop="false" data-bs-toggle="modal"
             data-bs-target="#deleteUserModal">
             Borrar usuario
           </button>
