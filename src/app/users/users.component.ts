@@ -300,6 +300,44 @@ export class UsersComponent implements OnInit {
         });
     }
 
+    promoveToAdmin(): void {
+      this.userService.promoveToAdmin(this.user._id).subscribe({
+        next: () => {
+          Swal.fire({
+            title: "Usuario promovido",
+            icon: "success",
+          });
+          this.router.navigate(["/users", this.userId]);
+        },
+        error: () => {
+          Swal.fire({
+            title: "Usuario no se ha promovido correctamente",
+            text: "Error promoviendo el usuario",
+            icon: "error",
+          });
+        },
+      });
+    }
+
+    removeAdmin(): void {
+      this.userService.removeAdmin(this.user._id).subscribe({
+        next: () => {
+          Swal.fire({
+            title: "Usuario degradado",
+            icon: "success",
+          });
+          this.router.navigate(["/users", this.userId]);
+        },
+        error: () => {
+          Swal.fire({
+            title: "Usuario no se ha degradado correctamente",
+            text: "Error degradando el usuario",
+            icon: "error",
+          });
+        }
+      });
+    }
+
     fileChangeEvent(event: unknown): void {
         this.imageChangedEvent = event;
     }

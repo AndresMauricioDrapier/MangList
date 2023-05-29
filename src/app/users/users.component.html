@@ -8,9 +8,6 @@
         <h2 class="mt-0 mb-0 nombreUsuario">@{{user.name}}</h2>
         <small class="role">(Rol: {{user.role}})</small>
         <div *ngIf="isMe" class="buttonsContainer">
-          <button type="button" *ngIf="haveRoleToAddComic" class="boton newComicButton" (click)="goToAddComic()">
-            Añadir comic nuevo
-          </button>
           <!-- Editar perfil modal -->
           <button type="button" class="boton" data-bs-backdrop="false" data-bs-toggle="modal"
             data-bs-target="#editProfile">
@@ -157,9 +154,22 @@
           </div>
         </div>
         <br>
-        <button *ngIf="canDelete()" type="button" class="boton botonDelete" (click)="deleteUser()">
-          Borrar usuario
-        </button>
+        <div class="buttonsContainer">
+          <button type="button" *ngIf="haveRoleToAddComic" class="boton newComicButton" (click)="goToAddComic()">
+            Añadir comic nuevo
+          </button>
+          <button *ngIf="canDelete()" type="button" class="boton botonDelete" (click)="deleteUser()">
+            Borrar usuario
+          </button>
+          <button *ngIf="userWatching.role === 'admin' && user.role !== 'admin'" type="button"
+            class="boton botonPromove" (click)="promoveToAdmin()">
+            Promover a admin
+          </button>
+          <button *ngIf="userWatching.role === 'admin' && user.role === 'admin'" type="button"
+            class="boton botonPromove" (click)="removeAdmin()">
+            Quitar rol admin
+          </button>
+        </div>
       </div>
     </div>
   </div>
