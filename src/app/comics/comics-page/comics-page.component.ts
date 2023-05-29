@@ -57,7 +57,7 @@ export class ComicsPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.queryParams.subscribe((params) => {
-            if (params["search"]) {
+            if (params["search"] && params["search"].length > 3) {
                 this.comicsService
                     .getComicsString(params["search"])
                     .subscribe((comics) => {
