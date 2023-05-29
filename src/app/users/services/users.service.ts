@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map, throwError } from "rxjs";
 import { Auth } from "src/app/auth/interfaces/auth";
-import { AuthResponse } from "src/app/auth/interfaces/responses";
+import { AuthResponse, AuthResponses } from "src/app/auth/interfaces/responses";
 
 @Injectable({
     providedIn: "root",
@@ -26,6 +26,20 @@ export class UsersService {
     //         )
     //     );
     // }
+
+    getUsers(): Observable<Auth[]> {
+        return this.http.get<AuthResponses>(this.USERS_URL).pipe(
+            map((r) => {
+                return r.result;
+            }),
+            catchError((resp: HttpErrorResponse) => {
+                return throwError(
+                    () =>
+                        `Error al obtener usuarios. Estado: ${resp.status}. Mensaje: ${resp.message}`
+                );
+            })
+        );
+    }
 
     getUser(id: string, me?: boolean): Observable<Auth> {
         if (me) {

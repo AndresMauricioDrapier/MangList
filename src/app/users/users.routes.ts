@@ -11,23 +11,27 @@ export const USER_ROUTES: Routes = [
         // canDeactivate: [leavePageGuard],
     },
     {
-      path: 'me',
-      loadComponent: () =>
-        import('./users.component').then(
-          (m) => m.UsersComponent
-        ),
-      canDeactivate: [leavePageGuard],
-      canActivate: [loginActivateGuard],
+        path: "me",
+        loadComponent: () =>
+            import("./users.component").then((m) => m.UsersComponent),
+        canDeactivate: [leavePageGuard],
+        canActivate: [loginActivateGuard],
     },
     {
-      path: ':id',
-      loadComponent: () =>
-        import('./users.component').then(
-          (m) => m.UsersComponent
-        ),
-      canDeactivate: [leavePageGuard],
-      canActivate: [loginActivateGuard],
-      resolve: { user: userResolve },
+        path: "all",
+        loadComponent: () =>
+            import("./users-page/users-page.component").then(
+                (m) => m.UsersPageComponent
+            ),
+        canActivate: [loginActivateGuard],
+    },
+    {
+        path: ":id",
+        loadComponent: () =>
+            import("./users.component").then((m) => m.UsersComponent),
+        canDeactivate: [leavePageGuard],
+        canActivate: [loginActivateGuard],
+        resolve: { user: userResolve },
     },
     { path: "**", redirectTo: "manglist/" },
 ];
