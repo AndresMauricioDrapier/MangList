@@ -1,26 +1,22 @@
-import { Pipe, PipeTransform, inject } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 import { ComicyRanking } from "../interfaces/comics";
-import { ComicsService } from "../services/comics.service";
-import { Comic } from "../interfaces/comics";
 
 @Pipe({
     name: "comicsFilter",
     standalone: true,
 })
 export class ComicsFilterPipe implements PipeTransform {
-
-    transform(comics: ComicyRanking[], genero: string): ComicyRanking[] {
-        if (genero != "Filtrar" && genero) {
+    transform(comics: ComicyRanking[], genre: string): ComicyRanking[] {
+        if (genre != "Filtrar" && genre) {
             const filteredComicRankings: ComicyRanking[] = [];
 
             for (const comicRanking of comics) {
-
-              if (
-                comicRanking.node.genres &&
-                comicRanking.node.genres.some((g) => g.name === genero)
-            ) {
-                filteredComicRankings.push(comicRanking);
-            }
+                if (
+                    comicRanking.node.genres &&
+                    comicRanking.node.genres.some((g) => g.name === genre)
+                ) {
+                    filteredComicRankings.push(comicRanking);
+                }
             }
             return filteredComicRankings;
         } else {

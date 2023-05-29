@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;" *ngIf="user">
+  <img src="{{user.avatar}}" class="card-img-top" alt="{{user.name}}">
+  <div class="card-body">
+    <h5 class="card-title">@{{user.name}}</h5>
+    <p class="card-text"><small>({{user.role}})</small></p>
+    <a [routerLink]="['/users',user._id]" class="btn btn-primary">Ir al perfil</a>
+  </div>
+</div>
