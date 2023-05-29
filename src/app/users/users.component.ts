@@ -16,7 +16,6 @@ import Swal from "sweetalert2";
 import { isTheSame } from "../shared/validators/isTheSame";
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import { ComicsService } from "../comics/services/comics.service";
-import { AuthService } from "../auth/services/auth.service";
 
 @Component({
     selector: "ml-users",
@@ -61,10 +60,14 @@ export class UsersComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private userService: UsersService,
-        private readonly authService: AuthService,
         private readonly comicService: ComicsService,
         private readonly fb: NonNullableFormBuilder
-    ) {}
+    ) {
+        this.userWatching = {
+            role: "",
+            email:""
+        };
+    }
 
     ngOnInit(): void {
         this.route.data.subscribe((user) => {
@@ -268,22 +271,24 @@ export class UsersComponent implements OnInit {
             denyButtonText: "Cerrar",
         }).then((result) => {
             if (result.isConfirmed) {
-                this.userService.deleteUser().subscribe({
-                    next: () => {
-                        Swal.fire({
-                            title: "Usuario borrado",
-                            icon: "success",
-                        });
-                        this.authService.logout();
-                    },
-                    error: (err) => {
-                        Swal.fire({
-                            title: "Usuario no se ha borrado correctamente",
-                            text: err,
-                            icon: "error",
-                        });
-                    },
-                });
+                this.userService
+                    .deleteUser(this.user._id.toString())
+                    .subscribe({
+                        next: () => {
+                            Swal.fire({
+                                title: "Usuario borrado",
+                                icon: "success",
+                            });
+                            this.router.navigate(["/"]);
+                        },
+                        error: (err) => {
+                            Swal.fire({
+                                title: "Usuario no se ha borrado correctamente",
+                                text: err,
+                                icon: "error",
+                            });
+                        },
+                    });
                 return true;
             } else {
                 Swal.fire({
@@ -337,5 +342,8 @@ export class UsersComponent implements OnInit {
 
     goToAddComic(): void {
         this.router.navigate(["/comics/add"]);
+    }
+    canDelete():boolean{
+      return this.userWatching.role === 'admin' || this.user._id === Number(this.userId)
     }
 }
