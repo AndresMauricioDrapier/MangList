@@ -13,20 +13,6 @@ export class UsersService {
 
     userId = localStorage.getItem("user-id") || "";
 
-    // getUser(id: string): Observable<Auth> {
-    //     return this.http.get<AuthResponse>(`${this.USERS_URL}/${id}`).pipe(
-    //         map((r) => {
-    //             return r.result;
-    //         }),
-    //         catchError((resp: HttpErrorResponse) =>
-    //             throwError(
-    //                 () =>
-    //                     `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
-    //             )
-    //         )
-    //     );
-    // }
-
     getUsers(): Observable<Auth[]> {
         return this.http.get<AuthResponses>(this.USERS_URL).pipe(
             map((r) => {
@@ -69,22 +55,6 @@ export class UsersService {
             );
         }
     }
-
-    // getUserImage(imageName: string): Observable<string> {
-    //     return this.http
-    //         .get<string>(`${this.USERS_URL}/images/${imageName}`)
-    //         .pipe(
-    //             map((r) => {
-    //                 return r;
-    //             }),
-    //             catchError((resp: HttpErrorResponse) =>
-    //                 throwError(
-    //                     () =>
-    //                         `Error getting user. Status: ${resp.status}. Message: ${resp.message}`
-    //                 )
-    //             )
-    //         );
-    // }
 
     saveProfile(name: string, email: string): Observable<void> {
         return this.http.put<void>(this.USERS_URL + "/user/" + this.userId, {

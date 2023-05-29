@@ -36,6 +36,7 @@ export class UsersComponent implements OnInit {
     isMe!: boolean;
     haveRoleToAddComic!: boolean;
     lastComic!: Comic;
+    userWatching!: Auth;
 
     favourites;
     userForm!: FormGroup;
@@ -70,7 +71,6 @@ export class UsersComponent implements OnInit {
             if (user["user"]) {
                 this.user = user["user"];
                 this.makeAtInit();
-                console.log(this.user);
             } else {
                 this.userService.getUser("0", true).subscribe((u) => {
                     this.user = u;
@@ -156,7 +156,9 @@ export class UsersComponent implements OnInit {
         this.userService.hasRoleToAdd().subscribe((bool) => {
             this.haveRoleToAddComic = bool;
         });
+
         this.isMe = this.userId === this.user._id?.toString();
+
         this.user.favorites.forEach((idComic) => {
             this.comicService.getIdComic(idComic.toString()).subscribe({
                 next: (comic) => {
@@ -164,14 +166,18 @@ export class UsersComponent implements OnInit {
                 },
             });
         });
+
         this.comicService.getIdComic(this.user.lastComicRead).subscribe({
             next: (comic) => {
                 this.lastComic = comic;
-                console.log(this.lastComic);
             },
             error: (err) => {
                 console.error(err);
             },
+        });
+
+        this.userService.getUser(this.userId).subscribe((user) => {
+            this.userWatching = user;
         });
     }
 
@@ -253,6 +259,7 @@ export class UsersComponent implements OnInit {
             }
         });
     }
+
     deleteUser(): void {
         Swal.fire({
             title: "¿Seguro que quieres borrar el usuario?",
@@ -280,7 +287,7 @@ export class UsersComponent implements OnInit {
                 return true;
             } else {
                 Swal.fire({
-                    title: "Contraseña descartada",
+                    title: "Borrado descartada",
                     icon: "error",
                 });
                 return false;
