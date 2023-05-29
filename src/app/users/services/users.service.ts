@@ -116,8 +116,8 @@ export class UsersService {
         });
     }
 
-    deleteUser(): Observable<void> {
-        return this.http.delete<void>(this.USERS_URL + "/" + this.userId);
+    deleteUser(userDeleteId:string): Observable<void> {
+        return this.http.delete<void>(this.USERS_URL + "/" + userDeleteId);
     }
 
     isLogged(): boolean {

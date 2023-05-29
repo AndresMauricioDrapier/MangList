@@ -10,7 +10,6 @@ import { CreateCommentComponent } from "../comments/create-comment/create-commen
 import { TranslateService } from "../services/translate.service";
 import Swal from "sweetalert2";
 import { Commentary } from "../interfaces/comment";
-import { AuthService } from "src/app/auth/services/auth.service";
 import { ComicsService } from "../services/comics.service";
 
 @Component({
@@ -39,7 +38,6 @@ export class ComicDetailsComponent implements OnInit {
         private route: ActivatedRoute,
         private usersService: UsersService,
         private readonly translateService: TranslateService,
-        private readonly authService: AuthService,
         private readonly comicsService:ComicsService
     ) {}
 
@@ -166,7 +164,7 @@ export class ComicDetailsComponent implements OnInit {
                           title: "Comic borrado correctamente",
                           icon: "success",
                       });
-                      this.authService.logout();
+                      this.router.navigate(["/"]);
                   },
                   error: (err) => {
                       Swal.fire({
