@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 import { isTheSame } from "../shared/validators/isTheSame";
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import { ComicsService } from "../comics/services/comics.service";
+import { AuthService } from "../auth/services/auth.service";
 
 @Component({
     selector: "ml-users",
@@ -59,6 +60,7 @@ export class UsersComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private userService: UsersService,
+        private readonly authService: AuthService,
         private readonly comicService: ComicsService,
         private readonly fb: NonNullableFormBuilder
     ) {}
@@ -241,6 +243,40 @@ export class UsersComponent implements OnInit {
                             this.router.navigate(["/users", this.userId]);
                         },
                     });
+                return true;
+            } else {
+                Swal.fire({
+                    title: "Contraseña descartada",
+                    icon: "error",
+                });
+                return false;
+            }
+        });
+    }
+    deleteUser(): void {
+        Swal.fire({
+            title: "¿Seguro que quieres borrar el usuario?",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            denyButtonText: "Cerrar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.userService.deleteUser().subscribe({
+                    next: () => {
+                        Swal.fire({
+                            title: "Usuario borrado",
+                            icon: "success",
+                        });
+                        this.authService.logout();
+                    },
+                    error: (err) => {
+                        Swal.fire({
+                            title: "Usuario no se ha borrado correctamente",
+                            text: err,
+                            icon: "error",
+                        });
+                    },
+                });
                 return true;
             } else {
                 Swal.fire({

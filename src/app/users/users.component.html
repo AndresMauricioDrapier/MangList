@@ -155,6 +155,28 @@
               </div>
             </div>
           </div>
+          <button type="button" class="btn-danger boton botonDelete" data-bs-backdrop="false" data-bs-toggle="modal"
+            data-bs-target="#deleteUserModal">
+            Borrar usuario
+          </button>
+          <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="editAvatarLabel"
+            aria-hidden="true" data-bs-backdrop="false">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteUserModalLabel">Eliminar usuario</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>¿Estás seguro de que quieres eliminar este usuario?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteUser()">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- Fin modal -->
         </div>
       </div>
