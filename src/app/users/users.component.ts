@@ -295,6 +295,25 @@ export class UsersComponent implements OnInit {
         });
     }
 
+    promoveToAdmin(): void {
+      this.userService.promoveToAdmin(this.user._id).subscribe({
+        next: () => {
+          Swal.fire({
+            title: "Usuario promovido",
+            icon: "success",
+          });
+          this.router.navigate(["/users", this.userId]);
+        },
+        error: (err) => {
+          Swal.fire({
+            title: "Usuario no se ha promovido correctamente",
+            text: err,
+            icon: "error",
+          });
+        },
+      });
+    }
+
     fileChangeEvent(event: unknown): void {
         this.imageChangedEvent = event;
     }

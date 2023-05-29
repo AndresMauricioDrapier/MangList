@@ -157,9 +157,17 @@
           </div>
         </div>
         <br>
-        <button *ngIf="userWatching.role === 'admin' || user._id.toString() === userId" type="button" class="boton botonDelete" (click)="deleteUser()">
-          Borrar usuario
-        </button>
+        <div class="buttonsContainer">
+          <button *ngIf="userWatching.role === 'admin' || user._id.toString() === userId" type="button" class="boton botonDelete" (click)="deleteUser()">
+            Borrar usuario
+          </button>
+          <button *ngIf="userWatching.role === 'admin' && user.role !== 'admin'" type="button" class="boton botonPromove" (click)="promoveToAdmin()">
+            Promover a admin
+          </button>
+          <button *ngIf="userWatching.role === 'admin' && user.role === 'admin'" type="button" class="boton botonPromove" (click)="promoveToAdmin()">
+            Quitar rol admin
+          </button>
+        </div>
       </div>
     </div>
   </div>

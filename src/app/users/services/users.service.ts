@@ -120,6 +120,10 @@ export class UsersService {
         return this.http.delete<void>(this.USERS_URL + "/" + this.userId);
     }
 
+    promoveToAdmin(idUser: number): Observable<void> {
+        return this.http.put<void>(this.USERS_URL + "/promote/" + idUser, {});
+    }
+
     isLogged(): boolean {
         return localStorage.getItem("auth-token") ? true : false;
     }
