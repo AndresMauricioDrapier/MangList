@@ -309,13 +309,32 @@ export class UsersComponent implements OnInit {
           });
           this.router.navigate(["/users", this.userId]);
         },
-        error: (err) => {
+        error: () => {
           Swal.fire({
             title: "Usuario no se ha promovido correctamente",
-            text: err,
+            text: "Error promoviendo el usuario",
             icon: "error",
           });
         },
+      });
+    }
+
+    removeAdmin(): void {
+      this.userService.removeAdmin(this.user._id).subscribe({
+        next: () => {
+          Swal.fire({
+            title: "Usuario degradado",
+            icon: "success",
+          });
+          this.router.navigate(["/users", this.userId]);
+        },
+        error: () => {
+          Swal.fire({
+            title: "Usuario no se ha degradado correctamente",
+            text: "Error degradando el usuario",
+            icon: "error",
+          });
+        }
       });
     }
 

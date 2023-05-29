@@ -124,6 +124,10 @@ export class UsersService {
         return this.http.put<void>(this.USERS_URL + "/promote/" + idUser, {});
     }
 
+    removeAdmin(idUser: number): Observable<void> {
+        return this.http.put<void>(this.USERS_URL + "/remove/" + idUser, {});
+    }
+
     isLogged(): boolean {
         return localStorage.getItem("auth-token") ? true : false;
     }
