@@ -2,7 +2,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-export async function enviarPDFyCorreo(payment, subscription) {
+export async function showPDF(payment, subscription) {
   const { amount, name, mail, methodPayment } = payment;
 
   const imageContent = await getImageContent(subscription.icon);

@@ -17,7 +17,7 @@ import { Mail } from "src/app/shared/mail/interfaces/mail";
 import { MailService } from "src/app/shared/mail/services/mail.service";
 import { Auth } from "src/app/auth/interfaces/auth";
 import { UsersService } from "src/app/users/services/users.service";
-import { enviarPDFyCorreo } from "../../shared/downloadPDF";
+import { showPDF } from "../../shared/downloadPDF";
 import { PaymentService } from "../services/payment.service";
 
 @Component({
@@ -177,8 +177,8 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
         this.newPayment.userId = this.user._id.toString();
         this.newPayment.mailUser = this.user.email;
         this.newPayment.type = this.subscription.type;
-        this.newPayment.amount = this.subscription.price;
         this.newPayment.date = new Date().toLocaleDateString();
+        this.newPayment.amount = this.subscription.price;
 
         this.paymentService.paySubscription(this.newPayment).subscribe({
             next: () => {
@@ -195,7 +195,7 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
                             title: "¡Gracias por la compra!",
                             text: "Te has subscrito correctamente",
                         });
-                        enviarPDFyCorreo(this.newPayment, this.subscription);
+                        showPDF(this.newPayment, this.subscription);
                         this.router.navigate(["/"]);
                         return true;
                     } else {
@@ -208,8 +208,10 @@ export class CartComponent implements OnInit, CanDeactivateComponent {
                         return false;
                     }
                 });
+                this.sendMail();
             },
             error: (e) => {
+              console.log(e);
                 Swal.fire({
                     icon: "error",
                     title: "Error al hacer el pago",
