@@ -38,7 +38,7 @@ export class ComicDetailsComponent implements OnInit {
         private route: ActivatedRoute,
         private usersService: UsersService,
         private readonly translateService: TranslateService,
-        private readonly comicsService:ComicsService
+        private readonly comicsService: ComicsService
     ) {}
 
     ngOnInit(): void {
@@ -143,47 +143,59 @@ export class ComicDetailsComponent implements OnInit {
         this.usersService
             .saveLastComicRead(this.user._id, this.comicId)
             .subscribe({
-              next: () => {
-                this.goToReadingPage();
-              },
+                next: () => {
+                    this.goToReadingPage();
+                },
                 error: (e) => console.error(e),
             });
     }
 
     deleteComic(): void {
-      Swal.fire({
-          title: "¿Seguro que quieres borrar el comic?",
-          showDenyButton: true,
-          confirmButtonText: "Confirmar",
-          denyButtonText: "Cerrar",
-      }).then((result) => {
-          if (result.isConfirmed) {
-              this.comicsService.deleteComic(this.comicId).subscribe({
-                  next: () => {
-                      Swal.fire({
-                          title: "Comic borrado correctamente",
-                          icon: "success",
-                      });
-                      this.router.navigate(["/"]);
-                  },
-                  error: (err) => {
-                      Swal.fire({
-                          title: "El comic no se ha borrado correctamente",
-                          text: err,
-                          icon: "error",
-                      });
-                  },
-              });
-              return true;
-          } else {
-              Swal.fire({
-                  title: "Comic no se ha borrado",
-                  icon: "error",
-              });
-              return false;
-          }
-      });
-  }
+        Swal.fire({
+            title: "¿Seguro que quieres borrar el comic?",
+            showDenyButton: true,
+            confirmButtonText: "Confirmar",
+            denyButtonText: "Cerrar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.comicsService.deleteComic(this.comicId).subscribe({
+                    next: () => {
+                        Swal.fire({
+                            title: "Comic borrado correctamente",
+                            icon: "success",
+                        });
+                        this.router.navigate(["/"]);
+                    },
+                    error: (err) => {
+                        Swal.fire({
+                            title: "El comic no se ha borrado correctamente",
+                            text: err,
+                            icon: "error",
+                        });
+                    },
+                });
+                return true;
+            } else {
+                Swal.fire({
+                    title: "Comic no se ha borrado",
+                    icon: "error",
+                });
+                return false;
+            }
+        });
+    }
+
+    setGenres(): string {
+        let genres = "";
+        for (let i = 0; i < this.comic.genres.length; i++) {
+            if (i == this.comic.genres.length - 1) {
+                genres += this.comic.genres[i].name;
+            } else {
+                genres += this.comic.genres[i].name + ", ";
+            }
+        }
+        return genres;
+    }
 
     formatDate(fecha: string): string {
         const date = new Date(fecha);

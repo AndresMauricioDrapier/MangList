@@ -25,8 +25,8 @@
       <table class="descripcionTabla">
         <tr>
           <td class="tituloCategoria">Categoría:</td>
-          <td class="contenidoTabla" *ngFor="let generos of comic.genres">
-            {{generos.name}}
+          <td class="contenidoTabla">
+            {{setGenres()}}
           </td>
         </tr>
         <tr>

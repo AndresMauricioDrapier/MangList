@@ -15,9 +15,9 @@ import Swal from "sweetalert2";
 @Component({
     selector: "ml-contact",
     standalone: true,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule],
     templateUrl: "./contact.component.html",
     styleUrls: ["./contact.component.scss"],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class ContactComponent implements OnInit {
     contactForm!: FormGroup;
