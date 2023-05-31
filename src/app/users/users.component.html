@@ -155,7 +155,7 @@
         </div>
         <br>
         <div class="buttonsContainer">
-          <button type="button" *ngIf="haveRoleToAddComic" class="boton newComicButton" (click)="goToAddComic()">
+          <button type="button" *ngIf="haveRoleToAddComic && isMe" class="boton newComicButton" (click)="goToAddComic()">
             Añadir comic nuevo
           </button>
           <button *ngIf="canDelete()" type="button" class="boton botonDelete" (click)="deleteUser()">
