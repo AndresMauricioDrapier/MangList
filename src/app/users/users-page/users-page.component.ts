@@ -12,24 +12,38 @@ import { ComicsFilterPipe } from "../pipes/users-filter.pipe";
     standalone: true,
     templateUrl: "./users-page.component.html",
     styleUrls: ["./users-page.component.scss"],
-    imports: [CommonModule, SlideButtonComponent, UserCardComponent, ComicsFilterPipe]
+    imports: [
+        CommonModule,
+        SlideButtonComponent,
+        UserCardComponent,
+        ComicsFilterPipe,
+    ],
 })
 export class UsersPageComponent implements OnInit {
     users!: Auth[];
     toSearch!: string;
+    haveContent = false;
 
     constructor(
         private readonly route: ActivatedRoute,
-        private readonly usersService: UsersService,
+        private readonly usersService: UsersService
     ) {}
 
     ngOnInit(): void {
-      this.usersService.getUsers().subscribe((users) => {
-        this.users = users;
-      });
+        this.usersService.getUsers().subscribe((users) => {
+            this.users = users;
+            this.mainHaveContent();
+        });
 
-      this.route.queryParams.subscribe((params) => {
-        this.toSearch = params["username"];
-      });
+        this.route.queryParams.subscribe((params) => {
+            this.toSearch = params["username"];
+        });
+    }
+
+    mainHaveContent() {
+        setTimeout(() => {
+            const userCard = document.getElementsByTagName("ml-user-card");
+            this.haveContent = userCard.length > 0 ? true : false;
+        }, 1000);
     }
 }

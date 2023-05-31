@@ -1,5 +1,5 @@
 #mainIndex {
-  margin-top: 1em;
+  margin-top: 2em;
   margin-bottom: 3em;
 
   aside {
@@ -16,6 +16,11 @@
     align-items: center;
     align-content: stretch;
   }
+}
+
+.nonUsers{
+  color: white;
+  font-size: larger;
 }
 
 @media screen and (min-width: 1400px) {

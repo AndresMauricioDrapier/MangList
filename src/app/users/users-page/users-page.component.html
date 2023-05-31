@@ -1,8 +1,7 @@
 <main id="mainIndex">
   <div id="contenido">
-    <div *ngFor="let user of users | usersFilter: toSearch" >
-      <ml-user-card [user]="user"></ml-user-card>
-    </div>
+    <p class="nonUsers" *ngIf="!haveContent">No se han encontrado usuarios con ese nombre</p>
+    <ml-user-card *ngFor="let user of users | usersFilter: toSearch" [user]="user"></ml-user-card>
   </div>
 </main>
 
