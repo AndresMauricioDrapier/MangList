@@ -57,9 +57,9 @@ export class MenuComponent implements OnInit {
         }
     }
 
-    busquedaFiltro(genero) {
+    busquedaFiltro(genre) {
         this.router.navigate(["/categorias"], {
-            queryParams: { filtro: genero },
+            queryParams: { filtro: genre },
         });
     }
 }

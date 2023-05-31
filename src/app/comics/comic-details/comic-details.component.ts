@@ -32,6 +32,7 @@ export class ComicDetailsComponent implements OnInit {
     inFav = false;
     haveRoleToEditComic!: boolean;
     comicId: string;
+    translatedGenres!: string;
 
     constructor(
         private router: Router,
@@ -65,7 +66,7 @@ export class ComicDetailsComponent implements OnInit {
             0,
             this.comic.synopsis.length - 24
         );
-        this.comic.genres = this.comic.genres.slice(0, 4);
+
         this.translateService
             .translate(this.comic.synopsis)
             .then(
@@ -73,6 +74,13 @@ export class ComicDetailsComponent implements OnInit {
             );
 
         this.comic.start_date = this.formatDate(this.comic.start_date);
+
+        this.translatedGenres = this.setGenres();
+        this.translateService
+            .translate(this.translatedGenres)
+            .then(
+                (r) => (this.translatedGenres = r.data[0].translations[0].text)
+            );
     }
 
     addComment(comment: Commentary) {
@@ -186,6 +194,8 @@ export class ComicDetailsComponent implements OnInit {
     }
 
     setGenres(): string {
+        this.comic.genres = this.comic.genres.slice(0, 4);
+
         let genres = "";
         for (let i = 0; i < this.comic.genres.length; i++) {
             if (i == this.comic.genres.length - 1) {
