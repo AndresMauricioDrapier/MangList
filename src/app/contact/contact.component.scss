@@ -1,3 +1,15 @@
+div {
+  background: rgb(6, 13, 23);
+  background: linear-gradient(
+    90deg,
+    rgba(6, 13, 23, 1) 0%,
+    rgba(35, 40, 46, 1) 18%,
+    rgba(6, 13, 23, 1) 43%,
+    rgba(35, 40, 46, 1) 85%,
+    rgba(6, 13, 23, 1) 100%
+  );
+}
+
 #contact-stack-form {
   margin-left: 30%;
 
@@ -57,6 +69,7 @@
 .cube-3 {
   margin-left: 200px;
   height: 50px;
+  background: transparent;
 
   .front,
   .back {
@@ -80,6 +93,7 @@
 
 .cube-7 {
   height: 50px;
+  background: transparent;
 
   .front,
   .back {
@@ -166,6 +180,8 @@
 }
 
 .cube-10 {
+  background: transparent;
+
   .front,
   .bottom {
     background: #ba44c2;
@@ -463,6 +479,7 @@
 .cube-15 {
   margin-left: 200px;
   height: 50px;
+  background: transparent;
 
   .left,
   .right {
@@ -590,6 +607,7 @@
 .cube-20 {
   margin-left: 100px;
   height: 50px !important;
+  background: transparent;
 
   .back,
   .left,
@@ -763,6 +781,7 @@
 .cube-25 {
   margin-left: 200px;
   height: 50px;
+  background: transparent;
 
   .left,
   .right {
@@ -884,6 +903,7 @@
 .cube-28 {
   margin-left: 100px;
   height: 50px;
+  background: transparent;
 
   .left,
   .right {
@@ -1311,6 +1331,7 @@
 .cube-33 {
   height: 50px;
   margin-left: 50px;
+  background: transparent;
 
   .top,
   .bottom {
@@ -1627,8 +1648,8 @@
 
 @media only screen and (max-width: 602px) {
   #contact-stack-form {
-   margin-left: 8% !important;
-   padding-left: 0 !important;
+    margin-left: 8% !important;
+    padding-left: 0 !important;
   }
 }
 
