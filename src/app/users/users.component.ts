@@ -363,6 +363,6 @@ export class UsersComponent implements OnInit {
         this.router.navigate(["/comics/add"]);
     }
     canDelete():boolean{
-      return this.userWatching.role === 'admin' || this.user._id === Number(this.userId)
+      return this.userWatching.role === 'admin' || String(this.user._id) === this.userId
     }
 }

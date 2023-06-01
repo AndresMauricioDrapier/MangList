@@ -26,7 +26,9 @@
         <tr>
           <td class="tituloCategoria">Categoría:</td>
           <td class="contenidoTabla">
-            {{translatedGenres}}
+            <a class="enlaceTabla" *ngFor="let genre of translatedGenres; let last = last" (click)="busquedaFiltro(genre.value)">
+              {{ genre.name }}<span *ngIf="!last">,</span>
+            </a>
           </td>
         </tr>
         <tr>

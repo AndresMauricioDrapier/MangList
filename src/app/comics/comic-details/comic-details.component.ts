@@ -11,6 +11,7 @@ import { TranslateService } from "../services/translate.service";
 import Swal from "sweetalert2";
 import { Commentary } from "../interfaces/comment";
 import { ComicsService } from "../services/comics.service";
+import { Genres } from "../interfaces/const";
 
 @Component({
     selector: "ml-comic-details",
@@ -32,7 +33,7 @@ export class ComicDetailsComponent implements OnInit {
     inFav = false;
     haveRoleToEditComic!: boolean;
     comicId: string;
-    translatedGenres!: string;
+    translatedGenres!: { name: string; value: string }[];
 
     constructor(
         private router: Router,
@@ -76,11 +77,6 @@ export class ComicDetailsComponent implements OnInit {
         this.comic.start_date = this.formatDate(this.comic.start_date);
 
         this.translatedGenres = this.setGenres();
-        this.translateService
-            .translate(this.translatedGenres)
-            .then(
-                (r) => (this.translatedGenres = r.data[0].translations[0].text)
-            );
     }
 
     addComment(comment: Commentary) {
@@ -193,18 +189,18 @@ export class ComicDetailsComponent implements OnInit {
         });
     }
 
-    setGenres(): string {
-        this.comic.genres = this.comic.genres.slice(0, 4);
+    setGenres() {
+        const genresConst = Genres;
 
-        let genres = "";
+        const filteredGenres = [];
         for (let i = 0; i < this.comic.genres.length; i++) {
-            if (i == this.comic.genres.length - 1) {
-                genres += this.comic.genres[i].name;
-            } else {
-                genres += this.comic.genres[i].name + ", ";
-            }
+            genresConst.filter((e) => {
+                if (e.value === this.comic.genres[i].name) {
+                    filteredGenres.push(e);
+                }
+            });
         }
-        return genres;
+        return filteredGenres;
     }
 
     formatDate(fecha: string): string {
@@ -224,6 +220,12 @@ export class ComicDetailsComponent implements OnInit {
     goToEditComic(): void {
         this.router.navigate(["/comics/add"], {
             queryParams: { comicId: this.comic._id },
+        });
+    }
+
+    busquedaFiltro(genre) {
+        this.router.navigate(["/categorias"], {
+            queryParams: { filtro: genre },
         });
     }
 }

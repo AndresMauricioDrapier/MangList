@@ -10,7 +10,7 @@ import {
 import { ComicsService } from "../services/comics.service";
 import { ActivatedRoute } from "@angular/router";
 import { ComicCardComponent } from "../comic-card/comic-card.component";
-import { Genres, Order, StartDate, Status } from "../interfaces/categories";
+import { Genres, Order, StartDate, Status } from "../interfaces/const";
 import { ComicyRanking } from "../interfaces/comics";
 import { ComicsFilterCategoryPipe } from "../pipes/comics-filter-category.pipe";
 import { SlideButtonComponent } from "../../shared/slide-button/slide-button.component";

@@ -9,7 +9,11 @@ export const Genres = [
   { name: "Sheinen", value: "Seinen" },
   { name: "Aventura", value: "Adventure" },
   { name: "Comedia", value: "Comedy" },
+  { name: "Drama", value: "Drama" },
+  { name: "Psicológico", value: "Psychological" },
+  { name: "Premiado", value: "Award Winning" },
 ];
+
 
 export const StartDate = [
   { name: "1999-2002", value: "1999-2002" },

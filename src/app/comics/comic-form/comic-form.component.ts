@@ -13,7 +13,7 @@ import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import Swal from "sweetalert2";
 import { Comic } from "../interfaces/comics";
 import { CanDeactivateComponent } from "src/app/guards/leavePageGuard.guard";
-import { Genres } from "../interfaces/categories";
+import { Genres } from "../interfaces/const";
 import { ComicsService } from "../services/comics.service";
 import { UsersService } from "src/app/users/services/users.service";
 

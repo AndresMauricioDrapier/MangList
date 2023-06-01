@@ -14,7 +14,7 @@ import { ComicCardComponent } from "../comic-card/comic-card.component";
 import { MenuComponent } from "src/app/shared/menu/menu.component";
 import { ComicsFilterPipe } from "../pipes/comics-filter.pipe";
 import { searchComic } from "../interfaces/responses";
-import { Genres } from "../interfaces/categories";
+import { Genres } from "../interfaces/const";
 import { SlideButtonComponent } from "../../shared/slide-button/slide-button.component";
 
 @Component({
