@@ -3,7 +3,7 @@ h1 {
   margin-bottom: 1em;
 }
 
-#contenedorLectura {
+#containerRead {
   text-align: center;
 
   img {
@@ -37,7 +37,7 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  #contenedorLectura {
+  #containerRead {
     img {
       width: 98%;
     }

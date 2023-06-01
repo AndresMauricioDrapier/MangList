@@ -1,13 +1,13 @@
 <!-- Contendor principal -->
 <main>
   <!-- Div Filtro -->
-  <div class="categoriaFiltro">
+  <div class="categoryFilter">
 
     <!-- Filtro Categoria -->
     <form [formGroup]="filterAll">
 
       <label>
-        <select id="genres" formControlName="genres" class="categoriaSelect">
+        <select id="genres" formControlName="genres" class="categorySelect">
           <option name="genres" selected>Genero:</option>
           <ng-container *ngFor="let g of genres">
             <option [ngValue]="g">{{ g.name }}</option>
@@ -16,7 +16,7 @@
       </label>
       |
       <label>
-        <select id="startDate" formControlName="startDate" class="categoriaSelect">
+        <select id="startDate" formControlName="startDate" class="categorySelect">
           <option name="startDate" selected>Año:</option>
           <ng-container *ngFor="let g of startDate">
             <option [ngValue]="g">{{ g.name }}</option>
@@ -25,7 +25,7 @@
       </label>
       |
       <label>
-        <select id="status" formControlName="status" class="categoriaSelect">
+        <select id="status" formControlName="status" class="categorySelect">
           <option name="status" selected>Estado:</option>
           <ng-container *ngFor="let g of status">
             <option [ngValue]="g">{{ g.name }}</option>
@@ -34,7 +34,7 @@
       </label>
       |
       <label>
-        <select id="order" formControlName="order" class="categoriaSelect">
+        <select id="order" formControlName="order" class="categorySelect">
           <option name="order" selected>Orden:</option>
           <ng-container *ngFor="let g of order">
             <option [ngValue]="g">{{ g.name }}</option>
@@ -45,7 +45,7 @@
   </div>
   <!-- /Div Filtro -->
 
-  <div id="contenido">
+  <div id="content">
     <div
       *ngFor="let comic of comics | comicsFilterCategory: filterAll.value.genres.value:filterAll.value.status.value:filterAll.value.startDate.value:filterAll.value.order.value">
       <ml-comic-card [comic]="comic.node"></ml-comic-card>

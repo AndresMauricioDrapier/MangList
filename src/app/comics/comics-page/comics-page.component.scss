@@ -8,7 +8,7 @@
     font-size: 0.7em;
   }
 
-  #filtro {
+  #filter {
     margin-left: 3em;
 
     form select {
@@ -19,7 +19,7 @@
     }
   }
 
-  #contenido {
+  #content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -36,7 +36,7 @@
       height: 14em !important;
     }
 
-    .nuevo {
+    .new {
       margin-left: 8em !important;
     }
 

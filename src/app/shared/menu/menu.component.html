@@ -65,13 +65,13 @@
           [ngModelOptions]="{standalone:true}">
       </form>
       <div class="menuIcons">
-        <a [routerLink]="['/auth/login']" *ngIf="!loggedIn" class="iconoUsuario">
+        <a [routerLink]="['/auth/login']" *ngIf="!loggedIn" class="iconUser">
           <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
         </a>
-        <a [routerLink]="['/users/me']" *ngIf="loggedIn" class="iconoUsuario" style="margin-right: 0;">
+        <a [routerLink]="['/users/me']" *ngIf="loggedIn" class="iconUser" style="margin-right: 0;">
           <i class="fa-solid fa-user" style="color: #ffffff; font-size: 1.3em;"></i>
         </a>
-        <a class="nav-link iconoUsuario" *ngIf="loggedIn" [routerLinkActive]="['active']" id="logout" (click)="logout()">
+        <a class="nav-link iconUser" *ngIf="loggedIn" [routerLinkActive]="['active']" id="logout" (click)="logout()">
           <i class="fa-solid fa-right-from-bracket" style="color: #ffffff; font-size: 1.3em;"></i></a>
       </div>
     </div>

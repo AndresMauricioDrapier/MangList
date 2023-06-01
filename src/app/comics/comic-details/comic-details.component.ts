@@ -225,7 +225,7 @@ export class ComicDetailsComponent implements OnInit {
 
     busquedaFiltro(genre) {
         this.router.navigate(["/categorias"], {
-            queryParams: { filtro: genre },
+            queryParams: { filter: genre },
         });
     }
 }

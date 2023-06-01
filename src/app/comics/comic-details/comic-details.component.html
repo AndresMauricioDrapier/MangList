@@ -1,18 +1,18 @@
-<main class="mainDescripcion" *ngIf="comic">
+<main class="mainDescription" *ngIf="comic">
   <!-- Contenedor izquierda -->
-  <div class="descripcionIzquierda">
+  <div class="descriptionLeft">
     <!-- Imagen -->
-    <div class="descripcionImagen" style="background-image: url({{comic.main_picture.medium}});">
-      <div class="descripcionPuntuacion">{{comic.mean}}</div>
+    <div class="descriptionImage" style="background-image: url({{comic.main_picture.medium}});">
+      <div class="descriptionScore">{{comic.mean}}</div>
     </div>
     <!-- /Imagen -->
   </div>
   <!-- /Contenedor izquierda -->
   <!-- Contenedor derecha -->
-  <div class="descripcionDerecha">
+  <div class="descriptionRight">
     <div>
       <!-- Nombre -->
-      <h1 class="descripcionNombre">{{comic.title}}</h1>
+      <h1 class="descriptionName">{{comic.title}}</h1>
       <!-- /Nombre -->
       <!-- Descripcion -->
       <p>
@@ -22,40 +22,40 @@
     </div>
     <!-- Datos -->
     <div>
-      <table class="descripcionTabla">
+      <table class="descriptionTable">
         <tr>
-          <td class="tituloCategoria">Categoría:</td>
-          <td class="contenidoTabla">
-            <a class="enlaceTabla" *ngFor="let genre of translatedGenres; let last = last" (click)="busquedaFiltro(genre.value)">
+          <td class="titleCategory">Categoría:</td>
+          <td class="contentTable">
+            <a class="linkTable" *ngFor="let genre of translatedGenres; let last = last" (click)="busquedaFiltro(genre.value)">
               {{ genre.name }}<span *ngIf="!last">,</span>
             </a>
           </td>
         </tr>
         <tr>
-          <td class="descripcionSeparacion">Capitulos:</td>
-          <td class="contenidoTabla descripcionSeparacion">{{comic.num_volumes}}</td>
+          <td class="descriptionSeparation">Capitulos:</td>
+          <td class="contentTable descriptionSeparation">{{comic.num_volumes}}</td>
         </tr>
         <tr>
-          <td class="descripcionSeparacion">Año de serialización:</td>
-          <td class="contenidoTabla descripcionSeparacion">{{comic.start_date}}</td>
+          <td class="descriptionSeparation">Año de serialización:</td>
+          <td class="contentTable descriptionSeparation">{{comic.start_date}}</td>
         </tr>
       </table>
     </div>
     <!-- /Datos -->
     <!-- Botones -->
-    <div *ngIf="user" class="descripcionBotones">
-      <a class="descripcionBotonCesta favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+    <div *ngIf="user" class="descriptionButtons">
+      <a class="descriptionButtonBasket favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
         (click)="addToFavorites()" *ngIf="!inFav">Añadir a favoritos</a>
-      <a class="descripcionBotonCesta favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+      <a class="descriptionButtonBasket favButton" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
         (click)="deleteFronFavorites()" *ngIf="inFav">Quitar de favoritos</a>
-      <a class="descripcionBotonCesta" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
+      <a class="descriptionButtonBasket" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
         (click)="savelastComicRead()">Leer capitulos</a>
       <a *ngIf="haveRoleToEditComic" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
-        class="descripcionBotonCesta newComicButton" (click)="goToEditComic()">
+        class="descriptionButtonBasket newComicButton" (click)="goToEditComic()">
         Editar comic
       </a>
       <a *ngIf="haveRoleToEditComic && comic._id" [ngStyle]="{'font-size': haveRoleToEditComic ? 'small' : 'medium'}"
-        class="descripcionBotonCesta newComicButton" (click)="deleteComic()">
+        class="descriptionButtonBasket newComicButton" (click)="deleteComic()">
         Borrar comic
       </a>
     </div>

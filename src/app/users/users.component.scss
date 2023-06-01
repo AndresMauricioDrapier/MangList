@@ -2,7 +2,7 @@
   transform: translateY(5rem);
 }
 
-.contenido {
+.content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -31,7 +31,7 @@
 
   .buttonsContainer {
     margin-top: 1em;
-    .boton {
+    .button {
       background-color: #a309cd;
       border-radius: 40px;
       opacity: 0.8;
@@ -58,13 +58,13 @@
       border: 1px solid #3200a8;
     }
 
-    .botonDelete {
+    .buttonDelete {
       background-color: #e00618;
       box-shadow: 0 0 10px #e00618;
       border: 1px solid #e00618;
     }
 
-    .botonPromove{
+    .buttonPromove{
       background-color: #1fc281;
       box-shadow: 0 0 10px #1fc281;
       border: 1px solid #1fc281;
@@ -73,7 +73,7 @@
   }
 }
 
-.boton {
+.button {
   background-color: #a309cd;
   border-radius: 40px;
   opacity: 0.8;
@@ -94,15 +94,15 @@
   align-items: center;
   align-content: center;
 
-  #comicsFavoritos {
+  #comicsFavorites {
     color: white;
     text-align: center;
   }
 
-  #ultimoComicLeido {
+  #lastComicRead {
     color: white;
 
-    .contenido {
+    .content {
       padding: 0;
     }
   }
@@ -132,7 +132,7 @@
 }
 
 @media screen and (max-width: 519px) {
-  .contenido {
+  .content {
     padding-left: 13%;
   }
   .editPassButton {

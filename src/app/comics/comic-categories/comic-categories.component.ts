@@ -69,8 +69,8 @@ export class ComicCategoriesComponent implements OnInit {
             this.comics = comics;
         });
         this.route.queryParams.subscribe((params) => {
-            if (params["filtro"]) {
-              this.filterAll.get('genres').setValue(this.genres.find(g => g.value === params["filtro"]));
+            if (params["filter"]) {
+              this.filterAll.get('genres').setValue(this.genres.find(g => g.value === params["filter"]));
 
             }
         });

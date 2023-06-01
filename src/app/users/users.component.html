@@ -9,7 +9,7 @@
         <small class="role">(Rol: {{user.role}})</small>
         <div *ngIf="isMe" class="buttonsContainer">
           <!-- Editar perfil modal -->
-          <button type="button" class="boton" data-bs-backdrop="false" data-bs-toggle="modal"
+          <button type="button" class="button" data-bs-backdrop="false" data-bs-toggle="modal"
             data-bs-target="#editProfile">
             Editar perfil
           </button>
@@ -48,8 +48,8 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="boton">Guardar cambios</button>
+                      <button type="button" class="button" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="button">Guardar cambios</button>
                     </div>
                   </form>
                 </div>
@@ -60,7 +60,7 @@
 
 
           <!-- Editar avatar modal -->
-          <button type="button" class="boton" data-bs-backdrop="false" data-bs-toggle="modal"
+          <button type="button" class="button" data-bs-backdrop="false" data-bs-toggle="modal"
             data-bs-target="#editAvatar">
             Editar avatar
           </button>
@@ -91,8 +91,8 @@
                     </div>
 
                     <div class="modal-footer">
-                      <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="boton">Guardar cambios</button>
+                      <button type="button" class="button" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="button">Guardar cambios</button>
                     </div>
                   </form>
                 </div>
@@ -102,7 +102,7 @@
           <!-- Fin modal -->
 
           <!-- Editar conytraseña modal -->
-          <button type="button" class="boton editPassButton" data-bs-backdrop="false" data-bs-toggle="modal"
+          <button type="button" class="button editPassButton" data-bs-backdrop="false" data-bs-toggle="modal"
             data-bs-target="#editPass">
             Editar contraseña
           </button>
@@ -144,8 +144,8 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="boton" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="submit" class="boton">Guardar cambios</button>
+                      <button type="button" class="button" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="submit" class="button">Guardar cambios</button>
                     </div>
                   </form>
                 </div>
@@ -155,18 +155,18 @@
         </div>
         <br>
         <div class="buttonsContainer">
-          <button type="button" *ngIf="haveRoleToAddComic && isMe" class="boton newComicButton" (click)="goToAddComic()">
+          <button type="button" *ngIf="haveRoleToAddComic && isMe" class="button newComicButton" (click)="goToAddComic()">
             Añadir comic nuevo
           </button>
-          <button *ngIf="canDelete()" type="button" class="boton botonDelete" (click)="deleteUser()">
+          <button *ngIf="canDelete()" type="button" class="button buttonDelete" (click)="deleteUser()">
             Borrar usuario
           </button>
           <button *ngIf="userWatching.role === 'admin' && user.role !== 'admin'" type="button"
-            class="boton botonPromove" (click)="promoveToAdmin()">
+            class="button buttonPromove" (click)="promoveToAdmin()">
             Promover a admin
           </button>
           <button *ngIf="userWatching.role === 'admin' && user.role === 'admin'" type="button"
-            class="boton botonPromove" (click)="removeAdmin()">
+            class="button buttonPromove" (click)="removeAdmin()">
             Quitar rol admin
           </button>
         </div>
@@ -176,22 +176,22 @@
 
   <div class="divComicsProfile">
     <!-- Ultimo comic leido -->
-    <div class="py-4 px-4" id="ultimoComicLeido" *ngIf="lastComic">
+    <div class="py-4 px-4" id="lastComicRead" *ngIf="lastComic">
       <div class="d-flex align-items-center justify-content-between mb-3">
         <h3 class="mb-0">Seguir leyendo:</h3>
       </div>
-      <div class="contenido">
+      <div class="content">
         <ml-comic-card [comic]="lastComic"></ml-comic-card>
       </div>
     </div>
     <!-- /Ultimo comic leido -->
 
     <!-- Comics favoritos -->
-    <div class="py-4 px-4" id="comicsFavoritos">
+    <div class="py-4 px-4" id="comicsFavorites">
       <div class="d-flex align-items-center justify-content-between mb-3">
         <h3 class="mb-0">Comics favoritos:</h3>
       </div>
-      <div class="contenido">
+      <div class="content">
         <div *ngFor="let comic of comics">
           <ml-comic-card [comic]="comic"></ml-comic-card>
         </div>

@@ -7,7 +7,7 @@ import { ComicyRanking } from "../interfaces/comics";
 })
 export class ComicsFilterPipe implements PipeTransform {
     transform(comics: ComicyRanking[], genre: string): ComicyRanking[] {
-        if (genre != "Filtrar" && genre) {
+        if (genre != "Filter" && genre) {
             const filteredComicRankings: ComicyRanking[] = [];
 
             for (const comicRanking of comics) {

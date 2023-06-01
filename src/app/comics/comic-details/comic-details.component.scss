@@ -1,14 +1,14 @@
-.mainDescripcion {
+.mainDescription {
   display: flex;
   color: white;
   margin-top: 2em;
   margin-left: 8em;
   margin-right: 8em;
 
-  .descripcionIzquierda {
+  .descriptionLeft {
     margin-right: 2em;
 
-    .descripcionImagen {
+    .descriptionImage {
       background-image: no-repeat;
       background-image: fixed;
       background-image: center;
@@ -26,7 +26,7 @@
       display: flex;
       flex-direction: column;
 
-      .descripcionPuntuacion {
+      .descriptionScore {
         background-color: #a309cd;
         border-radius: 40px;
         opacity: 0.8;
@@ -41,7 +41,7 @@
       }
     }
 
-    .descripcionNombre {
+    .descriptionName {
       text-align: center;
       font-size: 3em;
       font-weight: bolder;
@@ -49,7 +49,7 @@
     }
   }
 
-  .descripcionDerecha {
+  .descriptionRight {
     text-align: justify;
 
     h2 {
@@ -57,35 +57,35 @@
       font-weight: bold;
     }
 
-    .descripcionTabla {
+    .descriptionTable {
       text-align: start;
       font-size: small;
       margin-top: 6em;
       width: 25em;
 
-      .tituloCategoria {
+      .titleCategory {
         // padding-bottom: 1.4em;
         width: 20% !important;
       }
 
-      .contenidoTabla {
+      .contentTable {
         padding-left: 1em;
-        .enlaceTabla{
+        .linkTable{
           cursor: pointer;
         }
       }
 
-      .descripcionSeparacion {
+      .descriptionSeparation {
         padding-top: 1em;
       }
     }
 
-    .descripcionBotones {
+    .descriptionButtons {
       font-weight: 700;
       margin-top: 3em;
       text-align: right;
 
-      .descripcionBotonCesta {
+      .descriptionButtonBasket {
         background-color: #a309cd;
         border-radius: 40px;
         opacity: 0.8;
@@ -113,7 +113,7 @@
 }
 
 @media screen and (max-width: 1400px) {
-  .mainDescripcion {
+  .mainDescription {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -122,8 +122,8 @@
     margin-left: 1em;
     margin-right: 1em;
 
-    .descripcionIzquierda {
-      .descripcionImagen {
+    .descriptionLeft {
+      .descriptionImage {
         text-align: center;
         width: 19em;
         height: 28em;
@@ -141,7 +141,7 @@
 }
 
 @media screen and (max-width: 873px) {
-  .mainDescripcion {
+  .mainDescription {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -150,8 +150,8 @@
     margin-left: 1em;
     margin-right: 1em;
 
-    .descripcionIzquierda {
-      .descripcionImagen {
+    .descriptionLeft {
+      .descriptionImage {
         text-align: center;
         width: 19em;
         height: 28em;
@@ -169,17 +169,17 @@
 }
 
 @media screen and (max-width: 767px) {
-  .mainDescripcion {
+  .mainDescription {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     align-content: center;
 
-    .descripcionIzquierda {
+    .descriptionLeft {
       text-align: center;
       margin-left: 0.7em;
 
-      .descripcionImagen {
+      .descriptionImage {
         width: 17em;
         height: 25em;
         margin-bottom: 2em;
@@ -191,10 +191,10 @@
         margin-bottom: 0.5em;
       }
     }
-    .descripcionDerecha {
+    .descriptionRight {
       margin-bottom: 0.5em;
 
-      .descripcionBotones {
+      .descriptionButtons {
         margin-left: 0;
         text-align: center;
 
